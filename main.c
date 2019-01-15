@@ -9,7 +9,7 @@ int main(int argc, char **argv)
   {
 
   	1. {'c', &print_char},*/
-    printf("*********\n 'c', print_char\n\n");
+  /*  printf("*********\n 'c', print_char\n\n");
     char c = 'a';
     printf("  defined \n");
     printf("    sans option 'a' : %c\n", c);
@@ -104,11 +104,10 @@ int main(int argc, char **argv)
     printf("  defined \n");
     printf("    sans option f   : %f\n", f);
     printf("    option 8.2 f    : %8.2f\n", f);
-    printf("    option 20.2 f    : %20.2f\n", f);
+    printf("    option 20.2 f    : %20.2f\n", f);*/
 
   	//{'F', &print_floats},
     //printf("*********\n 'F', &print_floats\n\n");
-
   //};
   return (1);
 }
