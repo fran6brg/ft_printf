@@ -22,16 +22,18 @@
 
 int ft_printf_char(t_options *option, va_list *args)
 {
-	printf("ok CHAR final function\n\n");
+	write(1, "ok inside final function : -", 28);
+	ft_putchar(va_arg(*args, char));
+	printf("-\n\n");
 	return (1);
 }
 
 int ft_printf_string(t_options *option, va_list *args)
 {
-	//write(1,"ok inside final function : -", 28);
-	//ft_putstr(va_arg(*args, char*));
+	write(1,"ok inside final function : -", 28);
+	ft_putstr(va_arg(*args, char*));
+	printf("-\n\n");
 	//printf("ok inside final function : -%s-\n\n", va_arg(*args, char*));
-	//printf("-\n\n");
 	return (1);
 }
 

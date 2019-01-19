@@ -15,6 +15,8 @@ int main(int argc, char **argv)
   return (1);
 }
 
+//https://www.tutorialspoint.com/c_standard_library/c_function_printf.htm
+
 /*
 • Vous ne ferez pas la gestion de buffer présente dans la fonction printf de la libc.
 • Vous devez gérer les conversions suivantes : csp

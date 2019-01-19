@@ -14,9 +14,11 @@ int main(int argc, char **argv)
     printf("  defined \n");
     printf("    sans option 'a' : %c\n", c);
     printf("    option 15 'a'   : %15c\n", c);
+    printf("    option .15 'a'  : %.15c\n", c);
     printf("  undefined \n");
-    //printf("    option 015 'a'  : %015c\n", c);
-    //printf("    option +015 'a' : %+015c\n", c);
+    printf("    option 0   'a'  : %0c\n", c);
+    printf("    option 015 'a'  : %015c\n", c);
+    printf("    option +015 'a' : %+015c\n", c);
     printf("\n");
 
   	//{'C', &print_char},
