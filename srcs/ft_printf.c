@@ -16,6 +16,35 @@
 #include "../3.Libft/libft.h"
 
 /*
+** functions pointer -----------------------------------------------------------
+*/
+
+// à faire :
+
+/*t_func	p_func[10] =
+{
+	{'c', &print_char},
+	//{'C', &print_char},
+	{'s', &print_string},
+	//{'S', &print_unicode_string},
+  {'p', &print_base},
+	//{'r', &print_string},
+	{'d', &print_integer},
+	//{'D', &print_integer},
+	{'i', &print_integer},
+  {'o', &print_base},
+  //{'O', &print_base},
+	{'u', &print_integer},
+	//{'U', &print_integer},
+	{'x', &print_base},
+	//{'X', &print_base},
+	//{'b', &print_base},
+	{'f', &print_floats},
+	//{'F', &print_floats},
+  {'%', &print_char},
+};*/
+
+/*
 ** flags -----------------------------------------------------------------------
 */
 
@@ -46,7 +75,7 @@ int		is_accepted_flags(char c)
 ** build new option ------------------------------------------------------------
 */
 
-int    compute_new_len_in_format(const char *format, int i)
+int    compute_new_option_len_in_format(const char *format, int i)
 {
     int len;
 
@@ -71,12 +100,12 @@ t_options	*create_new_option(const char *format, int i)
 	if ((new = (t_options*)ft_memalloc(sizeof(t_options))) == NULL)
 		return (NULL);
 	//ft_bzero(new, sizeof(t_options));
-  if ((new->len = compute_new_len_in_format(format, i)) == -1)
+  if ((new->flen = compute_new_option_len_in_format(format, i)) == -1)
         return (NULL);
-  new->type = (new->len > 0 ? (format[i + new->len]) : (char)NULL);
-  if (new->len > 1)
-      new->flags = ft_strsub(format, i + 1, (size_t)(new->len - 1));
-  //printf("new option[%i]->len = %i\n", i, new->len);
+  new->type = (new->flen > 0 ? (format[i + new->flen]) : (char)NULL);
+  if (new->flen > 1)
+      new->flags = ft_strsub(format, i + 1, (size_t)(new->flen - 1));
+  //printf("new option[%i]->flen = %i\n", i, new->flen);
 	return (new);
 }
 
@@ -121,7 +150,7 @@ int   extract_options(const char *format, t_options **options)
             }
             else
             {
-                i += new->len;
+                i += new->flen;
                 push_back_new_option(options, new);
             }
         }
@@ -145,7 +174,7 @@ void print_t_options_list(t_options **options)
     printf("o->type = %c\n", option->type);
     printf("o->flags = %s\n", option->flags);
     //printf("o->flags = %s == NULL ? : %d\n", option->flags, (option->flags == NULL));
-    printf("o->len = %i\n", option->len);
+    printf("o->flen = %i\n", option->flen);
     printf("**********  end ***********\n\n");
     option = option->next;
   }
@@ -168,8 +197,9 @@ int		ft_printf(const char *format, ...)
     //options_lst_clear(spec);
     return (-1);
   }
-  print_t_options_list(&options);
   //va_start(args, format);
+  // itérer sur la liste t_options et rooter les args (%c, %s, etc.) aux fonctions correspondantes
   //va_end(args);
+  print_t_options_list(&options);
   return (1);
 }

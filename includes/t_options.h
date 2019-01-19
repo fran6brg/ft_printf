@@ -4,12 +4,12 @@
 
 typedef struct	s_options
 {
-	char			type;
-	char			*flags;
+	char			type; // = la position du % + option->flen
+	char			*flags; // = ft_strsub de ce qu'il y a entre le % et le type
 	//char			*minlen;
 	//char			*maxlen;
 	//int				idx;
-	int				len;
+	int				flen; // == nb of char, between % and the type, in format
 	//int				pad;
 	//int				pad_right;
 	//int				zeropad;
