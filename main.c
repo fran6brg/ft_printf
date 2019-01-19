@@ -9,7 +9,7 @@ int main(int argc, char **argv)
   {
 
   	1. {'c', &print_char},*/
-  /*  printf("*********\n 'c', print_char\n\n");
+    printf("*********\n 'c', print_char\n\n");
     char c = 'a';
     printf("  defined \n");
     printf("    sans option 'a' : %c\n", c);
@@ -22,7 +22,7 @@ int main(int argc, char **argv)
   	//{'C', &print_char},
     //printf("*********\n 'C', &print_char\n\n");
 
-  	// 2. {'%', &print_char},
+  /*	// 2. {'%', &print_char},
     printf("*********\n 'pourcentage', &print_char\n\n");
     int x = 10;
     int y = 100;

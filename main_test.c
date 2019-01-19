@@ -6,11 +6,12 @@
 int main(int argc, char **argv)
 {
   int i = 1;
-  int j = 2;
-  int k = 3;
-  char *s = "lol";
+  // int j = 2;
+  // int k = 3;
+  char c = 'a';
+  char *s = "lolololol";
 
-  ft_printf("string = %.10s abc %#0+- def %#0+-100i fgh %i --- %%\n", s, i, j, k);
+  ft_printf("char = %c string = %.10s abc %#0+-i --- %%\n", c, s, i);
   return (1);
 }
 

@@ -2,7 +2,7 @@
 # define T_OPTIONS_H
 # include <string.h>
 
-# define SPECIFIER_COUNT (11)
+# define NB_ACCEPTED_OPTIONS (11)
 
 typedef struct			s_func
 {

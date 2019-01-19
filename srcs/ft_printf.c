@@ -22,13 +22,16 @@
 
 int ft_printf_char(t_options *option, va_list *args)
 {
-	printf("ok inside final function\n\n");
+	printf("ok CHAR final function\n\n");
 	return (1);
 }
 
 int ft_printf_string(t_options *option, va_list *args)
 {
-	printf("ok inside final function\n\n");
+	//write(1,"ok inside final function : -", 28);
+	//ft_putstr(va_arg(*args, char*));
+	//printf("ok inside final function : -%s-\n\n", va_arg(*args, char*));
+	//printf("-\n\n");
 	return (1);
 }
 
@@ -78,7 +81,7 @@ int 	root_options_printers(t_options *option, va_list *args)
 		int i;
 
 		i = 0;
-		while (i < SPECIFIER_COUNT)
+		while (i < NB_ACCEPTED_OPTIONS)
 		{
 				if (p_func[i].option == option->type)
 				{
@@ -244,7 +247,7 @@ void print_t_option(t_options **option)
     //printf("o->flags = %s == NULL ? : %d\n", this_one->flags, (this_one->flags == NULL));
 		printf("o->flen  = %i\n", this_one->flen);
 		printf("o->fpos  = %i\n", this_one->fpos);
-    printf("**********  end ***********\n\n");
+    printf("**********  end  **********\n\n");
 }
 
 /*
@@ -260,6 +263,7 @@ int		ft_printf(const char *format, ...)
 
   // step 1 = init struct
   options = NULL;
+	printf("\n------- BUILDING LIST ---------\n");
   if (extract_options(format, &options) == -1)
   {
     printf("RET -1 = LIST TO BE CLEAR\n");
@@ -267,10 +271,11 @@ int		ft_printf(const char *format, ...)
     return (-1);
   }
 	print_t_options_list(&options);
-	printf("------- OK LIST ---------\n\n");
+	printf("------- OK LIST ---------------\n\n");
 	va_start(args, format);
 	option = options;
 	i = 0;
+	printf("------- START PRINTF ----------\n\n");
 	while (format[i])
 	{
 			//write(1, "insid1\n", 7);
