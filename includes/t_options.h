@@ -1,5 +1,5 @@
-#ifndef T_OPTIONS_H
-# define T_OPTIONS_H
+#ifndef T_FUNCTIONS_POINTERS_H
+# define T_FUNCTIONS_POINTERS_H
 # include <string.h>
 
 typedef struct	s_options
@@ -8,7 +8,7 @@ typedef struct	s_options
 	char			*flags; // = ft_strsub de ce qu'il y a entre le % et le type
 	//char			*minlen;
 	//char			*maxlen;
-	//int				idx;
+	int				fpos; // position dans la string
 	int				flen; // == nb of char, between % and the type, in format
 	//int				pad;
 	//int				pad_right;

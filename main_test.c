@@ -1,14 +1,16 @@
 #include <stdio.h>
 #include "3.Libft/libft.h"
 #include "includes/t_options.h"
+//#include "includes/t_functions_pointers.h"
 
 int main(int argc, char **argv)
 {
   int i = 1;
   int j = 2;
   int k = 3;
+  char *s = "lol";
 
-  ft_printf("abc %#0+- def %#0+-100i fgh %i\n", i, j, k);
+  ft_printf("string = %.10s abc %#0+- def %#0+-100i fgh %i --- %%\n", s, i, j, k);
   return (1);
 }
 
