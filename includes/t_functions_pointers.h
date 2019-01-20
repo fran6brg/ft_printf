@@ -8,6 +8,6 @@ typedef struct			s_func
 {
 	char	option;
 	int		(*func)(t_options*, va_list*);
-}						t_func;
+}						t_functions_pointers;
 
 #endif
