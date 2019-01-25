@@ -20,9 +20,28 @@
 ** functions pointer -----------------------------------------------------------
 */
 
+void helper_print_padding(t_options *option, int len)
+{
+	int i;
+
+	i = -1;
+	while(++i < option->number - len)
+	{
+			if (option->left_zeros)
+					ft_putchar('0');
+			else
+					ft_putchar(' ');
+	}
+}
+
+/*
+** functions pointer -----------------------------------------------------------
+*/
+
 int ft_printf_char(t_options *option, va_list *args)
 {
 	write(1, "ok inside final function : -", 28);
+	helper_print_padding(option, 1);
 	ft_putchar(va_arg(*args, int));
 	write(1, "-\n\n", 3);
 	return (1);
@@ -64,7 +83,7 @@ int ft_printf_modulo(t_options *option, va_list *args)
 	return (1);
 }
 
-t_functions_pointers	fp[11] =
+t_functions_pointers	fp[NB_ACCEPTED_OPTIONS] =
 {
 	{'c', &ft_printf_char},
 	//{'C', &print_char},
@@ -87,6 +106,7 @@ t_functions_pointers	fp[11] =
   {'%', &ft_printf_modulo},
 };
 
+// fonction qui renvoie vers la bonne fonction selon le type du %
 int 	root_options_printers(t_options *option, va_list *args)
 {
 		int i;
@@ -186,6 +206,28 @@ int	ft_strstr_modified(const char *m, const char *a)
 	return (0);
 }
 
+int extract_number_in_flags(t_options *new)
+{
+		int i;
+		int j;
+		int sum;
+
+		i = 0;
+		j = 0;
+		sum = 0;
+		printf("ici flags = %s\n", new->flags);
+		while (new->flags[i] && !ft_isdigit(new->flags[i]))
+				i++;
+		if (new->flags[i] == '0')
+		{
+				new->left_zeros = 1;
+				// i++;
+		}
+		while (new->flags[i] && ft_isdigit(new->flags[i + j]))
+				sum = ((sum * 10) + ((int)new->flags[i + j++] - 48));
+		return (sum);
+}
+
 /*
 ** t_options list functions ----------------------------------------------------
 */
@@ -196,40 +238,64 @@ t_options	*create_new_option(const char *format, int i)
 
 	if ((new = (t_options*)ft_memalloc(sizeof(t_options))) == NULL)
 		return (NULL);
-	//ft_bzero(new, sizeof(t_options));
+	//ft_bzero(new, sizeof(t_options)); kc
+
 	// 1. flen
   if ((new->flen = compute_new_option_len_in_format(format, i)) == -1)
         return (NULL);
+
 	// 2. type
   new->type = (new->flen > 0 ? (format[i + new->flen]) : (char)NULL);
+
 	// 3. flags
   if (new->flen > 1)
       new->flags = ft_strsub(format, i + 1, (size_t)(new->flen - 1));
-	// 4. fpos
+
+	// 4. fpos dans format
 	new->fpos = i;
-	// 5. sign
+
+	// 5. left_justify
+	if (new->flen > 1 && ft_strchr_modified(new->flags, '-'))
+	new->left_justify = 1;
+
+	// 6. sign =
 	if (new->flen > 1 && ft_strchr_modified(new->flags, '+'))
 			new->sign = 1;
-	// 6. space
+
+	// 7. space
 	if (new->flen > 1 && new->sign != 1 && ft_strchr_modified(new->flags, ' '))
 			new->space = 1;
-	// 7. left_justify
-	if (new->flen > 1 && ft_strchr_modified(new->flags, '-'))
-			new->left_justify = 1;
-	// 8. number
-	// 9. hh / h
+
+	// 8. #
+	if (new->flen > 1 && ft_strchr_modified(new->flags, '#'))
+			new->hashtag = 1;
+
+	// 9. 0
+	if (new->flen > 1 && ft_strchr_modified(new->flags, '0'))
+			new->left_zeros = 1;
+
+	// 10. number
+	if (new->flen > 1)
+	 		new->number = extract_number_in_flags(new);
+	//printf("flags = %s || ft_atoi flags = %i\n", new->flags, ft_atoi(new->flags));
+
+	//11. et 12 h / hh
 	if (new->flen > 1 && ft_strstr_modified(new->flags, "hh"))
 			new->hh = 1;
 	else if (new->flen > 1 && ft_strchr_modified(new->flags, 'h'))
 			new->h = 1;
-	// 10. ll / l
+
+	// 13. et 14 ll / l
 	if (new->flen > 1 && ft_strstr_modified(new->flags, "ll"))
 			new->ll = 1;
 	else if (new->flen > 1 && ft_strchr_modified(new->flags, 'l'))
 			new->l = 1;
 	if (new->flen > 1 && ft_strchr_modified(new->flags, 'L'))
-	// 11. L
-			new->L = 1;
+
+	// 15. L
+	if (new->flen > 1 && ft_strstr_modified(new->flags, "ll"))
+		  new->ll = 1;
+
 	return (new);
 }
 //printf("new option[%i]->flen = %i\n", i, new->flen);
@@ -296,22 +362,21 @@ void print_t_options_list(t_options **options)
   while (option != NULL && ++i)
   {
     printf("\n******** option[%i] *******\n", i);
-    printf("o->type         = %c\n", option->type);
-    printf("o->flags        = %s\n", option->flags);
-    //printf("o->flags = %s == NULL ? : %d\n", option->flags, (option->flags == NULL));
-		printf("o->flen         = %i\n", option->flen);
-		printf("o->fpos         = %i\n", option->fpos);
-		printf("o->left_justify = %i\n", option->left_justify);
-		printf("o->sign         = %i\n", option->sign);
-		printf("o->space        = %i\n", option->space);
-		printf("o->hashtag      = %i\n", option->hashtag);
-		printf("o->left_zeros   = %i\n", option->left_zeros);
-		printf("o->number       = %i\n", option->number);
-		printf("o->h            = %i\n", option->h);
-		printf("o->hh           = %i\n", option->hh);
-		printf("o->l            = %i\n", option->l);
-		printf("o->ll           = %i\n", option->ll);
-		printf("o->L            = %i\n", option->L);
+    printf("1. o->type         = %c\n", option->type);
+    printf("2. o->flags        = %s\n", option->flags);
+		printf("3. o->flen         = %i\n", option->flen);
+		printf("4. o->fpos         = %i\n", option->fpos);
+		printf("5. o->left_justify = %i\n", option->left_justify);
+		printf("6. o->sign         = %i\n", option->sign);
+		printf("7. o->space        = %i\n", option->space);
+		printf("8. o->hashtag      = %i\n", option->hashtag);
+		printf("9. o->left_zeros   = %i\n", option->left_zeros);
+		printf("10 o->number       = %i\n", option->number);
+		printf("11 o->h            = %i\n", option->h);
+		printf("12 o->hh           = %i\n", option->hh);
+		printf("13 o->l            = %i\n", option->l);
+		printf("14 o->ll           = %i\n", option->ll);
+		printf("15 o->L            = %i\n", option->L);
     printf("**********  end ***********\n\n");
     option = option->next;
   }
@@ -323,22 +388,21 @@ void print_t_option(t_options **option)
 
 		this_one = *option;
     printf("\n******** option[%i] *******\n", this_one->fpos);
-    printf("o->type         = %c\n", this_one->type);
-    printf("o->flags        = %s\n", this_one->flags);
-    //printf("o->flags = %s == NULL ? : %d\n", this_one->flags, (this_one->flags == NULL));
-		printf("o->flen         = %i\n", this_one->flen);
-		printf("o->fpos         = %i\n", this_one->fpos);
-		printf("o->left_justify = %i\n", this_one->left_justify);
-		printf("o->sign         = %i\n", this_one->sign);
-		printf("o->space        = %i\n", this_one->space);
-		printf("o->hashtag      = %i\n", this_one->hashtag);
-		printf("o->left_zeros   = %i\n", this_one->left_zeros);
-		printf("o->number       = %i\n", this_one->number);
-		printf("o->h            = %i\n", this_one->h);
-		printf("o->hh           = %i\n", this_one->hh);
-		printf("o->l            = %i\n", this_one->l);
-		printf("o->ll           = %i\n", this_one->ll);
-		printf("o->L            = %i\n", this_one->L);
+    printf("1. o->type         = %c\n", this_one->type);
+    printf("2. o->flags        = %s\n", this_one->flags);
+		printf("3. o->flen         = %i\n", this_one->flen);
+		printf("4. o->fpos         = %i\n", this_one->fpos);
+		printf("5. o->left_justify = %i\n", this_one->left_justify);
+		printf("6. o->sign         = %i\n", this_one->sign);
+		printf("7. o->space        = %i\n", this_one->space);
+		printf("8. o->hashtag      = %i\n", this_one->hashtag);
+		printf("9. o->left_zeros   = %i\n", this_one->left_zeros);
+		printf("10 o->number       = %i\n", this_one->number);
+		printf("11 o->h            = %i\n", this_one->h);
+		printf("12 o->hh           = %i\n", this_one->hh);
+		printf("13 o->l            = %i\n", this_one->l);
+		printf("14 o->ll           = %i\n", this_one->ll);
+		printf("15 o->L            = %i\n", this_one->L);
     printf("**********  end  **********\n\n");
 }
 
