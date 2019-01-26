@@ -12,10 +12,23 @@ int main(int argc, char **argv)
   char *s = "lolololol";
 
   //ft_printf("char = %10c string = %.10s abc %#0+-i\n", c, s, i);
-  ft_printf("char = -%010c-\n", c);
+
+  // 1. c
+  // ft_printf("char = -%010c-\n", c);
+  // 2. s
+  ft_printf("str = -%0 5s-\n", s);
+
   printf("\n*************\n\n");
-  printf("passed : char = -%%010c-\n");
-  printf("rslt p : char = -%010c-\n", c);
+
+  // 1. c
+  // printf("passed : char = -%%010c-\n");
+  // printf("rslt p : char = -%010c-\n", c);
+
+  // 2.c
+  printf("passed : str = -%%0 5s-\n");
+  printf("rslt p : str = -%0 5s-\n", s);
+
+  // 2. s
   printf("\n*************\n");
   return (1);
 }

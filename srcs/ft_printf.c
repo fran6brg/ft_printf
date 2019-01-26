@@ -49,8 +49,13 @@ int ft_printf_char(t_options *option, va_list *args)
 
 int ft_printf_string(t_options *option, va_list *args)
 {
+	char *tmp;
+
 	write(1,"ok inside final function : -", 28);
-	ft_putstr(va_arg(*args, char*));
+	if (!(tmp = ft_strdup(va_arg(*args, char*))))
+			return (-1);
+	helper_print_padding(option, ft_strlen(tmp));
+	ft_putstr(tmp);
 	write(1, "-\n\n", 3);
 	//printf("ok inside final function : -%s-\n\n", va_arg(*args, char*));
 	return (1);
@@ -215,7 +220,9 @@ int extract_number_in_flags(t_options *new)
 		i = 0;
 		j = 0;
 		sum = 0;
-		printf("ici flags = %s\n", new->flags);
+
+		// a  ameliorer si espace ....
+		// printf("ici flags = %s\n", new->flags);
 		while (new->flags[i] && !ft_isdigit(new->flags[i]))
 				i++;
 		if (new->flags[i] == '0')
@@ -426,12 +433,12 @@ int		ft_printf(const char *format, ...)
     //options_lst_clear(spec);
     return (-1);
   }
-	print_t_options_list(&options);
+	// print_t_options_list(&options);
 	printf("------- OK LIST ---------------\n\n");
 	va_start(args, format);
 	option = options;
 	i = 0;
-	printf("------- START PRINTF ----------\n\n");
+	printf("------- START FT_PRINTF -------\n\n");
 	while (format[i])
 	{
 			//write(1, "insid1\n", 7);
@@ -439,7 +446,7 @@ int		ft_printf(const char *format, ...)
 			if (format[i] == '%' && format[i - 1] != '%')
 			{
 				//write(1, "\ninsid2\n", 8);
-				printf("\nIF   format[%i] = '%c'\n", i, format[i]);
+				printf("\n %%     format[%i] = '%c'\n", i, format[i]);
 				// print option
 				print_t_option(&option);
 				i += (1 + option->flen);
@@ -448,7 +455,7 @@ int		ft_printf(const char *format, ...)
 			}
 			else
 			{
-				printf("ELSE format[%i] = '%c'\n", i, format[i]);
+				printf("!%%     format[%i] = '%c'\n", i, format[i]);
 				i++;
 			}
 	}
