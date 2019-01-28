@@ -41,9 +41,4 @@ typedef struct	s_options
 	struct s_options	*next;
 }				t_options;
 
-t_options	*create_new_option(const char *format, int i);
-void	push_back_new_option(t_options **latest_option, t_options *new);
-int   extract_options(const char *format, t_options **options);
-int		ft_printf(const char *format, ...);
-
 #endif

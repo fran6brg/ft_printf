@@ -14,21 +14,49 @@
 #include <stdarg.h>
 #include "../includes/t_options.h"
 #include "../includes/t_functions_pointers.h"
+#include "../includes/functions.h"
 #include "../3.Libft/libft.h"
-
 /*
 ** functions pointer -----------------------------------------------------------
 */
 
-void helper_print_padding(t_options *option, int len)
+void helper_print_str_padding(t_options *option, int len, int after)
 {
 	int i;
 
 	i = -1;
+	if ((!after && option->left_justify) || (after && !option->left_justify))
+			return ;
 	while(++i < option->number - len)
 	{
-			if (option->left_zeros)
+			if (option->left_zeros && !option->left_justify)
 					ft_putchar('0');
+			else
+					ft_putchar(' ');
+	}
+}
+
+void helper_print_nb_padding(t_options *option, int len, int after, int nb)
+{
+	int i;
+
+	i = -1;
+	// before
+	// after
+	// left_justify
+	// sign +
+	// le vrai
+	if ((!after && option->left_justify) || (after && !option->left_justify))
+			return ;
+	while(++i < (option->number - len - (option->sign || nb < 0)))
+	{
+			if (option->left_zeros && !option->left_justify)
+			{
+					if (i == 0 && nb >= 0)
+							i++;
+					else
+							ft_putchar('0');
+			}
 			else
 					ft_putchar(' ');
 	}
@@ -41,8 +69,11 @@ void helper_print_padding(t_options *option, int len)
 int ft_printf_char(t_options *option, va_list *args)
 {
 	write(1, "ok inside final function : -", 28);
-	helper_print_padding(option, 1);
+
+	helper_print_str_padding(option, 1, 0); // imprimer avant si sign == 0
 	ft_putchar(va_arg(*args, int));
+	helper_print_str_padding(option, 1, 1); // imprimer apres si sign == 1
+
 	write(1, "-\n\n", 3);
 	return (1);
 }
@@ -52,10 +83,14 @@ int ft_printf_string(t_options *option, va_list *args)
 	char *tmp;
 
 	write(1,"ok inside final function : -", 28);
+
 	if (!(tmp = ft_strdup(va_arg(*args, char*))))
 			return (-1);
-	helper_print_padding(option, ft_strlen(tmp));
+	helper_print_str_padding(option, ft_strlen(tmp), 0);
 	ft_putstr(tmp);
+	helper_print_str_padding(option, ft_strlen(tmp), 1);
+	ft_strdel(&tmp);
+
 	write(1, "-\n\n", 3);
 	//printf("ok inside final function : -%s-\n\n", va_arg(*args, char*));
 	return (1);
@@ -69,7 +104,32 @@ int ft_printf_base(t_options *option, va_list *args)
 
 int ft_printf_integer(t_options *option, va_list *args)
 {
-	printf("ok inside final function\n\n");
+	int n;
+	int nb;
+	int len;
+
+	print_t_option(&option);
+	write(1,"ok inside final function : -", 28);
+	n = va_arg(*args, int);
+	nb = n >= 0 ? n : -n;
+	len = 1;
+	while (nb >= 10)
+	{
+		len++;
+		nb /= 10;
+	}
+	//printf("lenn = %d\n", len);
+	if (option->sign && option->left_zeros && n >= 0)
+	{
+			//len++;
+			ft_putchar((n < 0) ? '-' : '+');
+	}
+	helper_print_nb_padding(option, len, 0, n);
+	if (option->sign && !option->left_zeros && n >= 0)
+			ft_putchar((n < 0) ? '-' : '+');
+	ft_putnbr(n);
+	helper_print_nb_padding(option, len, 1, n);
+	write(1, "-\n\n", 3);
 	return (1);
 }
 
@@ -82,8 +142,9 @@ int ft_printf_floats(t_options *option, va_list *args)
 int ft_printf_modulo(t_options *option, va_list *args)
 {
 	write(1, "ok modulo final function : -", 28);
-	//ft_putchar(va_arg(*args, int));
+
 	ft_putchar('%');
+
 	write(1, "-\n\n", 3);
 	return (1);
 }
@@ -221,17 +282,20 @@ int extract_number_in_flags(t_options *new)
 		j = 0;
 		sum = 0;
 
-		// a  ameliorer si espace ....
-		// printf("ici flags = %s\n", new->flags);
-		while (new->flags[i] && !ft_isdigit(new->flags[i]))
-				i++;
-		if (new->flags[i] == '0')
+		while (new->flags[i])
 		{
-				new->left_zeros = 1;
-				// i++;
+				if (new->flags[i] == '0')
+						new->left_zeros = 1;
+				else if (ft_isdigit(new->flags[i]))
+				{
+						while (new->flags[i] && ft_isdigit(new->flags[i + j]))
+								sum = ((sum * 10) + ((int)new->flags[i + j++] - 48));
+						i += (j - 1);
+				}
+				else
+					;
+				i++;
 		}
-		while (new->flags[i] && ft_isdigit(new->flags[i + j]))
-				sum = ((sum * 10) + ((int)new->flags[i + j++] - 48));
 		return (sum);
 }
 
@@ -277,15 +341,16 @@ t_options	*create_new_option(const char *format, int i)
 	if (new->flen > 1 && ft_strchr_modified(new->flags, '#'))
 			new->hashtag = 1;
 
-	// 9. 0
-	if (new->flen > 1 && ft_strchr_modified(new->flags, '0'))
-			new->left_zeros = 1;
+	// 9. 0 -> géré dans le 10. number
+	// if (new->flen > 1 && ft_strchr_modified(new->flags, '0'))
+	//		new->left_zeros = 1;
 
+	// print_t_option(&new);
 	// 10. number
 	if (new->flen > 1)
 	 		new->number = extract_number_in_flags(new);
 	//printf("flags = %s || ft_atoi flags = %i\n", new->flags, ft_atoi(new->flags));
-
+	// print_t_option(&new);
 	//11. et 12 h / hh
 	if (new->flen > 1 && ft_strstr_modified(new->flags, "hh"))
 			new->hh = 1;
@@ -368,7 +433,7 @@ void print_t_options_list(t_options **options)
   option = *options;
   while (option != NULL && ++i)
   {
-    printf("\n******** option[%i] *******\n", i);
+    printf("\n******* option(f[%i]) *****\n", i);
     printf("1. o->type         = %c\n", option->type);
     printf("2. o->flags        = %s\n", option->flags);
 		printf("3. o->flen         = %i\n", option->flen);
@@ -394,7 +459,7 @@ void print_t_option(t_options **option)
 		t_options	*this_one;
 
 		this_one = *option;
-    printf("\n******** option[%i] *******\n", this_one->fpos);
+    printf("\n******* option(f[%i]) *****\n", this_one->fpos);
     printf("1. o->type         = %c\n", this_one->type);
     printf("2. o->flags        = %s\n", this_one->flags);
 		printf("3. o->flen         = %i\n", this_one->flen);
@@ -434,7 +499,7 @@ int		ft_printf(const char *format, ...)
     return (-1);
   }
 	// print_t_options_list(&options);
-	printf("------- OK LIST ---------------\n\n");
+	printf("------- OK LIST ---------------\n");
 	va_start(args, format);
 	option = options;
 	i = 0;
@@ -446,16 +511,16 @@ int		ft_printf(const char *format, ...)
 			if (format[i] == '%' && format[i - 1] != '%')
 			{
 				//write(1, "\ninsid2\n", 8);
-				printf("\n %%     format[%i] = '%c'\n", i, format[i]);
+				// printf("\n %%     format[%i] = '%c'\n", i, format[i]);
 				// print option
-				print_t_option(&option);
+				// print_t_option(&option);
 				i += (1 + option->flen);
 				root_options_printers(option, &args);
 				option = option != NULL ? option->next : NULL;
 			}
 			else
 			{
-				printf("!%%     format[%i] = '%c'\n", i, format[i]);
+				// printf("!%%     format[%i] = '%c'\n", i, format[i]);
 				i++;
 			}
 	}
