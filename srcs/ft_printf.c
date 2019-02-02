@@ -173,7 +173,34 @@ int ft_printf_integer(t_options *option, va_list *args)
 
 int ft_printf_floats(t_options *option, va_list *args)
 {
-	printf("ok inside final function\n\n");
+	long double		nbr;
+	int 					precision;
+	int 					nbr_to_int;
+	//int 					tmp;
+	int 					i;
+
+	write(1,"ok inside floats  function : -", 30);
+	precision = (option->number ? option->number : 6);
+	nbr = va_arg(*args, double);
+	// afficher chiffres avant virgule
+	nbr_to_int = (int)nbr;
+	ft_putnbr(nbr_to_int);
+	// afficher virgule
+	write(1, ".", 1);
+	// afficher apres avant virgule
+	nbr -= (long double)nbr_to_int;
+	i = -1;
+	while (++i < precision)
+	{
+			nbr *= 10;
+			if (!((precision - i) == 1))
+			{
+				ft_putchar((int)nbr + '0');
+				nbr -= (int)nbr;
+			}
+	}
+	ft_putchar(nbr + 0.5 + '0');
+	write(1, "-\n\n", 3);
 	return (1);
 }
 
@@ -186,6 +213,11 @@ int ft_printf_modulo(t_options *option, va_list *args)
 	write(1, "-\n\n", 3);
 	return (1);
 }
+
+// TO DO
+// floats
+// #
+// return
 
 t_functions_pointers	fp[NB_ACCEPTED_OPTIONS] =
 {
@@ -221,7 +253,7 @@ int 	root_options_printers(t_options *option, va_list *args)
 		if (fp[i].option == option->type)
 		{
 			printf("option is %c | g_func[%i].spec is %c\n", option->type, i, fp[i].option);
-			fp[i].func(option, args);
+			fp[i].function(option, args);
 			return (1);
 		}
 		i++;
@@ -554,7 +586,7 @@ int		ft_printf(const char *format, ...)
 			//write(1, "\ninsid2\n", 8);
 			// printf("\n %%     format[%i] = '%c'\n", i, format[i]);
 			// print option
-			// print_t_option(&option);
+			print_t_option(&option);
 			i += (1 + option->flen);
 			root_options_printers(option, &args);
 			option = option != NULL ? option->next : NULL;

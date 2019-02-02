@@ -30,6 +30,7 @@ void				ft_putstr(char const *s);
 void				ft_putendl(char const *s);
 void				ft_putnbr(long long n);
 void				ft_putnbr_base(long long value, int base, int x);
+// void				ft_putnbr_base_bis(unsigned long value, char b, int **ret)
 void				ft_putchar_fd(char c, int fd);
 void				ft_putstr_fd(char const *s, int fd);
 void				ft_putendl_fd(char const *s, int fd);

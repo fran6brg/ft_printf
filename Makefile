@@ -1,12 +1,13 @@
 NAME =  libftprintf.a
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-SRCS = libft/*.c srcs/*.c
+SRCS = 3.Libft/*.c srcs/*.c
 OBJS = $(SRCS:.c=.o)
 
 # $(NAME): $(OBJS)
 
 all: # $(NAME)
+		# make re -C 3.Libft
 		@gcc main_test.c srcs/ft_printf.c 3.Libft/libft.a && ./a.out
 		# @ar rc $(NAME) $(OBJS)
 		# @ranlib $(NAME)
