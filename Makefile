@@ -14,10 +14,10 @@ all: # $(NAME)
 
 clean:
 		rm -rf $(OBJS)
-		make clean -C libft
+		make clean -C 3.Libft
 
 fclean: clean
 		rm -rf $(NAME)
-		make fclean -C libft
+		make fclean -C 3.Libft
 
 re: fclean all
