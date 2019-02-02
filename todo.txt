@@ -1,0 +1,9 @@
+à faire
+
+prioritaire :
+- les returns
+- crash test via plein de tests dans le main
+
+pas urgent :
+- leaks
+- norme : 5 fonctions par fichier
