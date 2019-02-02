@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_functions_pointers.h                             :+:      :+:    :+:   */
+/*   ft_nbrlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bihattay <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/02 13:00:06 by bihattay          #+#    #+#             */
-/*   Updated: 2019/02/02 13:01:07 by bihattay         ###   ########.fr       */
+/*   Created: 2019/02/02 08:46:32 by bihattay          #+#    #+#             */
+/*   Updated: 2019/02/02 09:46:59 by bihattay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef T_FUNCTIONS_POINTERS_H
-# define T_FUNCTIONS_POINTERS_H
-# include <string.h>
-# include "t_options.h"
+#include "libft.h"
 
-# define NB_ACCEPTED_OPTIONS (12)
-
-typedef struct			s_func
+int		ft_nbrlen(unsigned long long value, int base)
 {
-	char	option;
-	int		(*func)(t_options*, va_list*);
-}						t_functions_pointers;
+	int		len;
 
-#endif
+	len = 1;
+	if (base == 0)
+		return (0);
+	while (value >= (unsigned long long)base)
+	{
+		len++;
+		value /= base;
+	}
+	return (len);
+}

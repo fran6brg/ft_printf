@@ -1,5 +1,17 @@
-#ifndef T_FUNCTIONS_POINTERS_H
-# define T_FUNCTIONS_POINTERS_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   t_options.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bihattay <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/02/02 13:01:22 by bihattay          #+#    #+#             */
+/*   Updated: 2019/02/02 13:02:07 by bihattay         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef T_OPTIONS_H
+# define T_OPTIONS_H
 # include <string.h>
 
 typedef struct	s_options
@@ -26,6 +38,7 @@ typedef struct	s_options
 	int 			left_zeros; // 1 if ('0' is present inside flags)
 
 	// ------------------------------ .precision ---------------------------------
+	int				point;
 	int 			number; // [0..9] if ('[0..9]' is present inside flags)
 
 	// ------------------------------ length -------------------------------------

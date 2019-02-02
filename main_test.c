@@ -7,7 +7,7 @@
 
 int main(int argc, char **argv)
 {
-  int i = 10000;
+  long int i = 214748555555;
   // int j = 2;
   // int k = 3;
   char c = 'a';
@@ -15,28 +15,27 @@ int main(int argc, char **argv)
   char *s2 = "lolololol";
 
   //ft_printf("char = %10c string = %.10s abc %#0+-i\n", c, s, i);
-
+/*
   // 1. c
-  // printf("\n*************\n\n");
-  // ft_printf("char = -%010c-\n", c);
-  // printf("passed : char = -%%010c-\n");
-  // printf("rslt p : char = -%010c-\n", c);
-  // printf("\n*************\n\n");
+   ft_printf("char = -%0c-\n", c);
+   printf("passed : char = -%%0c-\n");
+   printf("rslt p : char = -%0c-\n", c);
+   printf("\n*************\n\n");
 
   // 2. s
-  // printf("\n*************\n\n");
-  // ft_printf("str = -%-0000000 15ss-\n", s);
-  // printf("passed : str = -%%0000000 15ss-\n");
-  // printf("rslt p : str = -%-0000000 15ss-\n", s2);
-  // printf("\n*************\n\n");
-
+  printf("\n*************\n");
+   ft_printf("str = -%0ss-\n", s);
+   printf("passed : str = -%%0ss-\n");
+   printf("rslt p : str = -%0ss-\n", s2);
+   printf("\n*************\n\n");
+i*/
   // 3. i
   printf("\n*************\n");
-  ft_printf("i = -%+-04i-\n", i);
-  printf("passed : i = -%%+-04i-\n");
-  printf("rslt p : i = -%+-04i-\n", i);
+  ft_printf("i = -%d-\n", i);
+  printf("passed : d = -%%0i-\n");
+  printf("rslt p : d = -%d-\n", i);
   printf("\n*************\n");
-  printf("\n*************\n");
+  /*printf("\n*************\n");
   ft_printf("i = -%-9i-\n", -5000);
   printf("passed : i = -%%-9i-\n");
   printf("rslt p : i = -%-9i-\n", -5000);
@@ -46,7 +45,13 @@ int main(int argc, char **argv)
   printf("passed : i = -%%+-04i-\n");
   printf("rslt p : i = -%+-04i-\n", i);
   printf("\n*************\n");
-
+*/
+  // 4. X x p o b
+  printf("\n*************\n");
+  ft_printf("p = -%012x-\n", s);
+  printf("passed : p = -%%p-\n");
+  printf("rslt p : p = -%012x-\n", s);
+  printf("\n*************\n");
   return (1);
 }
 
