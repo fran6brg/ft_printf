@@ -6,13 +6,13 @@
 /*   By: bihattay <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/02 20:31:13 by bihattay          #+#    #+#             */
-/*   Updated: 2019/02/03 09:38:31 by bihattay         ###   ########.fr       */
+/*   Updated: 2019/02/03 12:29:48 by bihattay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/functions.h"
 
-int		get_base(t_options *option)
+int				get_base(t_options *option)
 {
 	if (option->type == 'o')
 		return (8);
@@ -23,31 +23,69 @@ int		get_base(t_options *option)
 	return (0);
 }
 
-int		ft_printf_base(t_options *option, va_list *args)
+int		print_prefix(t_options *option, int moment)
+{
+	int		ret;
+
+	ret = 0;
+	if (!moment && ((option->left_zeros || option->left_justify) && ((option->hashtag
+					|| option->type == 'p' || option->type == 'b'))))
+	{
+		if (option->hashtag)
+		{
+			if (option->type == 'o')
+				ret += ft_putchar_ret('0');
+			else if (option->type == 'x')
+				ret += ft_print_str_ret("0x");
+			else if (option->type == 'X')
+				ret += ft_print_str_ret("0X");
+		}
+		else
+		{
+			if (option->type == 'b')
+				ret += ft_print_str_ret("0b");
+			else
+				ret += ft_print_str_ret("0x");
+		}
+	}
+	if (moment && (!option->left_zeros && !option->left_justify && (option->hashtag
+			|| option->type == 'p' || option->type == 'b')))
+		{
+		if (option->hashtag)
+		{
+			if (option->type == 'o')
+				ret += ft_putchar_ret('0');
+			else if (option->type == 'x')
+				ret += ft_print_str_ret("0x");
+			else if (option->type == 'X')
+				ret += ft_print_str_ret("0X");
+		}
+		else
+		{
+			if (option->type == 'b')
+				ret += ft_print_str_ret("0b");
+			else
+				ret += ft_print_str_ret("0x");
+		}
+	}
+	return (ret);
+}
+
+int				ft_printf_base(t_options *option, va_list *args)
 {
 	long long int	value;
 	int				base;
 	int				ret;
 
-//	print_t_option(&option);
-	write(1, "ok inside BASE function : -", 27);
+	ret = 0;
 	base = get_base(option);
 	value = get_type(option, args);
-	if ((option->left_zeros || option->left_justify) && (option->hashtag
-					|| option->type == 'p'))
-		option->type == 'X' ? write(1, "0X", 2) : write(1, "0x", 2);
-	ret = helper_print_nb_padding(option, ft_nbrlen(value, base), 0, value);
-	if (!option->left_zeros && !option->left_justify && (option->hashtag
-			|| option->type == 'p'))
-		option->type == 'X' ? write(1, "0X", 2) : write(1, "0x", 2);
-	if (option->type == 'p' || option->hashtag)
+	ret += print_prefix(option, 0);
+	ret += helper_print_nb_padding(option, ft_nbrlen(value, base) + ret, 0, value);
+	ret += print_prefix(option, 1);
+	if (option->type == 'p')
 		ret += ft_print_str_ret("10");
 	ret += ft_putnbr_base(value, base, option->type);
 	ret += helper_print_nb_padding(option, ft_nbrlen(value, base), 1, value);
-	if (option->hashtag || option->type == 'p')
-		ret += 2;
-	printf("////// RET IN BASE FUNCTION %d ////////\n\n", ret);
-//	write(1, "-\n\n", 3);
 	return (ret);
 }
-

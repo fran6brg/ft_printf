@@ -1,7 +1,7 @@
 NAME =  libftprintf.a
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-SRCS = srcs/ft_base.c srcs/ft_padding.c srcs/ft_print_char.c srcs/ft_print_strings.c srcs/ft_printf.c srcs/ft_print_float.c srcs/ft_print_integer.c srcs/get_arguments.c 
+SRCS = srcs/ft_base.c srcs/ft_padding.c srcs/ft_print_char.c srcs/ft_print_strings.c srcs/ft_printf.c srcs/ft_print_float.c srcs/ft_print_integer.c srcs/get_arguments.c srcs/ft_parsers.c srcs/ft_options.c
 OBJS = $(SRCS:.c=.o)
 
 # $(NAME): $(OBJS)

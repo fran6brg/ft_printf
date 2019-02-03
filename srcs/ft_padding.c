@@ -6,7 +6,7 @@
 /*   By: bihattay <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/02 20:26:32 by bihattay          #+#    #+#             */
-/*   Updated: 2019/02/02 21:54:24 by bihattay         ###   ########.fr       */
+/*   Updated: 2019/02/03 12:33:09 by bihattay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,12 @@ int		helper_print_nb_padding(t_options *option, int len, int after, int nb)
 
 	i = -1;
 	ret = 0;
-	// before
-	// after
-	// left_justify
-	// sign +
-	// le vrai
 	if ((!after && option->left_justify) || (after && !option->left_justify))
 		return (0);
-	if (option->hashtag || option->type == 'p')
-		len += 4;
+	if (option->type == 'p' || (option->type == 'o' && option->hashtag))
+		len += (option->type == 'p') ? 4 : 1;
+	else if (option->hashtag && (option->type == 'x' || option->type == 'X'))
+		len += 2;
 	while(++i < (option->number - len - (option->sign || nb < 0)))
 	{
 		if (option->left_zeros && !option->left_justify)
@@ -63,4 +60,3 @@ int		helper_print_nb_padding(t_options *option, int len, int after, int nb)
 	}
 	return (ret);
 }
-
