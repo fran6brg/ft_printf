@@ -6,7 +6,7 @@
 #    By: fberger <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/06 17:33:34 by fberger           #+#    #+#              #
-#    Updated: 2019/02/02 09:05:24 by bihattay         ###   ########.fr        #
+#    Updated: 2019/02/02 23:15:52 by bihattay         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -78,9 +78,9 @@ OBJS=$(SRCS:.c=.o)
 all: $(NAME)
 
 $(NAME):
-		$(CC) $(CFLAGS) -c $(SRCS)
-		ar rc $(NAME) $(OBJS)
-		ranlib $(NAME)
+		@$(CC) $(CFLAGS) -c $(SRCS)
+		@ar rc $(NAME) $(OBJS)
+		@ranlib $(NAME)
 
 clean:
 		@rm -f $(OBJS)

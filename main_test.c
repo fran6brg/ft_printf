@@ -7,7 +7,10 @@
 
 int main(int argc, char **argv)
 {
+	int ret;
+	int ret2;
   long int i = -2147488747762;
+  int i2 = -214742;
   // int j = 2;
   // int k = 3;
   char c = 'a';
@@ -15,57 +18,87 @@ int main(int argc, char **argv)
   char *s2 = "lolololol";
 
   //ft_printf("char = %10c string = %.10s abc %#0+-i\n", c, s, i);
-/*
+
+
+  // 0. nothing
+ /* printf("\n*************\n");
+  printf("TESTS: simple string :\n");
+  printf("MY PRINTF RET :\n");
+  ret =ft_printf("Salut");
+  printf("\npassed arg is nothing\n");
+  ret2 =printf("Salut\n");
+  printf("ret for : ft_printf is %d || printf is%d", ret, ret2);
+  printf("\n*************\n");
+  
   // 1. c
-   ft_printf("char = -%0c-\n", c);
-   printf("passed : char = -%%0c-\n");
-   printf("rslt p : char = -%0c-\n", c);
+  printf("\n*************\n");
+  printf("TESTS: c :\n");
+  printf("MY PRINTF RET :\n");
+  ret = ft_printf("char = -%c-\n", c);
+  ret2 = printf("char = -%c-\n", c);
+  printf("passed : -%%c-\n");
+  printf("ret for : ft_printf is %d || printf is%d", ret, ret2);
    printf("\n*************\n\n");
   // 2. s
   printf("\n*************\n");
-   ft_printf("str = -%0ss-\n", s);
-   printf("passed : str = -%%0ss-\n");
-   printf("rslt p : str = -%0ss-\n", s2);
-   printf("\n*************\n\n");
+  printf("TESTS: s :\n");
+  printf("MY PRINTF RET :\n");
+  ret = ft_printf("str = -%ss-\n", s);
+   ret2 = printf("str = -%ss-\n", s2);
+   printf("passed : str = -%%s-\n");
+  printf("ret for : ft_printf is %d || printf is%d", ret, ret2);
+   pMaMaMaMaÿQrintf("\n*************\n\n");
 
-  // 3. i
+  // 3. d et i
   printf("\n*************\n");
-  ft_printf("i = -%d-\n", i);
+  printf("TESTS: d i :\n");
+  ret = ft_printf("d = -%ld-\n", i);
+  ret2 = printf("d = -%ld-\n", i);
+  printf("ret ft_printf %d || ret real_printf %d\n\n", ret, ret2);
   printf("passed : d = -%%0i-\n");
-  printf("rslt p : d = -%d-\n", i);
   printf("\n*************\n");
   printf("\n*************\n");
-  ft_printf("i = -%-9i-\n", -5000);
+  ret = ft_printf("i = -%-9i-\n", -5000);
+  ret2 = printf("i = -%-9i-\n", -5000);
+  printf("ret ft_printf %d || ret real_printf %d\n\n", ret, ret2);
   printf("passed : i = -%%-9i-\n");
-  printf("rslt p : i = -%-9i-\n", -5000);
   printf("\n*************\n");
   printf("\n*************\n");
-  ft_printf("i = -%+-04i-\n", i);
-  printf("passed : i = -%%+-04i-\n");
-  printf("rslt p : i = -%+-04i-\n", i);
-  printf("\n*************\n");
+ // ft_printf("i = -%+-04i-\n", i);
+ // printf("passed : i = -%%+-04i-\n");
+ // printf("rslt p : i = -%+-04i-\n", i);
+ // printf("\n*************\n");
 
   // 4. X x p o b
   printf("\n*************\n");
-  ft_printf("p = -%12p-\n", s);
+  printf("TESTS: X x p o b :\n");
+  printf("MY PRINTF RET :\n");
+  ret = ft_printf("p = -%12p-\n", s);
+  ret2 = printf("p = -%12p-\n", s);
+  printf("ret ft_printf %d || ret real_printf %d\n\n", ret, ret2);
   printf("passed : p = -%%p-\n");
-  printf("rslt p : p = -%12p-\n", s);
   printf("\n*************\n");
-*/
 
+*/
   float f1 = 100.123456111;
   double f2 = 100.123456789;
 
   // 5. floats
-  printf("\n****** floats *******\n");
-  ft_printf("f = -%.10f-\n", f1);
-  printf("passed : f = -%%.10f-\n");
-  printf("rslt p : f = -%.10f-\n", f1);
-  ft_printf("rslt p : d = -%lf-\n", f2);
-  printf("passed : d = -%%lf-\n");
-  printf("rslt p : d = -%lf-\n", f2);
+ printf("\n****** floats *******\n");
+  printf("TESTS: f lf :\n");
+  printf("MY PRINTF RET :\n");
+  ret = ft_printf("f = -%.10f-\n", f1);
+  ret2 = printf("f = -%.10f-\n", f1);
+  printf("ret ft_printf %d || ret real_printf %d\n\n", ret, ret2);
+  printf("passed : -%%.10f-\n");
+  printf("MY PRINTF RET :\n");
+  ft_printf("lf = -%lf-\n", f2);
+  printf("lf = -%lf-\n", f2);
+  printf("ret ft_printf %d || ret real_printf %d\n", ret, ret2);
+  printf("passed : -%%lf-\n");
   // printf("passed : f = -%%+-04f-\n");
   // printf("rslt p : f = -%+-04f-\n", f);
+  printf("\n\n");
   return (1);
 }
 

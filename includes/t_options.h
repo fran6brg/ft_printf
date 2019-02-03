@@ -6,7 +6,7 @@
 /*   By: bihattay <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/02 13:01:22 by bihattay          #+#    #+#             */
-/*   Updated: 2019/02/02 13:02:07 by bihattay         ###   ########.fr       */
+/*   Updated: 2019/02/02 22:42:09 by bihattay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ typedef struct	s_options
 	char			*flags; // = ft_strsub de ce qu'il y a entre le % et le type
 	//char			*minlen;
 	//char			*maxlen;
+	int				index;
 	int				fpos; // position dans la string
 	int				flen; // == nb of char, between % and the type, in format
 

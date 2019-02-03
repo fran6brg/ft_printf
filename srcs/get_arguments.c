@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_functions_pointers.h                             :+:      :+:    :+:   */
+/*   get_arguments.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bihattay <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/02 13:00:06 by bihattay          #+#    #+#             */
-/*   Updated: 2019/02/02 20:26:02 by bihattay         ###   ########.fr       */
+/*   Created: 2019/02/02 21:04:46 by bihattay          #+#    #+#             */
+/*   Updated: 2019/02/02 21:15:50 by bihattay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef T_FUNCTIONS_POINTERS_H
-# define T_FUNCTIONS_POINTERS_H
-# include <string.h>
-# include <stdarg.h>
-# include "t_options.h"
+#include "../includes/functions.h"
 
-# define NB_ACCEPTED_OPTIONS (12)
-
-typedef struct			s_func
+long long	get_type(t_options *option, va_list *args)
 {
-	char	option;
-	int		(*function)(t_options*, va_list*);
-}						t_functions_pointers;
+	long long	n;
 
-#endif
+	if (option->ll)
+		n = va_arg(*args, long long);
+	else if (option->l)
+		n = va_arg(*args, long);
+	else
+		n = va_arg(*args, int);
+	return (n);
+}
