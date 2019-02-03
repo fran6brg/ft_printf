@@ -6,7 +6,7 @@
 /*   By: bihattay <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/02 20:52:38 by bihattay          #+#    #+#             */
-/*   Updated: 2019/02/03 10:51:58 by bihattay         ###   ########.fr       */
+/*   Updated: 2019/02/03 12:46:00 by bihattay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ int		ft_printf_floats(t_options *option, va_list *args)
 	i = -1;
 	while (++i < precision)
 	{
-			nbr *= 10;
-			if (!((precision - i) == 1))
-			{
-				ret += ft_putchar_ret((int)nbr + '0');
-				nbr -= (int)nbr;
-			}
+		nbr *= 10;
+		if (!((precision - i) == 1))
+		{
+			ret += ft_putchar_ret((int)nbr + '0');
+			nbr -= (int)nbr;
+		}
 	}
 	ret += ft_putchar_ret(nbr + 0.5 + '0');
 	return (ret);

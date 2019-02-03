@@ -6,7 +6,7 @@
 /*   By: fberger <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/15 02:59:11 by fberger           #+#    #+#             */
-/*   Updated: 2019/02/03 10:54:08 by bihattay         ###   ########.fr       */
+/*   Updated: 2019/02/03 12:40:46 by bihattay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,6 @@
 #include "../includes/t_options.h"
 #include "../includes/t_functions_pointers.h"
 #include "../includes/functions.h"
-
-/*
- ** functions pointer -----------------------------------------------------------
- */
 
 // TO DO LIST
 // #

@@ -6,7 +6,7 @@
 /*   By: bihattay <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/03 10:48:27 by bihattay          #+#    #+#             */
-/*   Updated: 2019/02/03 10:51:37 by bihattay         ###   ########.fr       */
+/*   Updated: 2019/02/03 12:45:31 by bihattay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,13 @@ static int		is_accepted_options(char c)
 static int		is_accepted_flags(char c)
 {
 	return (c == ' ' || c == '.' || c == '#' || c == '0' || c == '+' || c == '-'
-			|| ft_isdigit(c) || c == 'h' || c == 'l' || c == 'L' );
+			|| ft_isdigit(c) || c == 'h' || c == 'l' || c == 'L');
 }
 
 int				compute_new_option_len_in_format(const char *format, int i)
 {
 	int		len;
 
-	//printf("(*format + i) = %s", (format + i));
 	len = 1;
 	while (is_accepted_flags(format[i + len]))
 		len++;

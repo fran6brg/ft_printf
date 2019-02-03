@@ -6,7 +6,7 @@
 /*   By: bihattay <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/02 20:26:32 by bihattay          #+#    #+#             */
-/*   Updated: 2019/02/03 12:33:09 by bihattay         ###   ########.fr       */
+/*   Updated: 2019/02/03 12:44:50 by bihattay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int		helper_print_str_padding(t_options *option, int len, int after)
 	if (((!after && option->left_justify) || (after && !option->left_justify))
 			|| (option->point && (option->number > len)))
 		return (0);
-	while(++i < option->number - len)
+	while (++i < option->number - len)
 	{
 		if (option->left_zeros && !option->left_justify)
 			ret += ft_putchar_ret('0');
@@ -45,7 +45,7 @@ int		helper_print_nb_padding(t_options *option, int len, int after, int nb)
 		len += (option->type == 'p') ? 4 : 1;
 	else if (option->hashtag && (option->type == 'x' || option->type == 'X'))
 		len += 2;
-	while(++i < (option->number - len - (option->sign || nb < 0)))
+	while (++i < (option->number - len - (option->sign || nb < 0)))
 	{
 		if (option->left_zeros && !option->left_justify)
 		{
