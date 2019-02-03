@@ -6,7 +6,7 @@
 /*   By: fberger <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/15 02:59:11 by fberger           #+#    #+#             */
-/*   Updated: 2019/02/03 12:40:46 by bihattay         ###   ########.fr       */
+/*   Updated: 2019/02/03 13:08:30 by bihattay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,6 +148,11 @@ int		ft_printf(const char *format, ...)
 	const int	formatlen = ft_strlen(format);
 	int			ret;
 
+	if (!format)
+	{
+		ft_putstr("(null)");
+		return (6);
+	}
 	options = NULL;
 //	printf("\n------- BUILDING LIST ---------\n");
 	if (extract_options(format, &options) == -1)
