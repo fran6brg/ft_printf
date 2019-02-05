@@ -21,7 +21,7 @@ int		ft_printf_floats(t_options *option, va_list *args)
 	int				ret;
 
 	ret = 0;
-	precision = (option->number ? option->number : 6);
+	precision = (option->pad_min ? option->pad_min : 6);
 	nbr = va_arg(*args, double);
 	nbr_to_int = (int)nbr;
 	ret += ft_putnbr_base(nbr_to_int, 10, 'f');

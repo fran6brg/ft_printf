@@ -24,10 +24,12 @@ int		ft_printf_integer(t_options *option, va_list *args)
 	nb = n >= 0 ? n : -n;
 	len = 0;
 	len = ft_nbrlen(nb, 10);
-	if ((option->sign || n < 0) && option->left_zeros)
+	if (!option->pad_max && (option->sign || n < 0) && option->left_zeros)
 		ret += ft_putchar_ret((n < 0) ? '-' : '+');
 	ret += helper_print_nb_padding(option, len, 0, n);
-	if ((option->sign || n < 0) && !option->left_zeros)
+	if (option->space && option->sign == 0 && n > 0) // (space) If no sign is going to be written, a blank space is inserted before the value.
+		ret += ft_putchar_ret(' ');
+	else if (!option->pad_max && (option->sign || n < 0) && !option->left_zeros)
 		ret += ft_putchar_ret((n < 0) ? '-' : '+');
 	ret += ft_putnbr_base(n, 10, option->type);
 	ret += helper_print_nb_padding(option, len, 1, n);

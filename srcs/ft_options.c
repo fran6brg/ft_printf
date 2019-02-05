@@ -12,13 +12,13 @@
 
 #include "../includes/functions.h"
 
-static int		extract_number_in_flags(t_options *new, first, start)
+static int		extract_number_in_flags(t_options *new, int first, int start)
 {
 	int		i;
 	int		j;
 	int		sum;
 
-	printf("\nnew->flags[%i] = %s\n", start, new->flags + start);
+	// printf("\nnew->flags[%i] = %s\n", start, new->flags + start);
 	i = start;
 	j = 0;
 	sum = 0;
@@ -42,17 +42,15 @@ static int		extract_number_in_flags(t_options *new, first, start)
 			;
 		i++;
 	}
-	if (first == 0)
+	if (first == 0) // si 1 chiffre = min sinon [max.min]
 	{
-		new->number = sum;
 		new->pad_min = sum;
-		printf("\nsum0 = %i\n", sum);
+		//printf("\nsum0 = %i\n", sum);
 	}
 	else
 	{
-		printf("\nsum1 = %i\n", sum);
-		new->pad_max = new->pad_min;
-		new->pad_min = sum;
+		//printf("\nsum1 = %i\n", sum);
+		new->pad_max = sum;
 	}
 	return (i);
 }
