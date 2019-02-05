@@ -29,7 +29,7 @@ int main(int argc, char **argv)
   ret2 =printf("Salut\n");
   printf("ret for : ft_printf is %d || printf is%d", ret, ret2);
   printf("\n*************\n");
-  
+
   // 1. c
   printf("\n*************\n");
   printf("TESTS: c :\n");
@@ -50,6 +50,25 @@ int main(int argc, char **argv)
    pMaMaMaMaÿQrintf("\n*************\n\n");
 
   // 3. d et i
+
+
+  printf("\n*************\n");
+  printf("\033[0;33mTEST>\t[%% .40d=%% 10.40d=%% 10.40d=%%10.0d=%%+010.d=%%10.0d=%%+ 010.d]\n");
+  // ft_printf("\033[0;33mYOUR>\t[% .40d=% 10.40d=% 10.40d=%10.0d=%+010.d=%10.0d=%+ 010.d]\n", 1, 10, -10, -10, -10, 10, 10);
+  // printf("\033[0;31mREAL>\t[% .40d=% 10.40d=% 10.40d=%10.0d=%+010.d=%10.0d=%+ 010.d]\n", 1, 10, -10, -10, -10, 10, 10);
+  ft_printf("\033[0;33mYOUR>\t[% .40d]\n", 1);
+  printf("\033[0;31mREAL>\t[% .40d]\n", 1);
+  printf("\n*************\n");
+
+  */
+  printf("\n*************\n");
+  printf("\033[0;33mTEST>\t[%%10.8lld=%%#25.22llda=%%#-+ 08.5llda]\", 100LL, -1LL, 100LL\n");
+  // ft_printf("\033[0;33mYOUR>\t[%10.8lld=%#25.22llda=%#-+ 08.5llda]\n", 100LL, -1LL, 100LL);
+  // printf("\033[0;31mREAL>\t[%10.8lld=%#25.22llda=%#-+ 08.5llda]\n", 100LL, -1LL, 100LL);
+  ft_printf("\033[0;33mYOUR>\t[%10.8lld]\n", 100LL);
+  printf("\033[0;31mREAL>\t[%10.8lld]\n", 100LL);
+  printf("\n*************\n");
+  /*
   printf("\n*************\n");
   printf("TESTS: d i :\n");
   ret = ft_printf("d = -%ld-\n", i);
@@ -82,7 +101,7 @@ int main(int argc, char **argv)
 */
 
   // 4.bis. with #
-  printf("\n*************\n");
+  /*printf("\n*************\n");
   printf("TESTS: X x p o b with # :\n");
   printf("MY PRINTF RET :\n");
   ret = ft_printf("x = -%#12o-\n", 56465);
@@ -90,7 +109,7 @@ int main(int argc, char **argv)
   printf("ret ft_printf %d || ret real_printf %d\n\n", ret, ret2);
   printf("passed : -%%x-\n");
   printf("\n*************\n");
-/**
+
   // 5. floats
   float f1 = 100.123456111;
   double f2 = 100.123456789;

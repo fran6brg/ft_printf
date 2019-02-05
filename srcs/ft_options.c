@@ -12,17 +12,24 @@
 
 #include "../includes/functions.h"
 
-static int		extract_number_in_flags(t_options *new)
+static int		extract_number_in_flags(t_options *new, first, start)
 {
 	int		i;
 	int		j;
 	int		sum;
 
-	i = 0;
+	printf("\nnew->flags[%i] = %s\n", start, new->flags + start);
+	i = start;
 	j = 0;
 	sum = 0;
-	while (new->flags[i])
+	while (new->flags[i]) // si 1 chiffre = min sinon [max.min]
 	{
+		if (new->flags[i] == '.')
+		{
+				new->point = 1;
+				i++;
+				break;
+		}
 		if (new->flags[i] == '0')
 			new->left_zeros = 1;
 		else if (ft_isdigit(new->flags[i]))
@@ -35,12 +42,25 @@ static int		extract_number_in_flags(t_options *new)
 			;
 		i++;
 	}
-	return (sum);
+	if (first == 0)
+	{
+		new->number = sum;
+		new->pad_min = sum;
+		printf("\nsum0 = %i\n", sum);
+	}
+	else
+	{
+		printf("\nsum1 = %i\n", sum);
+		new->pad_max = new->pad_min;
+		new->pad_min = sum;
+	}
+	return (i);
 }
 
 t_options		*create_new_option(const char *format, int i)
 {
 	t_options	*new;
+	int 			ret;
 
 	if ((new = (t_options*)ft_memalloc(sizeof(t_options))) == NULL)
 		return (NULL);
@@ -62,7 +82,9 @@ t_options		*create_new_option(const char *format, int i)
 	if (new->flen > 1 && ft_strchr_modified(new->flags, '#'))
 		new->hashtag = 1;
 	if (new->flen > 1)
-		new->number = extract_number_in_flags(new);
+		ret = extract_number_in_flags(new, 0, 0);
+	if (new->flen > 1)
+		extract_number_in_flags(new, 1, ret);
 	if (new->flen > 1 && ft_strstr_modified(new->flags, "h"))
 		new->h = 1;
 	if (new->flen > 1 && ft_strstr_modified(new->flags, "ll"))

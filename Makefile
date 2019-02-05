@@ -7,8 +7,20 @@ OBJS = $(SRCS:.c=.o)
 # $(NAME): $(OBJS)
 
 all: # $(NAME)
+		@gcc main_test.c $(SRCS) 3.Libft/libft.a && ./a.out
+		#@ar rc $(NAME) $(OBJS)
+		#@ranlib $(NAME)
+
+
+lib: # $(NAME)
 		@make re -C 3.Libft
-		@gcc main_test.c $(SRCS) 3.Libft/libft.a && ./a.out 
+		@gcc main_test.c $(SRCS) 3.Libft/libft.a && ./a.out
+		#@ar rc $(NAME) $(OBJS)
+		#@ranlib $(NAME)
+
+klsh: # $(NAME)
+		@make re -C 3.Libft
+		@gcc mainprintf.c $(SRCS) 3.Libft/libft.a && ./a.out
 		#@ar rc $(NAME) $(OBJS)
 		#@ranlib $(NAME)
 

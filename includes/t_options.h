@@ -41,6 +41,8 @@ typedef struct	s_options
 	// ------------------------------ .precision ---------------------------------
 	int				point;
 	int 			number; // [0..9] if ('[0..9]' is present inside flags)
+	int 			pad_min; // [0..9] if ('[0..9]' is present inside flags)
+	int 			pad_max; // [0..9] if ('[0..9]' is present inside flags)
 
 	// ------------------------------ length -------------------------------------
 	int 			h; // 1 if ('h' is present inside flags && only applies to integer specifiers: i, d, o, u, x and X)

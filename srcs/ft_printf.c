@@ -94,7 +94,7 @@ void print_t_options_list(t_options **options)
 		printf("**********  end ***********\n\n");
 		option = option->next;
 	}
-}
+}*/
 
 void print_t_option(t_options **option)
 {
@@ -111,15 +111,17 @@ void print_t_option(t_options **option)
 	printf("7. o->space        = %i\n", this_one->space);
 	printf("8. o->hashtag      = %i\n", this_one->hashtag);
 	printf("9. o->left_zeros   = %i\n", this_one->left_zeros);
+	printf("9. o->point        = %i\n", this_one->point);
 	printf("10 o->number       = %i\n", this_one->number);
+	printf("10 o->pad_max      = %i\n", this_one->pad_max);
+	printf("10 o->pad_min      = %i\n", this_one->pad_min);
 	printf("11 o->h            = %i\n", this_one->h);
 	printf("12 o->hh           = %i\n", this_one->hh);
 	printf("13 o->l            = %i\n", this_one->l);
 	printf("14 o->ll           = %i\n", this_one->ll);
 	printf("15 o->L            = %i\n", this_one->L);
 	printf("**********  end  **********\n\n");
-}*/
-
+}
 /*
  ** la petite -------------------------------------------------------------------
  */
@@ -168,6 +170,7 @@ int		ft_printf(const char *format, ...)
 //	printf("------- START FT_PRINTF -------\n\n");
 	while (option != NULL)
 	{
+		print_t_option(&option);
 		ret += no_opts_prntrs(option, format, formatlen);
 //	printf("////// RET IN MAIN_mid_while FUNCTION %d ////////\n\n", ret);
 		ret += root_options_printers(option, &args);
