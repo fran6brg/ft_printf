@@ -6,7 +6,7 @@
 /*   By: bihattay <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/02 20:52:38 by bihattay          #+#    #+#             */
-/*   Updated: 2019/02/03 12:46:00 by bihattay         ###   ########.fr       */
+/*   Updated: 2019/02/06 07:08:39 by bihattay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,12 @@ int		ft_printf_floats(t_options *option, va_list *args)
 	int				i;
 	int				ret;
 
-	ret = 0;
-	precision = (option->number ? option->number : 6);
+	precision = (option->pad_min ? option->pad_min : 6);
 	nbr = va_arg(*args, double);
+	option->neg = nbr < 0 ? 1 : 0;
+	nbr = nbr < 0 ? -nbr : nbr;
 	nbr_to_int = (int)nbr;
+	ret = helper_print_floats_padding(option, precision + ft_nbrlen(nbr_to_int, 10) + 1, 0, option->neg);
 	ret += ft_putnbr_base(nbr_to_int, 10, 'f');
 	ret += ft_putchar_ret('.');
 	nbr -= (long double)nbr_to_int;
@@ -38,5 +40,6 @@ int		ft_printf_floats(t_options *option, va_list *args)
 		}
 	}
 	ret += ft_putchar_ret(nbr + 0.5 + '0');
+	ret += helper_print_floats_padding(option, precision + ft_nbrlen(nbr_to_int, 10) + 1, 1, option->neg);
 	return (ret);
 }
