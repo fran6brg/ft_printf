@@ -6,7 +6,7 @@
 /*   By: bihattay <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/02 20:26:32 by bihattay          #+#    #+#             */
-/*   Updated: 2019/02/03 12:44:50 by bihattay         ###   ########.fr       */
+/*   Updated: 2019/02/06 07:07:40 by bihattay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,30 @@ int		helper_print_nb_padding_is_a_is_lj(t_options *option, int len, int after, i
 	}
 }
 
-int		helper_print_nb_padding_is_a_not_lj(t_options *option, int len, int after, int nb)
+int		helper_print_floats_padding(t_options *option, int len, int after, int neg)
 {
-	// normalement rien a faire
+	int		ret;
+	int		i;
+
+	i = -1;
+	ret = 0;
+	if ((!after && option->left_justify) || (after && !option->left_justify))
+		return (0);
+//	printf("\n WERE EEEEHERE %d\n\n", neg);
+	if (option->left_zeros && !option->left_justify)
+		if (option->sign || neg == 1)
+			ret += ft_putchar_ret(neg == 1 ? '-' : '+');
+	while (++i < option->pad_max - (len + neg))
+	{
+		if (option->left_zeros && !option->left_justify)
+			ret += ft_putchar_ret('0');
+		else
+			ret += ft_putchar_ret(' ');
+	}
+	if (!option->left_zeros)
+		if (option->sign || neg == 1)
+			ret += ft_putchar_ret(neg == 1 ? '-' : '+');
+	return (ret);
 }
 
 /*
