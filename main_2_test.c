@@ -80,7 +80,7 @@ int main(int argc, char **argv)
   printf("\n*************\n");
 
 */
-
+/*
   // 4.bis. with #
   printf("\n*************\n");
   printf("TESTS: X x p o b with # :\n");
@@ -90,7 +90,7 @@ int main(int argc, char **argv)
   printf("ret ft_printf %d || ret real_printf %d\n\n", ret, ret2);
   printf("passed : -%%x-\n");
   printf("\n*************\n");
-/**
+*/
   // 5. floats
   float f1 = 100.123456111;
   double f2 = 100.123456789;
@@ -98,18 +98,17 @@ int main(int argc, char **argv)
   printf("\n****** floats *******\n");
   printf("TESTS: f lf :\n");
   printf("MY PRINTF RET :\n");
-  ret = ft_printf("f = -%.10f-\n", f1);
-  ret2 = printf("f = -%.10f-\n", f1);
+  ret = ft_printf("f = -%.12f-\n", f1);
+  ret2 = printf("f = -%.12f-\n", f1);
   printf("ret ft_printf %d || ret real_printf %d\n\n", ret, ret2);
-  printf("passed : -%%.10f-\n");
-  printf("MY PRINTF RET :\n");
+  printf("passed : -%%-12f-\n");
+ /* printf("MY PRINTF RET :\n");
   ft_printf("lf = -%lf-\n", f2);
   printf("lf = -%lf-\n", f2);
   printf("ret ft_printf %d || ret real_printf %d\n", ret, ret2);
-  printf("passed : -%%lf-\n");
+  printf("passed : -%%lf-\n");*/
   // printf("passed : f = -%%+-04f-\n");
   // printf("rslt p : f = -%+-04f-\n", f);
-   */
   printf("\n\n");
   return (1);
 }

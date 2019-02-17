@@ -46,8 +46,8 @@ printf("\033[1;31mQUICK TIP: HOLD COMMAND KEY AND ARROW KEY TO NAVIGATE YOUR TER
 
 printf("\033[0;32m----\ttest phase 2\033[0m\n\n");
 
-			me = ft_printf("\033[0;33mYOUR>\t[%s-%4s-%4s-%04s-%04s-%.4s-%.4s-%.s-]\n", NULL, "A", "ABCDEF", "A", "ABCDEF", "2", "ABCDEF", "[][");
-			rl = printf("\033[0;31mREAL>\t[%s-%4s-%4s-%04s-%04s-%.4s-%.4s-%.s-]\n", NULL, "A", "ABCDEF", "A", "ABCDEF", "2", "ABCDEF", "[][");
+			me = ft_printf("\033[0;33mYOUR>\t[-%4s-%4s-%04s-%04s-%.4s-%.4s-%.s-]\n", "A", "ABCDEF", "A", "ABCDEF", "2", "ABCDEF", "[][");
+			rl = printf("\033[0;31mREAL>\t[-%4s-%4s-%04s-%04s-%.4s-%.4s-%.s-]\n", "A", "ABCDEF", "A", "ABCDEF", "2", "ABCDEF", "[][");
 printf ("\033[0m%d/10: [%d] [%d]\n", no++, me, rl); (me == rl) ? printf("\033[1;32m✔︎ GOOD RETURN\033[0m\n") : printf("\033[1;31m✖︎ BAD RETURN\033[0m\n"); (me == rl) ? pas++ : 0;
 			me = ft_printf("\033[0;33mYOUR>\t[-%6.4s-%4.6s-%#s %0s-%+s %0-s-%5.5sa-%5sa-%.5sa]\n", "ABCDE", "ABCDE", "ABC", "ABC", "^%n", "A{BC", "A@#5448{BC", "A@#5448{BC", "A@#5448{BC");
 			rl = printf("\033[0;31mREAL>\t[-%6.4s-%4.6s-%#s %0s-%+s %0-s-%5.5sa-%5sa-%.5sa]\n", "ABCDE", "ABCDE", "ABC", "ABC", "^%n", "A{BC", "A@#5448{BC", "A@#5448{BC", "A@#5448{BC");
