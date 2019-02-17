@@ -6,7 +6,7 @@
 /*   By: bihattay <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/02 20:31:13 by bihattay          #+#    #+#             */
-/*   Updated: 2019/02/14 11:49:24 by bihattay         ###   ########.fr       */
+/*   Updated: 2019/02/17 18:21:47 by bihattay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int		get_base(t_options *option)
 	return (0);
 }
 
-int		print_prefix_before(t_options *option)
+int		print_prefix_before(t_options *option, long long value)
 {
 	int		ret;
 
@@ -31,14 +31,14 @@ int		print_prefix_before(t_options *option)
 	if (((option->left_zeros || option->left_justify) && ((option->hashtag
 						|| option->type == 'p' || option->type == 'b'))))
 	{
-		if (option->hashtag)
+		if (option->hashtag && option->type != 'b')
 		{
 			if (option->type == 'o')
 				ret += ft_putchar_ret('0');
-			else if (option->type == 'x')
-				ret += ft_print_nstr_ret("0x", 2);
 			else if (option->type == 'X')
 				ret += ft_print_nstr_ret("0X", 2);
+			else
+				ret += ft_print_nstr_ret("0x", 2);
 		}
 		else
 		{
@@ -51,7 +51,7 @@ int		print_prefix_before(t_options *option)
 	return (ret);
 }
 
-int		print_prefix_after(t_options *option)
+int		print_prefix_after(t_options *option, long long value)
 {
 	int		ret;
 
@@ -59,20 +59,20 @@ int		print_prefix_after(t_options *option)
 	if ((!option->left_zeros && !option->left_justify && (option->hashtag
 					|| option->type == 'p' || option->type == 'b')))
 	{
-		if (option->hashtag)
+		if (option->hashtag && option->type != 'b')
 		{
-			if (option->type == 'o')
+			if (option->type == 'o' && value != 0)
 				ret += ft_putchar_ret('0');
-			else if (option->type == 'x')
-				ret += ft_print_nstr_ret("0x", 2);
 			else if (option->type == 'X')
 				ret += ft_print_nstr_ret("0X", 2);
+			else if (option->type == 'p' || option->type == 'x')
+				ret += ft_print_nstr_ret("0x", 2);
 		}
 		else
 		{
 			if (option->type == 'b')
 				ret += ft_print_nstr_ret("0b", 2);
-			else
+			else if (option->type == 'p')
 				ret += ft_print_nstr_ret("0x", 2);
 		}
 	}
@@ -89,13 +89,18 @@ int		ft_printf_base(t_options *option, va_list *args)
 	ret = 0;
 	base = get_base(option);
 	value = get_type(option, args);
-	len = ft_nbrlen(value, base);
-	ret += print_prefix_before(option);
-	ret += helper_print_nb_padding(option, len + 2, 0, value);
-	ret += print_prefix_after(option);
+//	printf("/********** Value %lld ***********\\\n", value);
+	len = value < 0 ? ft_nbrlen(value, base) - 1 : ft_nbrlen(value, base);
+//	printf("\n/********** nb/len MAIN %lld || %d***********\\\n", value, len);
+	if (option->space && option->sign == 0 && value >= 0)
+		ret += ft_putchar_ret(' ');
+	ret += print_prefix_before(option, value);
+	ret += helper_print_nb_padding(option, len, 0, value);
+	ret += print_prefix_after(option, value);
 //	if (option->type == 'p')
 //		ret += ft_print_nstr_ret("10", 2);
 	ret += ft_putnbr_base(value, base, option->type);
-	ret += helper_print_nb_padding(option, len + 2, 1, value);
+	ret += helper_print_nb_padding(option, len, 1, value);
+//	print_t_option(&option);
 	return (ret);
 }

@@ -40,7 +40,7 @@ int main(int argc, char **argv)
   printf("ret for : ft_printf is %d || printf is%d", ret, ret2);
    printf("\n*************\n\n");
   */// 2. s
-  printf("\n*************\n");
+ /* printf("\n*************\n");
   printf("TESTS: s :\n");
   printf("MY PRINTF RET :\n");
   ret = ft_printf("str = -%.2s-\n", NULL);
@@ -56,15 +56,17 @@ int main(int argc, char **argv)
   ret2 = printf("str = -%15s-\n", s);
   printf("ret for : ft_printf is %d || printf is%d\n", ret, ret2);
    printf("passed : str = -%%.2s-\n");
-  printf("\n*************\n\n");
-/*
+  printf("\n*************\n\n");*/
+
   // 3. d et i
   printf("\n*************\n");
   printf("TESTS: d i :\n");
-  ret = ft_printf("d = -% 75ld-\n", i);
-  ret2 = printf("d = -% 75ld-\n", i);
+  ret = ft_printf("d = % 10.40d\n", -10);
+  ret2 = printf("e = % 10.40d\n", -10);
   printf("ret ft_printf %d || ret real_printf %d\n\n", ret, ret2);
-  printf("passed : d = -%%0i-\n");
+  printf("passed : d = -%%10.40d\n");
+ /* ret = ft_printf("d = -% 75ld-\n", i);
+  ret2 = printf("d = -% 75ld-\n", i);
   printf("\n*************\n");
   printf("\n*************\n");
   ret = ft_printf("i = -%-10i-\n", -5000);
@@ -73,7 +75,7 @@ int main(int argc, char **argv)
   printf("passed : i = -%%-9i-\n");
   printf("\n*************\n");
   printf("\n*************\n");*/
- // ft_printf("i = -%+-04i-\n", i);
+  // ft_printf("i = -%+-04i-\n", i);
  // printf("passed : i = -%%+-04i-\n");
  // printf("rslt p : i = -%+-04i-\n", i);
  // printf("\n*************\n");
@@ -83,12 +85,21 @@ int main(int argc, char **argv)
   printf("TESTS: X x p o b :\n");
   printf("MY PRINTF RET :\n");
   ret = ft_printf("p = -%12p-\n", s);
+  printf("PRINTF RET :\n");
   ret2 = printf("p = -%12p-\n", s);
   printf("ret ft_printf %d || ret real_printf %d\n\n", ret, ret2);
   printf("passed : p = -%%p-\n");
   printf("\n*************\n");
+  printf("\n*************\n");
+  printf("MY PRINTF RET :\n");
+  ret = ft_printf("%#20.2o||%#31o||%28.28o||%31o||\n", -144491672, 0, 2147492, 40);
+  printf("PRINTF RET :\n");
+  ret2 = printf("%#20.2o||%#31o||%28.28o||%31o||\n", -144491672, 0, 2147492, 40);
+//  ret2 = printf("%#20.2o||\n%#31o||\n%28.28o||\n%31o||\n", -144491672, 0, 2147492, 40);
+  printf("ret ft_printf %d || ret real_printf %d\n", ret, ret2);
+  printf("passed : %%#20.2o %%#31o %%28.28o %%31o\n");
+  printf("\n*************\n");
 */
-
 /*
   // 4.bis. with #
   printf("\n*************\n");

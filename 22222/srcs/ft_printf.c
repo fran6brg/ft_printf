@@ -6,7 +6,7 @@
 /*   By: fberger <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/15 02:59:11 by fberger           #+#    #+#             */
-/*   Updated: 2019/02/14 13:00:50 by bihattay         ###   ########.fr       */
+/*   Updated: 2019/02/17 16:43:49 by bihattay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,7 +170,7 @@ int		ft_printf(const char *format, ...)
 //	printf("------- START FT_PRINTF -------\n\n");
 	while (option != NULL)
 	{
-	//	print_t_option(&option);
+		//print_t_option(&option);
 		ret += no_opts_prntrs(option, format, formatlen);
 //	printf("////// RET IN MAIN_mid_while FUNCTION %d ////////\n\n", ret);
 		ret += root_options_printers(option, &args);
