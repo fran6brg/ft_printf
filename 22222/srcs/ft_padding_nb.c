@@ -113,19 +113,19 @@ int		helper_print_nb_padding(t_options *option, int len, int after, int nb)
 //	len = option->type == 'p' ? len + 2 : len;
 	if (after && !option->left_justify)
 		return (0);
-	if (!after && option->left_justify) // [nb:space]
+	if (!after && option->left_justify) // [nbb:space]
 	{
-		if ((option->left_zeros && !option->pad_min) || option->pad_min) // [000:nb:space]
+		if ((option->left_zeros && !option->pad_min) || option->pad_min) // [000:nbb:space]
 			ret += print_zero_padding(option, len, nb);
 	}
-	else if ((option->left_justify && after) || (option->pad_max && !option->pad_min && !after))
+	else if ((option->left_justify && after) || (option->pad_max && !option->pad_min && !after)) // [?:nba:space]
 		ret += print_spaces_padding(option, len, nb, after);
-	else if (option->pad_max && option->pad_min && !option->left_justify)
+	else if (option->pad_max && option->pad_min && !option->left_justify) // [space:0:nba?]
 	{
 		ret += print_spaces_padding(option, len, nb, after);
 		ret += print_zero_padding(option, len, nb);
 	}
-	else if ((option->left_zeros && !option->pad_min) || (option->pad_min && !option->pad_max))
+	else if ((option->left_zeros && !option->pad_min) || (option->pad_min && !option->pad_max)) // [nba:space]
 		ret += print_zero_padding(option, len, nb);
 	else
 		ret += print_sign(option, nb);
