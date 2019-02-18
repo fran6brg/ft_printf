@@ -165,7 +165,7 @@ int		print_zeros_padding_before(t_options *option, int len, int nb) // sert a pr
 			}
 			else if (!option->left_zeros) // 5.2.1.2
 			{
-				//
+				// ?
 			}
 		}
 		else if (!option->pad_min) // 5.2.2
