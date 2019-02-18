@@ -84,8 +84,7 @@ int		get_sign(t_options *option)
 ---------------------------   print_zeros_padding ------------------------------
 */
 
-
-int		print_zeros_padding(t_options *option, int len, int nb) // sert a print les 0 padding en toute circonstances
+int		print_zeros_padding_before(t_options *option, int len, int nb) // sert a print les 0 padding en toute circonstances
 {
 	int		i;
 	int		ret;
@@ -110,23 +109,179 @@ int		print_zeros_padding(t_options *option, int len, int nb) // sert a print les
 		ret += print_sign(option, nb);
 		option->sign_is_print = 1;
 	}
-//	printf("\n/********** LEN zero %d %d %d ***********\\\n", len, option->pad_min, get_sign(option));
-	if ((option->left_zeros && !option->pad_max) || option->pad_max)
+	//////////////////////////////////////////////////////////////////////////////
+	if (option->pad_max) // 5.1
 	{
-		if (option->pad_max)
+		if (option->pad_min) // 5.1.1
 		{
-			while (++i < option->pad_max - len + (get_sign(option) && !option->left_justify) - (option->space && option->pad_min > option->pad_max ? 1 : 0))
+			if (option->left_zeros) // final 5.1.1.1
 			{
-				// printf("len =%d ", len);
-				ret += ft_putchar_ret('0');
+				while (++i < option->pad_max - len + (get_sign(option) && !option->left_justify) - (option->space && option->pad_min > option->pad_max ? 1 : 0))
+				{
+					// printf("len =%d ", len);
+					ret += ft_putchar_ret('0');
+				}
 			}
-			// printf("i=%i ", i);
-		}
-		else
-		{
-			while (++i < option->pad_min - len - get_sign(option))
+			else if (!option->left_zeros) // final 5.1.1.2
 			{
-				ret += ft_putchar_ret('0');
+				while (++i < option->pad_max - len + (get_sign(option) && !option->left_justify) - (option->space && option->pad_min > option->pad_max ? 1 : 0))
+				{
+					// printf("len =%d ", len);
+					ret += ft_putchar_ret('0');
+				}
+			}
+		}
+		else if (!option->pad_min)  // 5.1.2
+		{
+			if (option->left_zeros)   // final 5.1.2.1
+			{
+				while (++i < option->pad_max - len + (get_sign(option) && !option->left_justify) - (option->space && option->pad_min > option->pad_max ? 1 : 0))
+				{
+					// printf("len =%d ", len);
+					ret += ft_putchar_ret('0');
+				}
+			}
+			else if (!option->left_zeros) // final 5.1.2.2
+			{
+				while (++i < option->pad_max - len + (get_sign(option) && !option->left_justify) - (option->space))
+				{
+					// printf("len =%d ", len);
+					ret += ft_putchar_ret('0');
+				}
+			}
+		}
+	}
+	else if (!option->pad_max)  // 5.2
+	{
+		if (option->pad_min) // 5.2.1
+		{
+			if (option->left_zeros) // 5.2.1.1
+			{
+				while (++i < option->pad_max - len + (get_sign(option) && !option->left_justify) - (option->space && option->pad_min > option->pad_max ? 1 : 0))
+				{
+					// printf("len =%d ", len);
+					ret += ft_putchar_ret('0');
+				}
+			}
+			else if (!option->left_zeros) // 5.2.1.2
+			{
+				//
+			}
+		}
+		else if (!option->pad_min) // 5.2.2
+		{
+			if (option->left_zeros) // 5.2.2.1
+			{
+				while (++i < option->pad_min - len - get_sign(option))
+				{
+					ret += ft_putchar_ret('0');
+				}
+			}
+			else if (!option->left_zeros) // 5.2.2.2
+			{
+				//
+			}
+		}
+	}
+	return (ret);
+}
+
+int		print_zeros_padding_after(t_options *option, int len, int nb) // sert a print les 0 padding en toute circonstances
+{
+	int		i;
+	int		ret;
+
+	i = -1;
+	if (option->type != 'd' && option->type != 'i' && (option->hashtag || option->type == 'p'))
+	{
+		if (option->type != 'o')
+		{
+			// printf("here");
+			len += 2;
+		}
+		else if (option->type == 'o' && nb != 0)
+		{
+			// printf("here");
+			len += 1;
+		}
+	}
+	if (!option->sign_is_print)
+	{
+		// printf("here");
+		ret += print_sign(option, nb);
+		option->sign_is_print = 1;
+	}
+	//////////////////////////////////////////////////////////////////////////////
+	if (option->pad_max) // 6.1
+	{
+		if (option->pad_min) // 6.1.1
+		{
+			if (option->left_zeros) // final 6.1.1.1
+			{
+				while (++i < option->pad_max - len + (get_sign(option) && !option->left_justify) - (option->space && option->pad_min > option->pad_max ? 1 : 0))
+				{
+					// printf("len =%d ", len);
+					ret += ft_putchar_ret('0');
+				}
+			}
+			else if (!option->left_zeros) // final 6.1.1.2
+			{
+				while (++i < option->pad_max - len + (get_sign(option) && !option->left_justify) - (option->space && option->pad_min > option->pad_max ? 1 : 0))
+				{
+					// printf("len =%d ", len);
+					ret += ft_putchar_ret('0');
+				}
+			}
+		}
+		else if (!option->pad_min)  // 6.1.2
+		{
+			if (option->left_zeros)   // final 6.1.2.1
+			{
+				while (++i < option->pad_max - len + (get_sign(option) && !option->left_justify) - (option->space && option->pad_min > option->pad_max ? 1 : 0))
+				{
+					// printf("len =%d ", len);
+					ret += ft_putchar_ret('0');
+				}
+			}
+			else if (!option->left_zeros) // final 6.1.2.2
+			{
+				while (++i < option->pad_max - len + (get_sign(option) && !option->left_justify) - (option->space && option->pad_min > option->pad_max ? 1 : 0))
+				{
+					// printf("len =%d ", len);
+					ret += ft_putchar_ret('0');
+				}
+			}
+		}
+	}
+	else if (!option->pad_max)  // 6.2
+	{
+		if (option->pad_min) // 6.2.1
+		{
+			if (option->left_zeros) // 6.2.1.1
+			{
+				while (++i < option->pad_max - len + (get_sign(option) && !option->left_justify) - (option->space && option->pad_min > option->pad_max ? 1 : 0))
+				{
+					// printf("len =%d ", len);
+					ret += ft_putchar_ret('0');
+				}
+			}
+			else if (!option->left_zeros) // 6.2.1.2
+			{
+				//
+			}
+		}
+		else if (!option->pad_min) // 6.2.2
+		{
+			if (option->left_zeros) // 6.2.2.1
+			{
+				while (++i < option->pad_min - len - get_sign(option))
+				{
+					ret += ft_putchar_ret('0');
+				}
+			}
+			else if (!option->left_zeros) // 6.2.2.2
+			{
+				//
 			}
 		}
 	}
@@ -160,9 +315,9 @@ int		print_spaces_padding_before(t_options *option, int len, int nb, int after) 
 	{
 		if (option->pad_min && i + 1 == (option->pad_min - len - get_sign(option) - un_space_a_til_ete_print))
 		{
-			if (option->sign_is_print /* si before && signe non print alors print le signe */
+			if (!option->sign_is_print /* si before && signe non print alors print le signe */
 				&& !(!option->neg && !option->sign) /* sauf si le nb est positif et qu il ne faut pas imprimer le signe (si nb = '100' -> print '100') */
-				&& option->pad_min < option->pad_max) /* ... */
+				&& option->pad_min > option->pad_max) /* ... */
 			{
 				// print_t_option(&option);
 				ret += print_sign(option, nb);
@@ -189,30 +344,26 @@ int		print_spaces_padding_before(t_options *option, int len, int nb, int after) 
 
 int		print_spaces_padding_after(t_options *option, int len, int nb, int after) // sert a print les spaces padding en toute circonstances
 {
-int		i;
-int		ret;
-int		un_space_a_til_ete_print;
+	int		i;
+	int		ret;
+	int		un_space_a_til_ete_print;
 
-un_space_a_til_ete_print = (option->space && !get_sign(option) && !option->neg) ? 1 : 0;
-len = option->pad_max > len ? option->pad_max : len;
-i = -1;
-ret = 0;
-if (option->type != 'd' && option->type != 'i' && (option->hashtag || option->type == 'p'))
-{
-	if (option->type != 'o')
-		len += 2;
-	else if (option->type == 'o' && nb != 0)
-		len += 1;
-}
-while (++i < option->pad_min - len - get_sign(option) - un_space_a_til_ete_print)
-{
-	if (option->pad_min && i + 1 == (option->pad_min - len - get_sign(option) - un_space_a_til_ete_print))
+	un_space_a_til_ete_print = (option->space && !get_sign(option) && !option->neg) ? 1 : 0;
+	len = option->pad_max > len ? option->pad_max : len;
+	i = -1;
+	ret = 0;
+	if (option->type != 'd' && option->type != 'i' && (option->hashtag || option->type == 'p'))
 	{
-			ret += ft_putchar_ret(' ');
+		if (option->type != 'o')
+			len += 2;
+		else if (option->type == 'o' && nb != 0)
+			len += 1;
 	}
-}
-return (ret);
-
+	while (++i < option->pad_min - len - get_sign(option) - un_space_a_til_ete_print)
+	{
+				ret += ft_putchar_ret(' ');
+	}
+	return (ret);
 }
 
 //
@@ -290,22 +441,23 @@ int		helper_print_nb_padding(t_options *option, int len, int after, int nb)
 				{
 					if (option->left_zeros) // final 1.1.1.2.1
 					{
-						ret += print_zeros_padding(option, len, nb);
+						ret += print_zeros_padding_before(option, len, nb);
 					}
 					else if (!option->left_zeros) // final 1.1.1.2.2
 					{
-						ret += print_zeros_padding(option, len, nb);
+						ret += print_zeros_padding_before(option, len, nb);
 					}
 				}
 				else if (!option->pad_max) // 1.1.1.2
 				{
 					if (option->left_zeros) // final 1.1.1.2.1
 					{
-						ret += print_zeros_padding(option, len, nb);
+						ret += print_zeros_padding_before(option, len, nb);
 					}
 					else if (!option->left_zeros) // final 1.1.1.2.2
 					{
-						ret += print_zeros_padding(option, len, nb);
+						// write(1, "h", 1);
+						ret += print_zeros_padding_before(option, len, nb);
 					}
 				}
 			}
@@ -326,7 +478,7 @@ int		helper_print_nb_padding(t_options *option, int len, int after, int nb)
 				{
 					if (option->left_zeros) // final 1.1.2.2.1
 					{
-						ret += print_zeros_padding(option, len, nb);
+						ret += print_zeros_padding_before(option, len, nb);
 					}
 					else if (!option->left_zeros) // 1.1.2.2.2
 					{
@@ -344,7 +496,7 @@ int		helper_print_nb_padding(t_options *option, int len, int after, int nb)
 					if (option->left_zeros) // final 1.2.1.1.1
 					{
 						ret += print_spaces_padding_before(option, len, nb, after);
-						ret += print_zeros_padding(option, len, nb);
+						ret += print_zeros_padding_before(option, len, nb);
 						if (option->sign)
 							ret += print_sign(option, nb);
 					}
@@ -352,7 +504,7 @@ int		helper_print_nb_padding(t_options *option, int len, int after, int nb)
 					{
 						// printf("bitch");
 						ret += print_spaces_padding_before(option, len, nb, after);
-						ret += print_zeros_padding(option, len, nb);
+						ret += print_zeros_padding_before(option, len, nb);
 						if (option->sign)
 							ret += print_sign(option, nb);
 					}
@@ -362,13 +514,13 @@ int		helper_print_nb_padding(t_options *option, int len, int after, int nb)
 					if (option->left_zeros) // final 1.2.1.2.1
 					{
 						// printf("bitch");
-						ret += print_spaces_padding_before(option, len, nb, after);
+						ret += print_zeros_padding_before(option, len, nb);
 						if (option->sign)
 							ret += print_sign(option, nb);
 					}
 					else if (!option->left_zeros) // final 1.2.1.2.2
 					{
-						ret += print_spaces_padding_before(option, len, nb, after);
+						ret += print_zeros_padding_before(option, len, nb);
 						if (option->sign)
 							ret += print_sign(option, nb);
 					}
@@ -381,14 +533,14 @@ int		helper_print_nb_padding(t_options *option, int len, int after, int nb)
 					if (option->left_zeros) // final 1.2.2.1.1
 					{
 						// printf("bitch i am here");
-						ret += print_zeros_padding(option, len, nb);
+						ret += print_zeros_padding_before(option, len, nb);
 						if (option->sign)
 							ret += print_sign(option, nb);
 					}
 					else if (!option->left_zeros) // final 1.2.2.1.2
 					{
 						// printf("bitch i am here");
-						ret += print_zeros_padding(option, len, nb);
+						ret += print_zeros_padding_before(option, len, nb);
 						if (option->sign)
 							ret += print_sign(option, nb);
 					}
@@ -397,14 +549,14 @@ int		helper_print_nb_padding(t_options *option, int len, int after, int nb)
 				{
 					if (option->left_zeros) // final 1.2.2.2.1
 					{
-						ret += print_zeros_padding(option, len, nb);
+						ret += print_zeros_padding_before(option, len, nb);
 						if (option->sign)
 							ret += print_sign(option, nb);
 					}
 					else if (!option->left_zeros) // 1.2.2.2.2
 					{
 						// printf("bitch i am here");
-						ret += print_zeros_padding(option, len, nb);
+						ret += print_zeros_padding_before(option, len, nb);
 					}
 				}
 			}
@@ -418,32 +570,34 @@ int		helper_print_nb_padding(t_options *option, int len, int after, int nb)
 			{
 				if (option->pad_min) // 2.1.1.1
 				{
-					if (option->pad_max) // 2.1.1.1.1
+					if (option->pad_max) // final 2.1.1.1.1
 					{
 						// write(1, "h", 1);
 						ret += print_spaces_padding_after(option, len, nb, after);
 						if (option->sign)
 							ret += print_sign(option, nb);
 					}
-					else if (!option->pad_max) // 2.1.1.1.1
+					else if (!option->pad_max) // final 2.1.1.1.2
 					{
-						ret += print_zeros_padding(option, len, nb);
+						// write(1, "h", 1);
+						ret += print_zeros_padding_after(option, len, nb);
 						if (option->sign)
 							ret += print_sign(option, nb);
 					}
 				}
 				else if (!option->pad_min) // 2.1.1.2
 				{
-					if (option->pad_max) // 2.1.1.2.1
+					if (option->pad_max) // final 2.1.1.2.1
 					{
-						ret += print_zeros_padding(option, len, nb);
+						// write(1, "h", 1);
+						ret += print_zeros_padding_after(option, len, nb);
 						if (option->sign)
 							ret += print_sign(option, nb);
 					}
-					else if (!option->pad_max) // 2.1.1.2.2
+					else if (!option->pad_max) // final 2.1.1.2.2
 					{
 						// write(1, "h", 1);
-						ret += print_zeros_padding(option, len, nb);
+						ret += print_zeros_padding_after(option, len, nb);
 						if (option->sign)
 							ret += print_sign(option, nb);
 					}
@@ -451,17 +605,67 @@ int		helper_print_nb_padding(t_options *option, int len, int after, int nb)
 			}
 			else if (!option->left_zeros) // 2.1.2
 			{
-				// write(1, "h", 1);
-				// print_t_option(&option);
-				ret += print_spaces_padding_after(option, len, nb, after);
-				if (option->sign)
-					ret += print_sign(option, nb);
+				if (option->pad_min) // 2.1.2.1
+				{
+					if (option->pad_max) // final 2.1.2.1.1
+					{
+						// write(1, "h", 1);
+						ret += print_spaces_padding_after(option, len, nb, after);
+						if (option->sign)
+							ret += print_sign(option, nb);
+					}
+					else if (!option->pad_max) // final 2.1.2.1.2
+					{
+						// write(1, "h", 1);
+						ret += print_spaces_padding_after(option, len, nb, after);
+						if (option->sign)
+							ret += print_sign(option, nb);
+					}
+				}
+				else if (!option->pad_min) // 2.1.2.2
+				{
+					if (option->pad_max) // final 2.1.2.2.1
+					{
+						// write(1, "h", 1);
+						ret += print_spaces_padding_after(option, len, nb, after);
+						if (option->sign)
+							ret += print_sign(option, nb);
+					}
+					else if (!option->pad_max) // final 2.1.2.2.2
+					{
+						// write(1, "h", 1);
+						ret += print_spaces_padding_after(option, len, nb, after);
+						if (option->sign)
+							ret += print_sign(option, nb);
+					}
+				}
 			}
 		}
-		else if (!option->left_justify) // 2.2 si after et alignement droite, ok rien à faire
+		else if (!option->left_justify) // final 2.2 si after et alignement droite, ok rien à faire
 		{
 			return (0);
 		}
 	}
 	return (ret);
 }
+
+
+// if ((option->left_zeros && !option->pad_max) || option->pad_max)
+// {
+// 	if (option->pad_max)
+// 	{
+// 		while (++i < option->pad_max - len + (get_sign(option) && !option->left_justify) - (option->space && option->pad_min > option->pad_max ? 1 : 0))
+// 		{
+// 			// printf("len =%d ", len);
+// 			ret += ft_putchar_ret('0');
+// 		}
+// 		// printf("i=%i ", i);
+// 	}
+// 	else
+// 	{
+// 		while (++i < option->pad_min - len - get_sign(option))
+// 		{
+// 			ret += ft_putchar_ret('0');
+// 		}
+// 	}
+// }

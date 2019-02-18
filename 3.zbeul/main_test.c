@@ -58,19 +58,19 @@ int main(int argc, char **argv)
 
   printf("\n*************\n");
   printf("\033[0;33mTEST>\t[%%-10d %% d %%+d %%010d %%hhd %%llda]\", 3, 3, 3, 1, 0, 18446744065119617025LL\n");
-	// ft_printf("\033[0;33mYOUR>\t[%-10d]\n", 3);
-  //    printf("\033[0;31mREAL>\t[%-10d]\n", 3);
-  // ft_printf("\033[0;33mYOUR>\t[%-10d]\n", 3);
-  //    printf("\033[0;31mREAL>\t[%-10d]\n", 3);
-  ft_printf("\033[0;33mYOUR>\t[%+d]\n", 3);
-  	 printf("\033[0;31mREAL>\t[%+d]\n", 3);
-	// ft_printf("\033[0;33mYOUR>\t[%010d]\n", 1);
-	//    printf("\033[0;31mREAL>\t[%010d]\n", 1);
+	ft_printf("\033[0;33mYOUR>\t[%-10d]\n", 3);
+     printf("\033[0;31mREAL>\t[%-10d]\n", 3);
+  // ft_printf("\033[0;33mYOUR>\t[% d]\n", 3);
+  //    printf("\033[0;31mREAL>\t[% d]\n", 3);
+  // ft_printf("\033[0;33mYOUR>\t[%+d]\n", 3);
+  // 	 printf("\033[0;31mREAL>\t[%+d]\n", 3);
+	ft_printf("\033[0;33mYOUR>\t[%010d]\n", 1);
+	   printf("\033[0;31mREAL>\t[%010d]\n", 1);
 	// ft_printf("\033[0;33mYOUR>\t[%llda]\n", 18446744065119617025LL);
 	// 	 printf("\033[0;31mREAL>\t[%llda]\n", 18446744065119617025LL);
   printf("\n*************\n");
 
-*/
+
   printf("\n*************\n");
    printf("\033[0;33mTEST>\t[%%10.8lld || %%#25.22llda || %%#-+ 08.5llda]\", 100LL, -1LL, 100LL\n");
   //ft_printf("\033[0;33mYOUR>\t[%10.8lld=%#25.22llda=%#-+ 08.5llda]\n", 100LL, -1LL, 100LL);
@@ -86,25 +86,27 @@ int main(int argc, char **argv)
 	// printf("\n*************\n");
   // ft_printf("\033[0;33mYOUR>\t[%ld]\n", -3456);
   // printf("\033[0;31mREAL>\t[%ld]\n", -3456);
-/*
 
+*/
   printf("\n*************\n");
   printf("\033[0;33mTEST>\t[%% .40d=%% 10.40d=%% 10.40d=%%10.0d=%%+010.d=%%10.0d=%%+ 010.d]\n");
   // ft_printf("\033[0;33mYOUR>\t[% .40d=% 10.40d=% 10.40d=%10.0d=%+010.d=%10.0d=%+ 010.d]\n", 1, 10, -10, -10, -10, 10, 10);
   // printf("\033[0;31mREAL>\t[% .40d=% 10.40d=% 10.40d=%10.0d=%+010.d=%10.0d=%+ 010.d]\n", 1, 10, -10, -10, -10, 10, 10);
-  // ft_printf("\033[0;33mYOUR>\t[% .40d]\n", 1);
-  //    printf("\033[0;31mREAL>\t[% .40d]\n", 1);
-	// ft_printf("\033[0;33mYOUR>\t[% 10.40d]\n", -10);
-	//    printf("\033[0;31mREAL>\t[% 10.40d]\n", -10);
-	ft_printf("\033[0;33mYOUR>\t[%10.0d]\n", -10);
-		 printf("\033[0;31mREAL>\t[%10.0d]\n", -10);
-	ft_printf("\033[0;33mYOUR>\t[%+010.d]\n", 10);
-		 printf("\033[0;31mREAL>\t[%+010.d]\n", 10);
-	ft_printf("\033[0;33mYOUR>\t[%+ 010.d]\n", 10);
-		 printf("\033[0;31mREAL>\t[%+ 010.d]\n", 10);
+  ft_printf("\033[0;33mYOUR>\t[% .40d]\n", 1);
+     printf("\033[0;31mREAL>\t[% .40d]\n", 1);
+	 ft_printf("\033[0;33mYOUR>\t[% 10.40d]\n", 10);
+ 	   printf("\033[0;31mREAL>\t[% 10.40d]\n", 10);
+	ft_printf("\033[0;33mYOUR>\t[% 10.40d]\n", -10);
+	   printf("\033[0;31mREAL>\t[% 10.40d]\n", -10);
+	// ft_printf("\033[0;33mYOUR>\t[%10.0d]\n", -10);
+	// 	 printf("\033[0;31mREAL>\t[%10.0d]\n", -10);
+	// ft_printf("\033[0;33mYOUR>\t[%+010.d]\n", 10);
+	// 	 printf("\033[0;31mREAL>\t[%+010.d]\n", 10);
+	// ft_printf("\033[0;33mYOUR>\t[%+ 010.d]\n", 10);
+	// 	 printf("\033[0;31mREAL>\t[%+ 010.d]\n", 10);
   printf("\n*************\n");
 
-
+/*
   // printf("\n*************\n");
   // printf("TESTS: d i :\n");
   // ret = ft_printf("d = -%ld-\n", i);
@@ -134,10 +136,9 @@ int main(int argc, char **argv)
   printf("passed : p = -%%p-\n");
   printf("\n*************\n");
 
-*/
 
   // 4.bis. with #
-  /*printf("\n*************\n");
+  printf("\n*************\n");
   printf("TESTS: X x p o b with # :\n");
   printf("MY PRINTF RET :\n");
   ret = ft_printf("x = -%#12o-\n", 56465);
