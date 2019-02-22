@@ -19,3 +19,6 @@ lister la hierarchie des flags pour bien coder :
 - space
 - [pad_max.pad_min]
 - hashtag
+
+YOUR>	[ 000000000000000000000000000000000000010]
+REAL>	[ 0000000000000000000000000000000000000010]
