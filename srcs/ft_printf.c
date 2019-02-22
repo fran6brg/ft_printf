@@ -16,10 +16,6 @@
 #include "../includes/t_functions_pointers.h"
 #include "../includes/functions.h"
 
-// TO DO LIST
-// #
-// main beton
-//
 t_functions_pointers	fp[NB_ACCEPTED_OPTIONS] =
 {
 	{'c', &ft_printf_char}, // ok,

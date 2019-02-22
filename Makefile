@@ -8,7 +8,8 @@ OBJS = $(SRCS:.c=.o)
 
 all: # $(NAME)
 		@make re -C 3.Libft
-		@gcc main_test.c $(SRCS) 3.Libft/libft.a && ./a.out 
+		# @gcc main_test.c $(SRCS) 3.Libft/libft.a && ./a.out
+		@gcc mainprintf.c $(SRCS) 3.Libft/libft.a && ./a.out 
 		#@ar rc $(NAME) $(OBJS)
 		#@ranlib $(NAME)
 
