@@ -171,13 +171,13 @@ int		ft_printf(const char *format, ...)
 //	printf("------- START FT_PRINTF -------\n\n");
 	while (option != NULL)
 	{
-		// print_t_option(&option);
-		// printf("nb pad before    1.%d.%d.%d.%d\n", option->left_justify ? 1 : 2, option->pad_min ? 1 : 2, option->pad_max ? 1 : 2, option->left_zeros ? 1 : 2);
-		// printf("nb pad after     2.%d.%d.%d.%d\n", option->left_justify ? 1 : 2, option->left_zeros ? 1 : 2, option->pad_min ? 1 : 2, option->pad_max ? 1 : 2);
-		// printf("print space pad  3.a faire\n");
-		// printf("print space pad  4.a faire\n");
-		// printf("print 0 pad      5.%d.%d.%d\n", option->pad_max ? 1 : 2, option->pad_min ? 1 : 2, option->left_zeros ? 1 : 2);
-		// printf("print 0 pad      6.%d.%d.%d\n\n", option->pad_max ? 1 : 2, option->pad_min ? 1 : 2, option->left_zeros ? 1 : 2);
+		print_t_option(&option);
+		printf("nb pad before    1.%d.%d.%d.%d\n", option->left_justify ? 1 : 2, option->pad_min ? 1 : 2, option->pad_max ? 1 : 2, option->left_zeros ? 1 : 2);
+		printf("nb pad after     2.%d.%d.%d.%d\n", option->left_justify ? 1 : 2, option->left_zeros ? 1 : 2, option->pad_min ? 1 : 2, option->pad_max ? 1 : 2);
+		printf("print space pad  3.a faire\n");
+		printf("print space pad  4.a faire\n");
+		printf("print 0 pad      5.%d.%d.%d\n", option->pad_max ? 1 : 2, option->pad_min ? 1 : 2, option->left_zeros ? 1 : 2);
+		printf("print 0 pad      6.%d.%d.%d\n\n", option->pad_max ? 1 : 2, option->pad_min ? 1 : 2, option->left_zeros ? 1 : 2);
 		ret += no_opts_prntrs(option, format, formatlen);
 //	printf("////// RET IN MAIN_mid_while FUNCTION %d ////////\n\n", ret);
 		ret += root_options_printers(option, &args);

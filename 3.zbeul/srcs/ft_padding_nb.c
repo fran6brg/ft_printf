@@ -511,7 +511,7 @@ int		helper_print_nb_padding(t_options *option, int len, int after, int nb)
 					}
 					else if (!option->left_zeros) // 1.1.2.2.2
 					{
-						//
+						printf("bitch");
 					}
 				}
 			}
@@ -604,15 +604,11 @@ int		helper_print_nb_padding(t_options *option, int len, int after, int nb)
 					{
 						// write(1, "h", 1);
 						ret += print_spaces_padding_after(option, len, nb, after);
-						if (option->sign)
-							ret += print_sign(option, nb);
 					}
 					else if (!option->pad_max) // final 2.1.1.1.2
 					{
 						// write(1, "h", 1);
 						ret += print_zeros_padding_after(option, len, nb);
-						if (option->sign)
-							ret += print_sign(option, nb);
 					}
 				}
 				else if (!option->pad_min) // 2.1.1.2
@@ -621,15 +617,11 @@ int		helper_print_nb_padding(t_options *option, int len, int after, int nb)
 					{
 						// write(1, "h", 1);
 						ret += print_zeros_padding_after(option, len, nb);
-						if (option->sign)
-							ret += print_sign(option, nb);
 					}
 					else if (!option->pad_max) // final 2.1.1.2.2
 					{
 						// write(1, "h", 1);
 						ret += print_zeros_padding_after(option, len, nb);
-						if (option->sign)
-							ret += print_sign(option, nb);
 					}
 				}
 			}
@@ -641,15 +633,11 @@ int		helper_print_nb_padding(t_options *option, int len, int after, int nb)
 					{
 						// write(1, "h", 1);
 						ret += print_spaces_padding_after(option, len, nb, after);
-						if (option->sign)
-							ret += print_sign(option, nb);
 					}
 					else if (!option->pad_max) // final 2.1.2.1.2
 					{
 						// write(1, "h", 1);
 						ret += print_spaces_padding_after(option, len, nb, after);
-						if (option->sign)
-							ret += print_sign(option, nb);
 					}
 				}
 				else if (!option->pad_min) // 2.1.2.2
@@ -658,15 +646,11 @@ int		helper_print_nb_padding(t_options *option, int len, int after, int nb)
 					{
 						// write(1, "h", 1);
 						ret += print_spaces_padding_after(option, len, nb, after);
-						if (option->sign)
-							ret += print_sign(option, nb);
 					}
 					else if (!option->pad_max) // final 2.1.2.2.2
 					{
 						// write(1, "h", 1);
 						ret += print_spaces_padding_after(option, len, nb, after);
-						if (option->sign)
-							ret += print_sign(option, nb);
 					}
 				}
 			}
