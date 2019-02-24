@@ -484,6 +484,7 @@ int		helper_print_nb_padding(t_options *option, int len, int after, int nb)
 					}
 					else if (!option->left_zeros) // final 1.1.1.2.2
 					{
+						ret += print_sign(option, nb);
 						// write(1, "here", 4);
 						// ret += print_zeros_padding_before(option, len, nb);
 						// ne rien mettre ici cf. mainprintf printf("\033[0;31mREAL>\t[%-10d]\n", 3);
@@ -511,7 +512,8 @@ int		helper_print_nb_padding(t_options *option, int len, int after, int nb)
 					}
 					else if (!option->left_zeros) // 1.1.2.2.2
 					{
-						printf("bitch");
+						// printf("bitch");
+						ret += print_sign(option, nb);
 					}
 				}
 			}

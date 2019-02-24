@@ -149,6 +149,20 @@ int main(int argc, char **argv)
     printf("\033[0;31mREAL>\t['%+-d']\n", 5);
  ft_printf("\033[0;33mYOUR>\t['%+d']\n", 5);
     printf("\033[0;31mREAL>\t['%+d']\n", 5);
+ ft_printf("\033[0;33mYOUR>\t['% d']\n", -5);
+    printf("\033[0;33mREAL>\t['% d']\n", -5);
+ ft_printf("\033[0;33mYOUR>\t['% .0d']\n", -5);
+   	printf("\033[0;33mREAL>\t['% .0d']\n", -5);
+ ft_printf("\033[0;33mYOUR>\t['% +d']\n", 0);
+  	printf("\033[0;33mREAL>\t['% +d']\n", 0);
+ ft_printf("\033[0;33mYOUR>\t['%03d']\n", 5);
+  	printf("\033[0;33mREAL>\t['%03d']\n", 5);
+ ft_printf("\033[0;33mYOUR>\t['%-03d']\n", 5);
+  	printf("\033[0;33mREAL>\t['%-03d']\n", 5);
+ ft_printf("\033[0;33mYOUR>\t['%-+0003d']\n", -5);
+    printf("\033[0;33mREAL>\t['%-+0003d']\n", -5);
+ ft_printf("\033[0;33mYOUR>\t['%0+ 3d']\n", -5U);
+    printf("\033[0;33mREAL>\t['%0+ 3d']\n", -5U);
 
  printf("\n*************\n");
 /*
