@@ -31,7 +31,7 @@ static int		extract_number_in_flags(t_options *new, int first, int start)
 				break;
 		}
 		if (new->flags[i] == '0' && (i == 0 || (new->pad_min && i > 0 && new->flags[i - 1] != '.') /*	10.0 n'est pas left_zeros */
-			 || (new->flags[i + 1] && !ft_isdigit(new->flags[i + 1])))) /* +010. n'est pas left_zeros */
+			 || (new->flags[i + 1] && !ft_isdigit(new->flags[i + 1]) && new->flags[i + 1] != '.'))) /* +010. n'est pas left_zeros */
 			new->left_zeros = 1;
 		else if (ft_isdigit(new->flags[i]))
 		{

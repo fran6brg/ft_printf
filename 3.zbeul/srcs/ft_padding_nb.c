@@ -196,6 +196,7 @@ int		print_zeros_padding_before(t_options *option, int len, int nb) // sert a pr
 		ret += print_sign(option, nb);
 		option->sign_is_print = 1;
 	}
+	// printf("len =%d ", len);
 	//////////////////////////////////////////////////////////////////////////////
 	if (option->pad_max) // 5.1
 	{
@@ -203,6 +204,7 @@ int		print_zeros_padding_before(t_options *option, int len, int nb) // sert a pr
 		{
 			if (option->left_zeros) // final 5.1.1.1
 			{
+				// printf("padmax - %d + %d - %d\n", len, (get_sign(option) && !option->left_justify), (option->space && option->pad_min > option->pad_max ? 1 : 0));
 				while (++i < option->pad_max - len + (get_sign(option) && !option->left_justify) - (option->space && option->pad_min > option->pad_max ? 1 : 0))
 				{
 					// printf("len =%d ", len);
@@ -233,6 +235,7 @@ int		print_zeros_padding_before(t_options *option, int len, int nb) // sert a pr
 		{
 			if (option->left_zeros)   // final 5.1.2.1
 			{
+				// printf("padmax - %d + %d - %d\n", len, (get_sign(option) && !option->left_justify), (option->space && option->pad_min > option->pad_max ? 1 : 0));
 				while (++i < option->pad_max - len + (get_sign(option) && !option->left_justify) - (option->space && option->pad_min > option->pad_max ? 1 : 0))
 				{
 					// printf("len =%d ", len);
@@ -340,9 +343,10 @@ int		print_zeros_padding_after(t_options *option, int len, int nb) // sert a pri
 		{
 			if (option->left_zeros)   // final 6.1.2.1
 			{
+				// printf("padmax - %d + %d - %d\n", len, (get_sign(option) && !option->left_justify), (option->space && option->pad_min > option->pad_max ? 1 : 0));
+				// printf("len =%d ", len);
 				while (++i < option->pad_max - len + (get_sign(option) && !option->left_justify) - (option->space && option->pad_min > option->pad_max ? 1 : 0))
 				{
-					// printf("len =%d ", len);
 					ret += ft_putchar_ret('0');
 				}
 			}
@@ -480,6 +484,7 @@ int		helper_print_nb_padding(t_options *option, int len, int after, int nb)
 				{
 					if (option->left_zeros) // final 1.1.1.2.1
 					{
+						// printf("HERE");
 						ret += print_zeros_padding_before(option, len, nb);
 					}
 					else if (!option->left_zeros) // final 1.1.1.2.2
@@ -497,11 +502,11 @@ int		helper_print_nb_padding(t_options *option, int len, int after, int nb)
 				{
 					if (option->left_zeros) // 1.1.2.2.1
 					{
-						// write(1, "h", 1);
+						ret += print_zeros_padding_before(option, len, nb);
 					}
 					else if (!option->left_zeros) // 1.1.2.2.2
 					{
-						// printf("bitch");
+						ret += print_zeros_padding_before(option, len, nb);
 					}
 				}
 				else if (!option->pad_max) // 1.1.2.2
