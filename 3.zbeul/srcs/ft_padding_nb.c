@@ -148,6 +148,7 @@ int		print_spaces_padding_after(t_options *option, int len, int nb, int after) /
 	len = option->pad_max > len ? option->pad_max : len;
 	i = -1;
 	ret = 0;
+
 	if (option->type != 'd' && option->type != 'i' && (option->hashtag || option->type == 'p'))
 	{
 		if (option->type != 'o')
@@ -155,7 +156,8 @@ int		print_spaces_padding_after(t_options *option, int len, int nb, int after) /
 		else if (option->type == 'o' && nb != 0)
 		len += 1;
 	}
-	while (++i < option->pad_min - len - get_sign(option) - un_space_a_til_ete_print)
+	// printf("len = %d || get_sign(option) = %i || un_space_a_til_ete_print = %i\n", len, get_sign(option), un_space_a_til_ete_print);
+	while (++i < option->pad_min - (len) - get_sign(option) - un_space_a_til_ete_print)
 	{
 		ret += ft_putchar_ret(' ');
 	}
@@ -172,6 +174,7 @@ int		print_zeros_padding_before(t_options *option, int len, int nb) // sert a pr
 	int		ret;
 
 	i = -1;
+	ret = 0;
 	if (option->space && !option->sign && !option->neg) // si insertion d'un espace (space + pas de signe + n positif)
 	{
 		ret += ft_putchar_ret(' ');
@@ -204,8 +207,8 @@ int		print_zeros_padding_before(t_options *option, int len, int nb) // sert a pr
 		{
 			if (option->left_zeros) // final 5.1.1.1
 			{
-				// printf("padmax - %d + %d - %d\n", len, (get_sign(option) && !option->left_justify), (option->space && option->pad_min > option->pad_max ? 1 : 0));
-				while (++i < option->pad_max - len + (get_sign(option) && !option->left_justify) - (option->space && option->pad_min > option->pad_max ? 1 : 0))
+				// printf("%i < %d - %d + %d - %d\n", i, option->pad_max, (len - option->sign_is_print), (get_sign(option) && !option->left_justify), (option->space && option->pad_min > option->pad_max ? 1 : 0));
+				while (++i < option->pad_max - (len - option->sign_is_print) + (get_sign(option) && !option->left_justify) - (option->space && !option->neg && option->pad_min > option->pad_max ? 1 : 0))
 				{
 					// printf("len =%d ", len);
 					ret += ft_putchar_ret('0');
@@ -299,6 +302,7 @@ int		print_zeros_padding_after(t_options *option, int len, int nb) // sert a pri
 	int		ret;
 
 	i = -1;
+	ret = 0;
 	if (option->type != 'd' && option->type != 'i' && (option->hashtag || option->type == 'p'))
 	{
 		if (option->type != 'o')
