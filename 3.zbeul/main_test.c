@@ -229,9 +229,9 @@ int main(int argc, char **argv)
    ft_printf("ft>%#20.15X\n", lala);
 	    printf("pr>%#20.15X\n", lala);
 	 // printf("\n4. --------------\n");
-	 // printf("%%#20.15o, lala\n");
-   // ft_printf("ft>%#20.15o\n", lala);
-	 //    printf("pr>%#20.15o\n", lala);
+	 printf("%%#20.15o, lala\n");
+   ft_printf("ft>%#20.15o\n", lala);
+	    printf("pr>%#20.15o\n", lala);
 	 // printf("\n5. --------------\n");
 	 // printf("%%#.15o, lala\n");
    // ft_printf("ft>%#.15o\n", lala);
