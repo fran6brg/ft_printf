@@ -12,22 +12,264 @@
 
 #include "../includes/functions.h"
 
-int		helper_print_str_padding(t_options *option, int len, int after)
+/*
+** ------------------------ space padding  -------------------------------------
+*/
+
+int		print_spaces_padding_before_str(t_options *option, int len, int after)
 {
 	int		i;
 	int		ret;
 
 	ret = 0;
 	i = -1;
-	if (((!after && option->left_justify) || (after && !option->left_justify))
-			|| (option->point && (option->pad_max > len)))
-		return (0);
 	while (++i < option->pad_min - len)
 	{
-		if (option->left_zeros && !option->left_justify)
-			ret += ft_putchar_ret('0');
-		else
-			ret += ft_putchar_ret(' ');
+		ret += ft_putchar_ret(' ');
 	}
 	return (ret);
 }
+
+int		print_spaces_padding_after_str(t_options *option, int len, int after)
+{
+	int		i;
+	int		ret;
+
+	ret = 0;
+	i = -1;
+	while (++i < option->pad_min - len)
+	{
+		ret += ft_putchar_ret(' ');
+	}
+	return (ret);
+}
+
+/*
+** ------------------------ zeros padding  -------------------------------------
+*/
+
+int		print_zeros_padding_before_str(t_options *option, int len, int after)
+{
+	int		i;
+	int		ret;
+
+	ret = 0;
+	i = -1;
+	while (++i < option->pad_min - len)
+	{
+		ret += ft_putchar_ret('0');
+	}
+	return (ret);
+}
+
+int		print_zeros_padding_after_str(t_options *option, int len, int after)
+{
+	int		i;
+	int		ret;
+
+	ret = 0;
+	i = -1;
+	while (++i < option->pad_min - len)
+	{
+		ret += ft_putchar_ret('0');
+	}
+	return (ret);
+
+}
+
+/*
+** ------------------------------ helper ---------------------------------------
+*/
+
+int		helper_print_str_padding(t_options *option, int len, int after)
+{
+	int		ret;
+	int   before;
+
+	// print_t_option(&option);
+	ret = 0;
+	before = after ? 0 : 1;
+	if (before) // 1.before
+	{
+		if (option->left_justify) // 1.1
+		{
+			return (0);
+		}
+		else // 1.2
+		{
+			if (option->point) // 1.2.1
+			{
+				if (option->pad_max) // 1.2.1.1
+				{
+					if (option->pad_max > len) // final 1.2.1.1.1
+					{
+						return (0);
+					}
+					else // 1.2.1.1.2
+					{
+						if (option->left_zeros) // final 1.2.1.1.2.1
+						{
+							ret += print_zeros_padding_before_str(option, len, after);
+						}
+						else // final 1.2.1.1.2.2
+						{
+							ret += print_spaces_padding_before_str(option, len, after);
+						}
+					}
+				}
+				else // 1.2.1.2
+				{
+					if (option->left_zeros) // final 1.2.1.2.1
+					{
+						ret += print_zeros_padding_before_str(option, len, after);
+					}
+					else // final 1.2.1.2.2
+					{
+						ret += print_spaces_padding_before_str(option, len, after);
+					}
+				}
+			}
+			else // 1.2.2
+			{
+				if (option->pad_max) // 1.2.2.1
+				{
+					if (option->pad_max > len) // 1.2.2.1.1
+					{
+						return (0);
+					}
+					else // 1.2.2.1.2
+					{
+						if (option->left_zeros) // 1.2.2.1.2.1
+						{
+							ret += print_zeros_padding_before_str(option, len, after);
+						}
+						else // 1.2.2.1.2.2
+						{
+							ret += print_spaces_padding_before_str(option, len, after);
+						}
+					}
+				}
+				else // 1.2.2.2
+				{
+					if (option->left_zeros) // final 1.2.2.2.1
+					{
+						ret += print_zeros_padding_before_str(option, len, after);
+					}
+					else // final 1.2.2.2.2
+					{
+						ret += print_spaces_padding_before_str(option, len, after);
+					}
+				}
+			}
+		}
+	}
+	else // 2.after
+	{
+		if (option->left_justify) // 2.1
+		{
+			if (option->point) // 2.1.1
+			{
+				if (option->pad_max) // 2.1.1.1
+				{
+					if (option->pad_max > len) // 2.1.1.1.1
+					{
+						return (0);
+					}
+					else // 2.1.1.1.2
+					{
+						if (option->left_zeros) // final 1.2.2.2.1
+						{
+							ret += print_zeros_padding_after_str(option, len, after);
+						}
+						else // final 1.2.2.2.2
+						{
+							ret += print_spaces_padding_after_str(option, len, after);
+						}
+					}
+				}
+				else // 2.1.1.2
+				{
+					if (option->pad_max > len) // 2.1.1.2.1
+					{
+						return (0);
+					}
+					else // 2.1.1.2.2
+					{
+						if (option->left_zeros) // final 2.1.1.2.2.1
+						{
+							ret += print_zeros_padding_after_str(option, len, after);
+						}
+						else // final 2.1.1.2.2.2
+						{
+							ret += print_spaces_padding_after_str(option, len, after);
+						}
+					}
+				}
+			}
+			else // 2.1.2
+			{
+				if (option->pad_max) // 2.1.2.1
+				{
+					if (option->pad_max > len) // 2.1.2.1.1
+					{
+						return (0);
+					}
+					else // 2.1.2.1.2
+					{
+						if (option->left_zeros) // final 2.1.2.2.1
+						{
+							ret += print_zeros_padding_after_str(option, len, after);
+						}
+						else // final 2.1.2.2.2
+						{
+							ret += print_spaces_padding_after_str(option, len, after);
+						}
+					}
+				}
+				else // 2.1.2.2
+				{
+					if (option->pad_max > len) // 2.1.2.2.1
+					{
+						return (0);
+					}
+					else // 2.1.2.2.2
+					{
+						if (option->left_zeros) // final 2.1.2.2.2.1
+						{
+							ret += print_zeros_padding_after_str(option, len, after);
+						}
+						else // final 2.1.2.2.2.2
+						{
+							ret += print_spaces_padding_after_str(option, len, after);
+						}
+					}
+				}
+			}
+		}
+		else // 2.2
+		{
+			return (0);
+		}
+	}
+	return (ret);
+}
+
+// int		helper_print_str_padding(t_options *option, int len, int after)
+// {
+// 	int		i;
+// 	int		ret;
+//
+// 	ret = 0;
+// 	i = -1;
+// 	if (((!after && option->left_justify) || (after && !option->left_justify))
+// 			|| (option->point && (option->pad_max > len)))
+// 		return (0);
+// 	while (++i < option->pad_min - len)
+// 	{
+// 		if (option->left_zeros && !option->left_justify)
+// 			ret += ft_putchar_ret('0');
+// 		else
+// 			ret += ft_putchar_ret(' ');
+// 	}
+// 	return (ret);
+// }
