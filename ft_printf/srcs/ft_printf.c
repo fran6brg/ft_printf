@@ -106,21 +106,21 @@ void print_t_option(t_options **option)
 	printf("2. flags         = %s\n", o->flags);
 	printf("3. flen          = %i\n", o->flen);
 	printf("4. fpos          = %i\n", o->fpos);
-	printf("5. left_justify  = %i\n", o->left_justify);
-	printf("6. sign          = %i\n", o->sign);
-	printf("7. space         = %i\n", o->space);
-	printf("8. hashtag       = %i\n", o->hashtag);
-	printf("9. left_zeros    = %i\n", o->left_zeros);
-	printf("10 point         = %i\n", o->point);
-	printf("11 neg           = %i\n", o->neg);
+	printf("5. left_justify  = %s\n", o->left_justify ? "1" : ".");
+	printf("6. sign          = %s\n", o->sign ? "1" : ".");
+	printf("7. space         = %s\n", o->space ? "1" : ".");
+	printf("8. hashtag       = %s\n", o->hashtag ? "1" : ".");
+	printf("9. left_zeros    = %s\n", o->left_zeros ? "1" : ".");
+	printf("10 point         = %s\n", o->point ? "1" : ".");
+	printf("11 neg           = %s\n", o->neg ? "1" : ".");
 	printf("12 pad_min       = %i\n", o->pad_min);
 	printf("13 pad_max       = %i\n", o->pad_max);
-	printf("14 h             = %i\n", o->h);
-	printf("15 hh            = %i\n", o->hh);
-	printf("16 l             = %i\n", o->l);
-	printf("17 ll            = %i\n", o->ll);
-	printf("18 L             = %i\n", o->L);
-	printf("19 sign_is_print = %i\n", o->sign_is_print);
+	printf("14 h             = %s\n", o->h ? "1" : ".");
+	printf("15 hh            = %s\n", o->hh ? "1" : ".");
+	printf("16 l             = %s\n", o->l ? "1" : ".");
+	printf("17 ll            = %s\n", o->ll ? "1" : ".");
+	printf("18 L             = %s\n", o->L ? "1" : ".");
+	printf("19 sign_is_print = %s\n", o->sign_is_print ? "1" : ".");
 	printf("**********  end  **********\n\n");
 }
 /*
@@ -171,16 +171,16 @@ int		ft_printf(const char *format, ...)
 //	printf("------- START FT_PRINTF -------\n\n");
 	while (option != NULL)
 	{
-		// print_t_option(&option);
-		// if (option->type == 'd' || option->type == 'i')
-		// {
-		// 	printf("nb pad before    1.%d.%d.%d.%d\n", option->left_justify ? 1 : 2, option->pad_min ? 1 : 2, option->pad_max ? 1 : 2, option->left_zeros ? 1 : 2);
-		// 	printf("nb pad after     2.%d.%d.%d.%d\n", option->left_justify ? 1 : 2, option->left_zeros ? 1 : 2, option->pad_min ? 1 : 2, option->pad_max ? 1 : 2);
-		// 	printf("print space pad  3.a faire\n");
-		// 	printf("print space pad  4.a faire\n");
-		// 	printf("print 0 pad bef  5.%d.%d.%d\n", option->pad_max ? 1 : 2, option->pad_min ? 1 : 2, option->left_zeros ? 1 : 2);
-		// 	printf("print 0 pad aft  6.%d.%d.%d\n\n", option->pad_max ? 1 : 2, option->pad_min ? 1 : 2, option->left_zeros ? 1 : 2);
-		// }
+	 // print_t_option(&option);
+	 // if (option->type == 'd' || option->type == 'i')
+	 // {
+	 // 	printf("nb pad before    1.%d.%d.%d.%d\n", option->left_justify ? 1 : 2, option->pad_min ? 1 : 2, option->pad_max ? 1 : 2, option->left_zeros ? 1 : 2);
+	 // 	printf("nb pad after     2.%d.%d.%d.%d\n", option->left_justify ? 1 : 2, option->left_zeros ? 1 : 2, option->pad_min ? 1 : 2, option->pad_max ? 1 : 2);
+	 // 	printf("print space pad  3.a faire\n");
+	 // 	printf("print space pad  4.a faire\n");
+	 // 	printf("print 0 pad bef  5.%d.%d.%d\n", option->pad_max ? 1 : 2, option->pad_min ? 1 : 2, option->left_zeros ? 1 : 2);
+	 // 	printf("print 0 pad aft  6.%d.%d.%d\n\n", option->pad_max ? 1 : 2, option->pad_min ? 1 : 2, option->left_zeros ? 1 : 2);
+	 // }
 		ret += no_opts_prntrs(option, format, formatlen);
 //	printf("////// RET IN MAIN_mid_while FUNCTION %d ////////\n\n", ret);
 		ret += root_options_printers(option, &args);

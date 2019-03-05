@@ -1,23 +1,29 @@
 NAME =  libftprintf.a
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -Iincludes
+CFLAGS = # -Wall -Wextra -Werror
 SRCS = 3.Libft/*.c srcs/ft_base.c srcs/ft_padding_nb.c srcs/ft_padding_str.c srcs/ft_print_char.c srcs/ft_print_strings.c srcs/ft_printf.c srcs/ft_print_float.c srcs/ft_print_integer.c srcs/get_arguments.c srcs/ft_parsers.c srcs/ft_options.c
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME) includes/
 
 $(NAME): $(OBJS)
+	  @make re -C 3.Libft
 		@gcc -c $(SRCS)
 		@ar rcs $(NAME) $(OBJS)
+		@ranlib $(NAME)
+		rm -rf *.o
 
 kalash: # $(NAME)
 		# @make re -C 3.Libft
 		@gcc -g mainprintf.c $(SRCS) 3.Libft/libft.a && ./a.out
+		rm -rf $(OBJS)
 		#@ar rc $(NAME) $(OBJS)
 		#@ranlib $(NAME)
 
 test_unit: # $(NAME)
 		@gcc -g main_test.c $(SRCS) 3.Libft/libft.a && ./a.out
+		rm -rf $(OBJS)
+		rm -rf *.o
 
 lib: # $(NAME)
 		@make re -C 3.Libft
