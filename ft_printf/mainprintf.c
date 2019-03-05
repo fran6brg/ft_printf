@@ -80,39 +80,48 @@ pas = 0;
 			me = ft_printf("\033[0;33mYOUR>\t[%s-%4s-%4s-%04s-%04s-%.4s-%.4s-%.s-]\n", NULL, "A", "ABCDEF", "A", "ABCDEF", "2", "ABCDEF", "[][");
 			rl = printf("\033[0;31mREAL>\t[%s-%4s-%4s-%04s-%04s-%.4s-%.4s-%.s-]\n", NULL, "A", "ABCDEF", "A", "ABCDEF", "2", "ABCDEF", "[][");
 printf ("\033[0m%d/10: [%d] [%d]\n", no++, me, rl); (me == rl) ? printf("\033[1;32m✔︎ GOOD RETURN\033[0m\n") : printf("\033[1;31m✖︎ BAD RETURN\033[0m\n"); (me == rl) ? pas++ : 0;
+
 			printf("\033[0;33mTEST>\t[%%6.4s %%4.6s %%#s %%0s %%+s %%0-s %%5.5s %%5s %%.5s]\", ABCDE, ABCDE, ABC, ABC, ^%%n, A{BC, A@#5448{BC, A@#5448{BC, A@#5448{BC\n");
 			me = ft_printf("\033[0;33mYOUR>\t[-%6.4s-%4.6s-%#s %0s-%+s %0-s-%5.5sa-%5sa-%.5sa]\n", "ABCDE", "ABCDE", "ABC", "ABC", "^%n", "A{BC", "A@#5448{BC", "A@#5448{BC", "A@#5448{BC");
 			rl = printf("\033[0;31mREAL>\t[-%6.4s-%4.6s-%#s %0s-%+s %0-s-%5.5sa-%5sa-%.5sa]\n", "ABCDE", "ABCDE", "ABC", "ABC", "^%n", "A{BC", "A@#5448{BC", "A@#5448{BC", "A@#5448{BC");
 printf ("\033[0m%d/10: [%d] [%d]\n", no++, me, rl); (me == rl) ? printf("\033[1;32m✔︎ GOOD RETURN\033[0m\n") : printf("\033[1;31m✖︎ BAD RETURN\033[0m\n"); (me == rl) ? pas++ : 0;
+
 			printf("\033[0;33mTEST>\t[%%.6s %%-5s %%5s %%6.2s]\", abc, abc, abc, abc\n");
 			me = ft_printf("\033[0;33mYOUR>\t[%.6sa][%-5sa][%5sa][%6.2sa]\n", "abc", "abc", "abc", "abc");
 			rl = printf("\033[0;31mREAL>\t[%.6sa][%-5sa][%5sa][%6.2sa]\n", "abc", "abc", "abc", "abc");
 printf ("\033[0m%d/10: [%d] [%d]\n", no++, me, rl); (me == rl) ? printf("\033[1;32m✔︎ GOOD RETURN\033[0m\n") : printf("\033[1;31m✖︎ BAD RETURN\033[0m\n"); (me == rl) ? pas++ : 0;
+
 			printf("\033[0;33mTEST>\t[%%2c %%6c %%2c %%6c %%6c %%2c %%2c %%6c]\", a, a, a, 0, 0, 0, 400, -42\n");
 			me = ft_printf("\033[0;33mYOUR>\t[%2ca][%6ca][%2ca][%6ca][%6ca][%2ca][%2ca][%6ca]\n", 'a', 'a', 'a', 0, 0, 0, 40, 42);
 			rl = printf("\033[0;31mREAL>\t[%2ca][%6ca][%2ca][%6ca][%6ca][%2ca][%2ca][%6ca]\n", 'a', 'a', 'a', 0, 0, 0, 40, 42);
 printf ("\033[0m%d/10: [%d] [%d]\n", no++, me, rl); (me == rl) ? printf("\033[1;32m✔︎ GOOD RETURN\033[0m\n") : printf("\033[1;31m✖︎ BAD RETURN\033[0m\n"); (me == rl) ? pas++ : 0;
+
 			printf("\033[0;33mTEST>\t[%%2c %%6c %%6c %%2c]\", NULL, a, a, a \n");
 			me = ft_printf("\033[0;33mYOUR>\t[%2ca][%6ca][%6ca][%2ca]\n", NULL, 'a', 'a', 'a');
 			rl = printf("\033[0;31mREAL>\t[%2ca][%6ca][%6ca][%2ca]\n", NULL, 'a', 'a', 'a');
 printf ("\033[0m%d/10: [%d] [%d]\n", no++, me, rl); (me == rl) ? printf("\033[1;32m✔︎ GOOD RETURN\033[0m\n") : printf("\033[1;31m✖︎ BAD RETURN\033[0m\n"); (me == rl) ? pas++ : 0;
+
 			printf("\033[0;33mTEST>\t[%%06.2c %%06c %%0.2c %%06.2c %%06c %%0.2c %%-6.2c %%-6c %%-6c %%-.2c]\", 0, 0, 400U, -42, NULL, b, b, b, Y\n");
 			me = ft_printf("\033[0;33mYOUR>\t[%2ca][%6ca][%2ca][%2ca][%6ca][%2ca][%-2ca][%-6ca][%-12ca]\n", 0, 0, 40, 42, NULL, 'b', 'b', 'Y');
 			rl = printf("\033[0;31mREAL>\t[%2ca][%6ca][%2ca][%2ca][%6ca][%2ca][%-2ca][%-6ca][%-12ca]\n", 0, 0, 40, 42, NULL, 'b', 'b', 'Y');
 printf ("\033[0m%d/10: [%d] [%d]\n", no++, me, rl); (me == rl) ? printf("\033[1;32m✔︎ GOOD RETURN\033[0m\n") : printf("\033[1;31m✖︎ BAD RETURN\033[0m\n"); (me == rl) ? pas++ : 0;
+
 			printf("\033[0;33mTEST>\t[%%-6.2c %%-6c %%-.2c %%-6.2c %%-6c %%-.2c]\", 0, 0, -1, 400, -42, NULL - 1\n");
 			me = ft_printf("\033[0;33mYOUR>\t[%-62ca][%-6ca][%-2ca][%-2ca][%-6ca][%-2ca]\n", 0, 0, 'c', 40, 42, NULL);
 			rl = printf("\033[0;31mREAL>\t[%-62ca][%-6ca][%-2ca][%-2ca][%-6ca][%-2ca]\n", 0, 0, 'c', 40, 42, NULL);
 printf ("\033[0m%d/10: [%d] [%d]\n", no++, me, rl); (me == rl) ? printf("\033[1;32m✔︎ GOOD RETURN\033[0m\n") : printf("\033[1;31m✖︎ BAD RETURN\033[0m\n"); (me == rl) ? pas++ : 0;
-		//	printf("\033[0;33mTEST>\t[%%s %%4s %%4s %%04s %%04s %%.4s %%.4s %%.s]\", NULL, A, ABCDEF, A, ABCDEF, 2, ABCDEF, [][\n");
-		//	me = ft_printf("\033[0;33mYOUR>\t[%6.2%=%6%=%.2%=%6.2%=%6%=%.2%=%6.2%=%6%=%.2%=%.2%=%06.2%=%06%=%0.2%=%06.2%=%06%=%0.2%=%-6.2%=%-6%=%-.2%=%-6.2%=%-6%=%-.2%=%-6.2%=%-6%=%-.2%]\n");
-		//	rl = printf("\033[0;33mREAL>\t[%6.2%=%6%=%.2%=%6.2%=%6%=%.2%=%6.2%=%6%=%.2%=%.2%=%06.2%=%06%=%0.2%=%06.2%=%06%=%0.2%=%-6.2%=%-6%=%-.2%=%-6.2%=%-6%=%-.2%=%-6.2%=%-6%=%-.2%]\n");
-//printf ("\033[0m%d/10: [%d] [%d]\n", no++, me, rl); (me == rl) ? printf("\033[1;32m✔︎ GOOD RETURN\033[0m\n") : printf("\033[1;31m✖︎ BAD RETURN\033[0m\n"); (me == rl) ? pas++ : 0;
+
+			printf("\033[0;33mTEST>\t[%%s %%4s %%4s %%04s %%04s %%.4s %%.4s %%.s]\", NULL, A, ABCDEF, A, ABCDEF, 2, ABCDEF, [][\n");
+			me = ft_printf("\033[0;33mYOUR>\t[%6.2%=%6%=%.2%=%6.2%=%6%=%.2%=%6.2%=%6%=%.2%=%.2%=%06.2%=%06%=%0.2%=%06.2%=%06%=%0.2%=%-6.2%=%-6%=%-.2%=%-6.2%=%-6%=%-.2%=%-6.2%=%-6%=%-.2%]\n");
+			rl = printf("\033[0;33mREAL>\t[%6.2%=%6%=%.2%=%6.2%=%6%=%.2%=%6.2%=%6%=%.2%=%.2%=%06.2%=%06%=%0.2%=%06.2%=%06%=%0.2%=%-6.2%=%-6%=%-.2%=%-6.2%=%-6%=%-.2%=%-6.2%=%-6%=%-.2%]\n");
+printf ("\033[0m%d/10: [%d] [%d]\n", no++, me, rl); (me == rl) ? printf("\033[1;32m✔︎ GOOD RETURN\033[0m\n") : printf("\033[1;31m✖︎ BAD RETURN\033[0m\n"); (me == rl) ? pas++ : 0;
+
 			printf("\033[0;33mTEST>\t[%%p %%p %%p %%p %%p %%p %%6p %%6.p %%p%%-p %%5p]\", NULL, 0, 0x123, main, NULL, NULL, 0, 0x123L, main\n");
 			me = ft_printf("\033[0;33mYOUR>\t[%p][%p][%p][%p][%6p][%6p][%p][%-p][%5p]\n", NULL, 0, 0x123, main, NULL, NULL, 0, 0x123L, main);
 			rl = printf("\033[0;31mREAL>\t[%p][%p][%p][%p][%6p][%6p][%p][%-p][%5p]\n", NULL, 0, 0x123, main, NULL, NULL, 0, 0x123L, main);
 		//	rl = printf("\033[0;31mREAL>\t\n%p\n%p\n%p\n%p\n%6p\n%6p\n%p\n%-p\n%5p\n", NULL, 0, 0x123, main, NULL, NULL, 0, 0x123L, main);
 printf ("\033[0m%d/10: [%d] [%d]\n", no++, me, rl); (me == rl) ? printf("\033[1;32m✔︎ GOOD RETURN\033[0m\n") : printf("\033[1;31m✖︎ BAD RETURN\033[0m\n"); (me == rl) ? pas++ : 0;
+
 			printf("\033[0;33mTEST>\t[%%+040.2i %%040.2i %%+012.2ji %%0+32.2i]\", -2097948570, -2097948570, 0, -1046073861\n");
 			me = ft_printf("\033[0;33mYOUR>\t[%+040.2i][%040.2i][!%+012.2ji!][%0+32.2i]\n", -2097948570, -2097948570, 0, -1046073861);
 			rl = printf("\033[0;31mREAL>\t[%+040.2i][%040.2i][!%+012.2ji!][%0+32.2i]\n", -2097948570, -2097948570, 0, -1046073861);
@@ -129,38 +138,47 @@ printf("\033[1;31mQUICK TIP: HOLD COMMAND KEY AND ARROW KEY TO NAVIGATE YOUR TER
 
 printf("\033[0;32m----\ttest phase 3\033[0m\n\n");
 pas = 0;
+
 			printf("\033[0;33mTEST>\t[%%#01.X %%01X %%05.5X %%8.2hhX %%0#8.2hhx %%#40.4o]\", -65498, -65498, 65498, -1426800127, 0\n");
 			me = ft_printf("\033[0;33mYOUR>\t[%#01.X][%#01X][%#05.5X][!%0#8.2hhX!][!%#40.4o!]\033[0m\n", -65498, -65498, 65498, -1426800127, 0);
 			rl = printf("\033[0;31mREAL>\t[%#01.X][%#01X][%#05.5X][!%0#8.2hhX!][!%#40.4o!]\033[0m\n", -65498, -65498, 65498, -1426800127, 0);
-printf ("%d/8: [%d] [%d]\n", no++, me, rl); (me == rl) ? printf("\033[1;32m✔︎ GOOD RETURN\033[0m\n") : printf("\033[1;31m✖︎ BAD RETURN\033[0m\n"); (me == rl) ? pas++ : 0;
+			printf ("%d/8: [%d] [%d]\n", no++, me, rl); (me == rl) ? printf("\033[1;32m✔︎ GOOD RETURN\033[0m\n") : printf("\033[1;31m✖︎ BAD RETURN\033[0m\n"); (me == rl) ? pas++ : 0;
+
 			printf("\033[0;33mTEST>\t[%%#20.2o %%31o %%28.28o %%31o]\", 144491672, 0, 2147452292, 0\n");
 			me = ft_printf("\033[0;33mYOUR>\t[%#20.2o][%#31o][%#28.28o][%#31o]\033[0m\n", 144491672, 0, 2147452292, 0);
 			rl = printf("\033[0;31mREAL>\t[%#20.2o][%#31o][%#28.28o][%#31o]\033[0m\n", 144491672, 0, 2147452292, 0);
-printf ("%d/8: [%d] [%d]\n", no++, me, rl); (me == rl) ? printf("\033[1;32m✔︎ GOOD RETURN\033[0m\n") : printf("\033[1;31m✖︎ BAD RETURN\033[0m\n"); (me == rl) ? pas++ : 0;
+			printf ("%d/8: [%d] [%d]\n", no++, me, rl); (me == rl) ? printf("\033[1;32m✔︎ GOOD RETURN\033[0m\n") : printf("\033[1;31m✖︎ BAD RETURN\033[0m\n"); (me == rl) ? pas++ : 0;
+
 			printf("\033[0;33mTEST>\t[%%24.8hho %%42.10o %%14.36o %%2.44o]\", 2004675854, -140307224, 0, -0\n");
 			me = ft_printf("\033[0;33mYOUR>\t[!%#24.8hho!][%#42.10o][>-<%#14.36o>-<][%2.44o]\033[0m\n", 2004675854, -140307224, 0, -0);
 			rl = printf("\033[0;31mREAL>\t[!%#24.8hho!][%#42.10o][>-<%#14.36o>-<][%2.44o]\033[0m\n", 2004675854, -140307224, 0, -0);
-printf ("%d/8: [%d] [%d]\n", no++, me, rl); (me == rl) ? printf("\033[1;32m✔︎ GOOD RETURN\033[0m\n") : printf("\033[1;31m✖︎ BAD RETURN\033[0m\n"); (me == rl) ? pas++ : 0;
+			printf ("%d/8: [%d] [%d]\n", no++, me, rl); (me == rl) ? printf("\033[1;32m✔︎ GOOD RETURN\033[0m\n") : printf("\033[1;31m✖︎ BAD RETURN\033[0m\n"); (me == rl) ? pas++ : 0;
+
 			printf("\033[0;33mTEST>\t[%%-#37.30o %%-#42.16o]\", 0, -1998712178\n");
 			me = ft_printf("\033[0;33mYOUR>\t[%-#37.30o][%-#42.16o]\033[0m\n", 0, -1998712178);
 			rl = printf("\033[0;31mREAL>\t[%-#37.30o][%-#42.16o]\033[0m\n", 0, -1998712178);
-printf ("%d/8: [%d] [%d]\n", no++, me, rl); (me == rl) ? printf("\033[1;32m✔︎ GOOD RETURN\033[0m\n") : printf("\033[1;31m✖︎ BAD RETURN\033[0m\n"); (me == rl) ? pas++ : 0;
+			printf ("%d/8: [%d] [%d]\n", no++, me, rl); (me == rl) ? printf("\033[1;32m✔︎ GOOD RETURN\033[0m\n") : printf("\033[1;31m✖︎ BAD RETURN\033[0m\n"); (me == rl) ? pas++ : 0;
+
 			printf("\033[0;33mTEST>\t[%%#0+ 01.X %%0+ 01X %%0+ 5.5X %%0#8.2hhX %%#40.4zo]\", 65498, 0, 0x132, 142680017, 0\n");
 			me = ft_printf("\033[0;33mYOUR>\t[%#0+ 01.X][%#0+ 01X][%#0+ 5.5X][!%0#8.2hhX!][!%#40.4zo!]\033[0m\n", 65498, 0, 0x132, 142680017, 0);
-			rl = printf("\033[0;31mREAL>\t[%#01.X][%#01X][%#05.5X][!%0#8.2hhX!][!%#40.4zo!]\033[0m\n", 65498, 0, 0x132, 142680017, 0);
-printf ("%d/8: [%d] [%d]\n", no++, me, rl); (me == rl) ? printf("\033[1;32m✔︎ GOOD RETURN\033[0m\n") : printf("\033[1;31m✖︎ BAD RETURN\033[0m\n"); (me == rl) ? pas++ : 0;
+			rl = printf("\033[0;31mREAL>\t[%#0+ 01.X][%#0+ 01X][%#0+ 5.5X][!%0#8.2hhX!][!%#40.4zo!]\033[0m\n", 65498, 0, 0x132, 142680017, 0);
+			printf ("%d/8: [%d] [%d]\n", no++, me, rl); (me == rl) ? printf("\033[1;32m✔︎ GOOD RETURN\033[0m\n") : printf("\033[1;31m✖︎ BAD RETURN\033[0m\n"); (me == rl) ? pas++ : 0;
+
 			printf("\033[0;33mTEST>\t[%%#20.2o %%#31o %%28.28o %%31o]\", -144491672, 0, 2147492, 40\n");
 			me = ft_printf("\033[0;33mYOUR>\t[%#20.2o][%#31o][%#28.28o][%#31o]\033[0m\n", -144491672, 0, 2147492, 40);
 			rl = printf("\033[0;31mREAL>\t[%#20.2o][%#31o][%#28.28o][%#31o]\033[0m\n", -144491672, 0, 2147492, 40);
-printf ("%d/8: [%d] [%d]\n", no++, me, rl); (me == rl) ? printf("\033[1;32m✔︎ GOOD RETURN\033[0m\n") : printf("\033[1;31m✖︎ BAD RETURN\033[0m\n"); (me == rl) ? pas++ : 0;
+			printf ("%d/8: [%d] [%d]\n", no++, me, rl); (me == rl) ? printf("\033[1;32m✔︎ GOOD RETURN\033[0m\n") : printf("\033[1;31m✖︎ BAD RETURN\033[0m\n"); (me == rl) ? pas++ : 0;
+
 			printf("\033[0;33mTEST>\t[%%#24.8hho %%#42.10o %%#14.36o %%2.44o]\", -4675854, 140307224, 12, -42LL\n");
 			me = ft_printf("\033[0;33mYOUR>\t[%#24.8hho][%#42.10o][%#14.36o][%2.44o]\033[0m\n", -4675854, 140307224, 12, -42LL);
 			rl = printf("\033[0;31mREAL>\t[%#24.8hho][%#42.10o][%#14.36o][%2.44o]\033[0m\n", -4675854, 140307224, 12, -42LL);
-printf ("%d/8: [%d] [%d]\n", no++, me, rl); (me == rl) ? printf("\033[1;32m✔︎ GOOD RETURN\033[0m\n") : printf("\033[1;31m✖︎ BAD RETURN\033[0m\n"); (me == rl) ? pas++ : 0;
+			printf ("%d/8: [%d] [%d]\n", no++, me, rl); (me == rl) ? printf("\033[1;32m✔︎ GOOD RETURN\033[0m\n") : printf("\033[1;31m✖︎ BAD RETURN\033[0m\n"); (me == rl) ? pas++ : 0;
+
 			printf("\033[0;33mTEST>\t[%%37.30o %%-#42.16o]\", NULL - 1, -1998712178\n");
 			me = ft_printf("\033[0;33mYOUR>\t[%-#37.30o][%-#42.16o]\033[0m\n", NULL - 1, -1998712178);
 			rl = printf("\033[0;31mREAL>\t[%-#37.30o][%-#42.16o]\033[0m\n", NULL - 1, -1998712178);
-printf ("%d/8: [%d] [%d]\n", no++, me, rl); (me == rl) ? printf("\033[1;32m✔︎ GOOD RETURN\033[0m\n") : printf("\033[1;31m✖︎ BAD RETURN\033[0m\n"); (me == rl) ? pas++ : 0;
+			printf ("%d/8: [%d] [%d]\n", no++, me, rl); (me == rl) ? printf("\033[1;32m✔︎ GOOD RETURN\033[0m\n") : printf("\033[1;31m✖︎ BAD RETURN\033[0m\n"); (me == rl) ? pas++ : 0;
+
 
 (pas == 8) ? printf("\033[0;33m----\tYou passed all 8 tests\033[0m\n\n", pas) : printf("\033[0;32m----\tYou passed %d out of 8 tests\033[0m\n\n", pas);
 printf("\033[1;31mQUICK TIP: HOLD COMMAND KEY AND ARROW KEY TO NAVIGATE YOUR TERMINAL\033[0m\n"); printf("PRESS ANY KEY TO BEGIN NEXT PHASE\n"); getchar();
