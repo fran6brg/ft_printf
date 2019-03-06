@@ -12,23 +12,23 @@
 
 #include "libft.h"
 
-int		ft_putnbr_base(long long int value, int b, int x)
+int		ft_putnbr_base(long long int value, int b, int specifier)
 {
 	char					c;
-	char					d;
-	unsigned long long int	t;
+	char					a;
+	unsigned long long int	nb;
 	static int				ret = 0;
 
 	ret -= ret;
-	t = value;
-	d = x == 'X' ? 'A' : 'a';
+	nb = value;
+	a = specifier == 'X' ? 'A' : 'a';
 	if (b < 2 || b > 16)
 		return (0);
 	if (value < 0)
-		t = -value;
-	if (t >= (unsigned long long)b)
-		ft_putnbr_base(t / b, b, x);
-	c = (t % b < 10) ? (t % b) + '0' : (t % b) + (d - 10);
+		nb = -value;
+	if (nb >= (unsigned long long)b)
+		ft_putnbr_base(nb / b, b, specifier);
+	c = (nb % b < 10) ? (nb % b) + '0' : (nb % b) + (a - 10);
 	ret += ft_putchar_ret(c);
 	return (ret);
 }
