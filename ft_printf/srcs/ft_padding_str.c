@@ -93,6 +93,7 @@ int		helper_print_str_padding(t_options *option, int len, int after)
 	{
 		if (option->left_justify) // 1.1
 		{
+			// printf("here\n");
 			return (0);
 		}
 		else // 1.2
@@ -103,10 +104,19 @@ int		helper_print_str_padding(t_options *option, int len, int after)
 				{
 					if (option->pad_max > len) // final 1.2.1.1.1
 					{
-						return (0);
+						// printf("here\n");
+						if (option->left_zeros) // final 1.2.1.1.2.1
+						{
+							ret += print_zeros_padding_before_str(option, len, after);
+						}
+						else // final 1.2.1.1.2.2
+						{
+							ret += print_spaces_padding_before_str(option, len, after);
+						}
 					}
 					else // 1.2.1.1.2
 					{
+						// printf("here\n");
 						if (option->left_zeros) // final 1.2.1.1.2.1
 						{
 							ret += print_zeros_padding_before_str(option, len, after);
@@ -173,7 +183,14 @@ int		helper_print_str_padding(t_options *option, int len, int after)
 				{
 					if (option->pad_max > len) // 2.1.1.1.1
 					{
-						return (0);
+						if (option->left_zeros) // final 1.2.2.2.1
+						{
+							ret += print_zeros_padding_after_str(option, len, after);
+						}
+						else // final 1.2.2.2.2
+						{
+							ret += print_spaces_padding_after_str(option, len, after);
+						}
 					}
 					else // 2.1.1.1.2
 					{

@@ -423,59 +423,6 @@ int		print_zeros_padding_after(t_options *option, int len, long long nb) // sert
 	return (ret);
 }
 
-
-//
-// int		print_spaces_padding(t_options *option, int len, long long nb, int after) // sert a print les spaces padding en toute circonstances
-// {
-// 	int		i;
-// 	int		ret;
-// 	int		un_space_a_til_ete_print;
-// 	int		sign_is_print;
-//
-// 	un_space_a_til_ete_print = (option->space && !nb_have_a_sign(option, nb) && !option->neg) ? 1 : 0;
-// 	sign_is_print = 0;
-// 	len = option->pad_max > len ? option->pad_max : len;
-// 	i = -1;
-// 	ret = 0;
-// 	if (option->type != 'd' && option->type != 'i' && (option->hashtag || option->type == 'p'))
-// 	{
-// 		if (option->type != 'o')
-// 			len += 2;
-// 		else if (option->type == 'o' && nb != 0)
-// 			len += 1;
-// 	}
-// 	// printf("\n/********** un_space_a_til_ete_print %d***********\\\n", un_space_a_til_ete_print);
-// 	// printf("\n/********** len %d***********\\\n", len);
-// 	while (++i < option->pad_min - len - nb_have_a_sign(option, nb) - un_space_a_til_ete_print)
-// 	{
-// 		if (option->pad_min && i + 1 == (option->pad_min - len - nb_have_a_sign(option, nb) - un_space_a_til_ete_print))
-// 		{
-// 			if ((!after && !option->sign_is_print) /* si before && signe non print alors print le signe */
-// 				&& !(!option->neg && !option->sign) /* sauf si le nb est positif et qu il ne faut pas imprimer le signe (si nb = '100' -> print '100') */
-// 				&& option->pad_min < option->pad_max) /* ... */
-// 			{
-// 				// print_t_option(&option);
-// 				ret += print_sign(option, nb);
-// 				sign_is_print = 1;
-// 				break;
-// 			}
-// 			else
-// 				ret += ft_putchar_ret(' ');
-// 		}
-// 		else
-// 			ret += ft_putchar_ret(' ');
-// 	}
-// 	// printf("i=%d\n", i);
-// 	if (sign_is_print) // si on a print le sign en before alors on augmente le pad_min de 1 car on printera pas le sign dans print_zeros_padding
-// 	{
-// 			option->sign_is_print = 1;
-// 			option->pad_max += 1;
-// 	}
-// 	if (!after && !option->pad_max && !sign_is_print)
-// 		ret += print_sign(option, nb);
-// 	return (ret);
-// }
-
 /*
  ** ---------- nb_padding rooter selon before/after + left_justify --------------
  */
