@@ -6,7 +6,7 @@
 /*   By: bihattay <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/03 10:42:35 by bihattay          #+#    #+#             */
-/*   Updated: 2019/02/06 06:29:03 by bihattay         ###   ########.fr       */
+/*   Updated: 2019/03/06 05:26:52 by bihattay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,9 @@ t_options		*create_new_option(const char *format, int i)
 		ret = extract_number_in_flags(new, 0, 0);
 	if (new->flen > 1)
 		extract_number_in_flags(new, 1, ret);
-	if (new->flen > 1 && ft_strstr_modified(new->flags, "h"))
+	if (new->flen > 1 && ft_strstr_modified(new->flags, "hh"))
+		new->hh = 1;
+	else if (new->flen > 1 && ft_strstr_modified(new->flags, "h"))
 		new->h = 1;
 	if (new->flen > 1 && ft_strstr_modified(new->flags, "ll"))
 		new->ll = 1;
