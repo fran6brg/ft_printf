@@ -24,6 +24,7 @@ int		ft_print_nstr_ret(char *str, int limit)
 
 int		ft_printf_string(t_options *option, va_list *args)
 {
+	option->l = 0;
 	char	*tmp;
 	int		ret;
 	int		len;

@@ -21,8 +21,9 @@ static int		is_accepted_options(char c)
 
 static int		is_accepted_flags(char c)
 {
+	// a reflechir si le vrai printf accepte des options chelou
 	return (c == ' ' || c == '.' || c == '#' || c == '0' || c == '+' || c == '-'
-			|| ft_isdigit(c) || c == 'h' || c == 'l' || c == 'L');
+			|| ft_isdigit(c) || c == 'h' || c == 'l' || c == 'L' /* juste pour testet alelievre */ || c == 'z'  || c == 'j');
 }
 
 int				compute_new_option_len_in_format(const char *format, int i)

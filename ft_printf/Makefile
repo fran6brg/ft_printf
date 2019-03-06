@@ -1,46 +1,92 @@
-NAME =  libftprintf.a
-CC = gcc
-CFLAGS = # -Wall -Wextra -Werror
-SRCS = 3.Libft/*.c srcs/ft_base.c srcs/ft_padding_nb.c srcs/ft_padding_str.c srcs/ft_print_char.c srcs/ft_print_strings.c srcs/ft_printf.c srcs/ft_print_float.c srcs/ft_print_integer.c srcs/get_arguments.c srcs/ft_parsers.c srcs/ft_options.c
-OBJS = $(SRCS:.c=.o)
+NAME	=	libftprintf.a
+
+SRC		=	libft/ft_atoi.c \
+				libft/ft_nbrlen.c \
+				libft/ft_bzero.c \
+				libft/ft_isalnum.c \
+				libft/ft_isalpha.c \
+				libft/ft_isascii.c \
+				libft/ft_isdigit.c \
+				libft/ft_isprint.c \
+				libft/ft_itoa.c \
+				libft/ft_lstadd.c \
+				libft/ft_lstdel.c \
+				libft/ft_lstdelone.c \
+				libft/ft_lstiter.c \
+				libft/ft_lstmap.c \
+				libft/ft_lstnew.c \
+				libft/ft_memalloc.c \
+				libft/ft_memccpy.c \
+				libft/ft_memchr.c \
+				libft/ft_memcmp.c \
+				libft/ft_memcpy.c \
+				libft/ft_memdel.c \
+				libft/ft_memmove.c \
+				libft/ft_memset.c \
+				libft/ft_putchar.c \
+				libft/ft_putchar_fd.c \
+				libft/ft_putendl.c \
+				libft/ft_putendl_fd.c \
+				libft/ft_putnbr.c \
+				libft/ft_putnbr_base.c \
+				libft/ft_putnbr_fd.c \
+				libft/ft_putstr.c \
+				libft/ft_putstr_fd.c \
+				libft/ft_strcat.c \
+				libft/ft_strchr.c \
+				libft/ft_strclr.c \
+				libft/ft_strcmp.c \
+				libft/ft_strcpy.c \
+				libft/ft_strdel.c \
+				libft/ft_strdup.c \
+				libft/ft_strequ.c \
+				libft/ft_striter.c \
+				libft/ft_striteri.c \
+				libft/ft_strjoin.c \
+				libft/ft_strlcat.c \
+				libft/ft_strlen.c \
+				libft/ft_strmap.c \
+				libft/ft_strmapi.c \
+				libft/ft_strncat.c \
+				libft/ft_strncmp.c \
+				libft/ft_strncpy.c \
+				libft/ft_strnequ.c \
+				libft/ft_strnew.c \
+				libft/ft_strnstr.c \
+				libft/ft_strrchr.c \
+				libft/ft_strsplit.c \
+				libft/ft_strstr.c \
+				libft/ft_strsub.c \
+				libft/ft_strtrim.c \
+				libft/ft_tolower.c \
+				libft/ft_toupper.c \
+				srcs/ft_base.c \
+				srcs/ft_padding_nb.c \
+				srcs/ft_padding_str.c \
+				srcs/ft_print_char.c \
+				srcs/ft_print_strings.c \
+				srcs/ft_printf.c \
+				srcs/ft_print_float.c \
+				srcs/ft_print_integer.c \
+				srcs/get_arguments.c \
+				srcs/ft_parsers.c \
+				srcs/ft_options.c
+
+OBJ 	= 	$(SRC:.c=.o)
+
+FLAGS =	-Iincludes
 
 all: $(NAME) includes/
 
-$(NAME): $(OBJS)
-	  @make re -C 3.Libft
-		@gcc -c $(SRCS)
-		@ar rcs $(NAME) $(OBJS)
-		@ranlib $(NAME)
-		rm -rf *.o
-
-kalash: # $(NAME)
-		# @make re -C 3.Libft
-		@gcc -g mainprintf.c $(SRCS) 3.Libft/libft.a && ./a.out
-		rm -rf $(OBJS)
-		#@ar rc $(NAME) $(OBJS)
-		#@ranlib $(NAME)
-
-test_unit: # $(NAME)
-		@gcc -g main_test.c $(SRCS) 3.Libft/libft.a && ./a.out
-		rm -rf $(OBJS)
-		rm -rf *.o
-
-lib: # $(NAME)
-		@make re -C 3.Libft
-		@ar rc $(NAME) $(OBJS)
-		@ranlib $(NAME)
-		@gcc -g main_test.c $(SRCS) 3.Libft/libft.a && ./a.out
-
-araout: # $(NAME)
-		@make re -C 3.Libft
-		@gcc -g main_araouteub.c $(SRCS) 3.Libft/libft.a && ./a.out
+$(NAME): $(OBJ)
+	@ar rcs $(NAME) $(OBJ)
 
 clean:
-		rm -rf $(OBJS)
-		make clean -C 3.Libft
+	@/bin/rm -Rf $(OBJ)
+	@make clean -C libft
 
 fclean: clean
-		rm -rf $(NAME)
-		make fclean -C 3.Libft
+	@/bin/rm -Rf $(NAME)
+	@make fclean -C libft
 
 re: fclean all
