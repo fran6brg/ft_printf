@@ -2,7 +2,7 @@
 # define FUNCTIONS_H
 
 
-# include "../3.Libft/libft.h"
+# include "../libft/libft.h"
 # include "t_functions_pointers.h"
 
 t_options			*create_new_option(const char *format, int i);
