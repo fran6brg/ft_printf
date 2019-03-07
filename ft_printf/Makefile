@@ -76,6 +76,8 @@ OBJ 	= 	$(SRC:.c=.o)
 
 FLAGS =	-Iincludes
 
+CLEAR:=$(shell clear)
+
 all: $(NAME) includes/
 
 $(NAME): $(OBJ)
@@ -90,3 +92,18 @@ fclean: clean
 	@make fclean -C libft
 
 re: fclean all
+
+%.o: %.c
+	@gcc $(FLAGS) -o $@ -c $<
+
+sh: all
+		gcc main_tests/main_sh.c $(NAME) -Iincludes && ./a.out
+
+kalash: all
+		gcc main_tests/mainprintf.c $(NAME) -Iincludes && ./a.out
+
+nuke: all
+		gcc main_tests/main_nuke.c $(NAME) -Iincludes && ./a.out
+
+test_unit: all
+		gcc main_tests/main_test.c $(NAME) -Iincludes && ./a.out

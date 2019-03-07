@@ -63,6 +63,8 @@ typedef struct	s_options
 	/* The argument is interpreted as a long int or unsigned long int for integer specifiers (i, d, o, u, x and X),
 	and as a wide character or wide character string for specifiers c and s.*/
 	int 			L; // 1 if ('L' is present inside flags)
+	int 			j; // https://docs.microsoft.com/fr-fr/cpp/c-runtime-library/format-specification-syntax-printf-and-wprintf-functions?view=vs-2017
+	int 			z; // https://docs.microsoft.com/fr-fr/cpp/c-runtime-library/format-specification-syntax-printf-and-wprintf-functions?view=vs-2017
 
 	// ---------------------------- other bitchz ---------------------------------
 	int 			sign_is_print; // 1 if ('L' is present inside flags)

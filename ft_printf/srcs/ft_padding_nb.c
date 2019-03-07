@@ -85,7 +85,8 @@ int		nb_have_a_sign(t_options *option, long long nb)
 ---------------------------   print_spaces_padding -----------------------------
 */
 
-int		print_spaces_padding_before(t_options *option, int len, long long nb, int after) // sert a print les spaces padding en toute circonstances
+// 3.a faire
+int		print_spaces_padding_before(t_options *option, int len, long long nb, int after)
 {
 	int		i;
 	int		ret;
@@ -106,7 +107,7 @@ int		print_spaces_padding_before(t_options *option, int len, long long nb, int a
 	}
 	i = -1;
 	ret = 0;
-	// printf("len = %d || get_sign_option = %i || un_space_a_til_ete_print = %i\n", len, get_sign_option, un_space_a_til_ete_print);
+	// printf("i < option->pad_min = %d |-| len = %d |-| get_sign_option = %i |-| un_space_a_til_ete_print = %i\n", option->pad_min, len, get_sign_option, un_space_a_til_ete_print);
 	while (++i < option->pad_min - len - get_sign_option /* normal */ - un_space_a_til_ete_print)
 	{
 		// printf("get_sign_option = %i ||", get_sign_option);
@@ -120,6 +121,8 @@ int		print_spaces_padding_before(t_options *option, int len, long long nb, int a
 				ret += print_sign(option, nb);
 				sign_is_print = 1;
 			}
+			else if (option->space && !option->sign && !option->neg) /* alors ne pas print de space car sinon doublon */
+				;
 			else
 				ret += ft_putchar_ret(' ');
 		}
@@ -129,16 +132,17 @@ int		print_spaces_padding_before(t_options *option, int len, long long nb, int a
 	if (sign_is_print) // si on a print le sign en before alors on augmente le pad_min de 1 car on printera pas le sign dans print_zeros_padding
 	{
 		option->sign_is_print = 1;
-		option->pad_max += 1;
+		// option->pad_max += 1; /* ligne a supprimer sauf si erreur d ici fin du projet */
 	}
 	if (!after && !option->pad_max && !sign_is_print)
 	{
+		// write(1, "here\n", 5);
 		ret += print_sign(option, nb);
-		// ft_putchar_ret('h');
 	}
 	return (ret);
 }
 
+// 4.a faire
 int		print_spaces_padding_after(t_options *option, int len, long long nb, int after) // sert a print les spaces padding en toute circonstances
 {
 	int		i;
@@ -159,6 +163,7 @@ int		print_spaces_padding_after(t_options *option, int len, long long nb, int af
 	}
 	while (++i < option->pad_min - (len) - nb_have_a_sign(option, nb) - un_space_a_til_ete_print)
 	{
+		// write(1, "here\n", 5);
 		ret += ft_putchar_ret(' ');
 	}
 	return (ret);
@@ -209,13 +214,12 @@ int		print_zeros_padding_before(t_options *option, int len, long long nb) // ser
 			{
 				if (option->pad_max > len)
 				{
-					// printf("%i < %d - %d + %d - %d\n", i, option->pad_max, (len - option->sign_is_print), (nb_have_a_sign(option, nb) && !option->left_justify), (option->space && option->pad_min > option->pad_max ? 1 : 0));
+					// printf("i < %d - %d - %d - %d + %d\n", option->pad_max, len, nb_have_a_sign(option, nb), (option->space && !nb_have_a_sign(option, nb) && option->pad_min > option->pad_max ? 1 : 0), (option->pad_max - len));
 					while (++i < option->pad_max - len - nb_have_a_sign(option, nb) /* normal */
 					- (option->space && !nb_have_a_sign(option, nb) /* si il y a un space pour un nb positif */
 					&& option->pad_min > option->pad_max ? 1 : 0) /* je sais plus pourquoi */
-					+ (option->pad_max - len)) /* il faut mettre des 0 entre les 2 */
+				  + (option->pad_max - len)) /* il faut mettre des 0 entre les 2 */
 					{
-						// printf("len =%d ", len);
 						ret += ft_putchar_ret('0');
 					}
 				}
@@ -244,7 +248,7 @@ int		print_zeros_padding_before(t_options *option, int len, long long nb) // ser
 				}
 				else
 				{
-					// printf("len =%d || nb_have_a_sign(option, nb) = %i || !option->left_justify = %i\n", len, nb_have_a_sign(option, nb), !option->left_justify);
+					// printf("i < option->pad_max = %i |-| len = %d |-| nb_have_a_sign(option, nb) = %i", option->pad_max, len, nb_have_a_sign(option, nb));
 					while (++i < option->pad_max - len - nb_have_a_sign(option, nb) /* normal */
 					+ (!option->neg && option->sign)) /* si nb positif avec obligation de mettre un signe */
 					{
@@ -568,7 +572,7 @@ int		helper_print_nb_padding(t_options *option, int len, int after, long long nb
 					else if (!option->left_zeros) // 1.2.2.2.2
 					{
 						// printf("bitch i am here");
-						ret += print_zeros_padding_before(option, len, nb);
+						ret += print_spaces_padding_before(option, len, nb, after);
 					}
 				}
 			}

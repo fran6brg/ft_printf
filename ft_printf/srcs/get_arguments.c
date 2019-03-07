@@ -41,13 +41,22 @@ long long	get_type(t_options *option, va_list *args)
 	else if (option->h || option->hh)
 	{
 		if (option->hh)
-			n = (unsigned char)va_arg(*args, int);
+			n = (char)va_arg(*args, int); // [%hhd] 128 doit retourner -128 donc j ai tej le unsigned dans (unsigned char)
 		else
-			n = (unsigned short)va_arg(*args, int);
+			n = (short)va_arg(*args, int); // [%hd] 32768 doit retourner -32768 donc j ai tej le unsigned dans (unsigned int)
 	}
-	else if (option->type == 'd' || option->type == 'd')
-		n = va_arg(*args, int);
+	else if (option->type == 'd' || option->type == 'd') // ?
+	{
+		if (option->j)
+			n = va_arg(*args, intmax_t);
+		else if (option->z)
+			n = va_arg(*args, size_t);
+		else
+			n = va_arg(*args, int);
+		// printf("here n = %d\n", n);
+	}
 	else
 		n = va_arg(*args, unsigned int);
+	// printf("here n = %d\n", n);
 	return (n);
 }

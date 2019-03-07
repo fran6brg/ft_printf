@@ -1,7 +1,7 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "includes/functions.h"
+#include "../includes/functions.h"
 
 int	main(int ac, char **av)
 {

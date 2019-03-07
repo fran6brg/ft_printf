@@ -120,7 +120,9 @@ void print_t_option(t_options **option)
 	printf("16 l             = %s\n", o->l ? "1" : ".");
 	printf("17 ll            = %s\n", o->ll ? "1" : ".");
 	printf("18 L             = %s\n", o->L ? "1" : ".");
-	printf("19 sign_is_print = %s\n", o->sign_is_print ? "1" : ".");
+	printf("19 j             = %s\n", o->j ? "1" : ".");
+	printf("20 z             = %s\n", o->z ? "1" : ".");
+	printf("21 sign_is_print = %s\n", o->sign_is_print ? "1" : ".");
 	printf("**********  end  **********\n\n");
 }
 /*
@@ -174,12 +176,12 @@ int		ft_printf(const char *format, ...)
 	 // print_t_option(&option);
 	 // if (option->type == 'd' || option->type == 'i' || option->type == 'x' || option->type == 'X')
 	 // {
-	 // 	printf("nb pad before    1.%d.%d.%d.%d\n", option->left_justify ? 1 : 2, option->pad_min ? 1 : 2, option->pad_max ? 1 : 2, option->left_zeros ? 1 : 2);
-	 // 	printf("nb pad after     2.%d.%d.%d.%d\n", option->left_justify ? 1 : 2, option->left_zeros ? 1 : 2, option->pad_min ? 1 : 2, option->pad_max ? 1 : 2);
-	 // 	printf("print space pad  3.a faire\n");
-	 // 	printf("print space pad  4.a faire\n");
-	 // 	printf("print 0 pad bef  5.%d.%d.%d\n", option->pad_max ? 1 : 2, option->pad_min ? 1 : 2, option->left_zeros ? 1 : 2);
-	 // 	printf("print 0 pad aft  6.%d.%d.%d\n\n", option->pad_max ? 1 : 2, option->pad_min ? 1 : 2, option->left_zeros ? 1 : 2);
+	 // 	printf("nb pad before      1.%d.%d.%d.%d\n", option->left_justify ? 1 : 2, option->pad_min ? 1 : 2, option->pad_max ? 1 : 2, option->left_zeros ? 1 : 2);
+	 // 	printf("nb pad after       2.%d.%d.%d.%d\n", option->left_justify ? 1 : 2, option->left_zeros ? 1 : 2, option->pad_min ? 1 : 2, option->pad_max ? 1 : 2);
+	 // 	printf("print ' ' pad bef  3.a faire\n");
+	 // 	printf("print ' ' pad aft  4.a faire\n");
+	 // 	printf("print '0' pad bef  5.%d.%d.%d\n", option->pad_max ? 1 : 2, option->pad_min ? 1 : 2, option->left_zeros ? 1 : 2);
+	 // 	printf("print '0' pad aft  6.%d.%d.%d\n\n", option->pad_max ? 1 : 2, option->pad_min ? 1 : 2, option->left_zeros ? 1 : 2);
 	 // }
 	 // if (option->type == 's')
 	 // {

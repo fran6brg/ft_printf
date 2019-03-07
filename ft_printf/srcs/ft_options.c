@@ -97,6 +97,10 @@ t_options		*create_new_option(const char *format, int i)
 	if (new->flen > 1 && ft_strchr_modified(new->flags, 'L'))
 		if (new->flen > 1 && ft_strstr_modified(new->flags, "ll"))
 			new->ll = 1;
+	if (new->flen > 1 && ft_strchr_modified(new->flags, 'j'))
+		new->j = 1;
+	if (new->flen > 1 && ft_strchr_modified(new->flags, 'z'))
+		new->z = 1;
 	new->sign_is_print = 0;
 	return (new);
 }
