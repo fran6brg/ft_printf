@@ -332,11 +332,22 @@ ft_printf("\033[0;33mYOUR>\t[!%#40.4zo!]\033[0m\n", 0);
 	 // printf("%aaa%#.0o, 0\n");
    // ft_printf("YOUR[aaa%#.0o]\n", 0);
 	 //    printf("REAL[aaa%#.0o]\n", 0);
-	 printf("\n11 --------------\n");
-	 printf("TEST[%%#.0X], 0\n");
-   ft_printf("YOUR[%#.0X]\n", 0);
-	    printf("REAL[%#.0X]\n", 0);
-	 	printf("\nend 11 --------------\n");
+	    printf("\n11 --------------\n");
+	    printf("TEST[%%#.0u], 0\n");
+   ft_printf("YOUR[%#.0u]\n", 0);
+	    printf("REAL[%#.0u]\n", 0);
+	 	  printf("\nend 11 --------------\n");
+		  printf("\n11 --------------\n");
+
+      printf("TEST[%%X], 0\n");
+   ft_printf("YOUR[%X]\n", 0);
+      printf("REAL[%X]\n", 0);
+      printf("\nend 11 --------------\n");
+
+      printf("TEST[%%.x], 0\n");
+   ft_printf("YOUR[%.x]\n", 0);
+      printf("REAL[%.x]\n", 0);
+      printf("\nend 11 --------------\n");
 	 // printf("\n12 --------------\n");
 	 // printf("%%#.4X, 0\n");
    // ft_printf("YOUR[%#.4X]\n", 0);
