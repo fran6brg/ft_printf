@@ -1,8 +1,8 @@
 #include <stdio.h>
-#include "includes/t_options.h"
-#include "includes/t_functions_pointers.h"
-#include "includes/functions.h"
-#include "libft/libft.h"
+#include "../includes/t_options.h"
+#include "../includes/t_functions_pointers.h"
+#include "../includes/functions.h"
+#include "../libft/libft.h"
 //#include "includes/t_functions_pointers.h"
 
 int main(int argc, char **argv)
@@ -59,14 +59,14 @@ int main(int argc, char **argv)
 
   printf("\n*************\n");
   printf("\033[0;33mTEST>\t[%%-10d %% d %%+d %%010d %%hhd %%llda]\", 3, 3, 3, 1, 0, 18446744065119617025LL\n");
-	// ft_printf("\033[0;33mYOUR>\t[%-10d]\n", 3);
-  //    printf("\033[0;31mREAL>\t[%-10d]\n", 3);
+	ft_printf("\033[0;33mYOUR>\t[%-10d]\n", 3);
+      printf("\033[0;31mREAL>\t[%-10d]\n", 3);
   ft_printf("\033[0;33mYOUR>\t[% d]\n", 3);
      printf("\033[0;31mREAL>\t[% d]\n", 3);
-  // ft_printf("\033[0;33mYOUR>\t[%+d]\n", 3);
-  // 	 printf("\033[0;31mREAL>\t[%+d]\n", 3);
-	// ft_printf("\033[0;33mYOUR>\t[%010d]\n", 1);
-	//    printf("\033[0;31mREAL>\t[%010d]\n", 1);
+  ft_printf("\033[0;33mYOUR>\t[%+d]\n", 3);
+   	 printf("\033[0;31mREAL>\t[%+d]\n", 3);
+	 ft_printf("\033[0;33mYOUR>\t[%010d]\n", 1);
+	    printf("\033[0;31mREAL>\t[%010d]\n", 1);
 	ft_printf("\033[0;33mYOUR>\t[%llda]\n", 18446744065119617025LL);
 		 printf("\033[0;31mREAL>\t[%llda]\n", 18446744065119617025LL);
   printf("\n*************\n");
@@ -237,8 +237,8 @@ ft_printf("\033[0;33mYOUR>\t[%ld]\n", -3456);
 //    printf("\033[0;31mREAL>\t[%#01X]\033[0m\n", -65498);
 // ft_printf("\033[0;33mYOUR>\t[%#05.5X]\033[0m\n", 65498);
 //    printf("\033[0;31mREAL>\t[%#05.5X]\033[0m\n", 65498);
- ft_printf("\033[0;33mYOUR>\t[%0#8.2hhX]\033[0m\n", -1426800127);
-    printf("\033[0;31mREAL>\t[%0#8.2hhX]\033[0m\n", -1426800127);
+//    ft_printf("\033[0;33mYOUR>\t[%0#8.2hhX]\033[0m\n", -1426800127);
+//    printf("\033[0;31mREAL>\t[%0#8.2hhX]\033[0m\n", -1426800127);
 // ft_printf("\033[0;33mYOUR>\t[%#40.4o]\033[0m\n", 0);
 //    printf("\033[0;31mREAL>\t[%#40.4o]\033[0m\n", 0);
 // 2
@@ -332,10 +332,11 @@ ft_printf("\033[0;33mYOUR>\t[!%#40.4zo!]\033[0m\n", 0);
 	 // printf("%aaa%#.0o, 0\n");
    // ft_printf("YOUR[aaa%#.0o]\n", 0);
 	 //    printf("REAL[aaa%#.0o]\n", 0);
-	 // printf("\n11 --------------\n");
-	 // printf("%%#.0X, 0\n");
-   // ft_printf("YOUR[%#.0X]\n", 0);
-	 //    printf("REAL[%#.0X]\n", 0);
+	 printf("\n11 --------------\n");
+	 printf("TEST[%%#.0X], 0\n");
+   ft_printf("YOUR[%#.0X]\n", 0);
+	    printf("REAL[%#.0X]\n", 0);
+	 	printf("\nend 11 --------------\n");
 	 // printf("\n12 --------------\n");
 	 // printf("%%#.4X, 0\n");
    // ft_printf("YOUR[%#.4X]\n", 0);
@@ -431,18 +432,33 @@ ft_printf("\033[0;33mYOUR>\t[!%#40.4zo!]\033[0m\n", 0);
 	 // printf("%%0.10p, 0\n");
    // ft_printf("YOUR[%0.10p]\n", 0);
 	 //    printf("REAL[%0.10p]\n", 0);
-	 // printf("\n35 --------------\n");
-	 // printf("\n\nTEST : %%p, NULL - 1\n");
-   // ft_printf("YOUR[\n\nTEST : %p]\n", NULL - 1);
-	 //    printf("REAL[\n\nTEST : %p]\n", NULL - 1);
+	 printf("\n35 --------------\n");
+	 printf("TEST : %%p, NULL - 1\n");
+   ft_printf("YOUR[TEST : %p]\n", NULL - 1);
+	    printf("REAL[TEST : %p]\n", NULL - 1);
 
 	 // printf("\n36 --------------\n");
 	 // printf("\n%%.u, %%.0u, 0, 0\n");
    // ft_printf("YOUR[\n%.u, %.0u]\n", 0, 0);
 	 //    printf("REAL[\n%.u, %.0u]\n", 0, 0);
 	 // printf("\n37 --------------n");
-/*
 
+
+
+
+
+
+
+/*	printf("\033[0;33mTEST>\t[%%#20.2o %%#31o %%#28.28o %%#31o]\", -144491672, 0, 2147492, 40\n");
+	ret = ft_printf("\033[0;33mYOUR>\t[%#20.2o]\033[0m\n", -144491672);
+		 ret2 = printf("\033[0;31mREAL>\t[%#20.2o]\033[0m\n", -144491672);
+	ret = ft_printf("\033[0;33mYOUR>\t[%#31o]\033[0m\n", 0);
+		 ret2 = printf("\033[0;31mREAL>\t[%#31o]\033[0m\n", 0);
+	ret = ft_printf("\033[0;33mYOUR>\t[%#28.28o]\033[0m\n", 2147492);
+		 ret2 = printf("\033[0;31mREAL>\t[%#28.28o]\033[0m\n", 2147492);
+	ret = ft_printf("\033[0;33mYOUR>\t[%#31o]\033[0m\n", 40);
+		 ret2 = printf("\033[0;31mREAL>\t[%#31o]\033[0m\n", 40);*/
+/*
   // 4. X x p o b
   printf("\n*************\n");
   printf("TESTS: X x p o b :\n");

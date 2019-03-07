@@ -20,7 +20,7 @@ int		ft_printf_floats(t_options *option, va_list *args)
 	int				i;
 	int				ret;
 
-	precision = (option->pad_max ? option->pad_max : 6);
+	precision = (option->pad_deux ? option->pad_deux : 6);
 	nbr = va_arg(*args, double);
 	option->neg = nbr < 0 ? 1 : 0;
 	nbr = nbr < 0 ? -nbr : nbr;

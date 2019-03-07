@@ -21,8 +21,10 @@ long long	get_type(t_options *option, va_list *args)
 		if (option->type == 'x' || option->type == 'X'
 				|| option->type == 'p' || option->type == 'o')
 		{
-			// printf("here1");
-			n = va_arg(*args, unsigned long);
+			 //printf("here1");
+				n = va_arg(*args, unsigned long);
+			//printf("value get type%lld", n);
+
 		}
 		else if (option->ll)
 		{
@@ -45,7 +47,7 @@ long long	get_type(t_options *option, va_list *args)
 		else
 			n = (short)va_arg(*args, int); // [%hd] 32768 doit retourner -32768 donc j ai tej le unsigned dans (unsigned int)
 	}
-	else if (option->type == 'd' || option->type == 'd') // ?
+	else if (option->type == 'd' || option->type == 'i') // ?
 	{
 		if (option->j)
 			n = va_arg(*args, intmax_t);

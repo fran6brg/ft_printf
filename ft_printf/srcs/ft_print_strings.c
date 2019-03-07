@@ -31,7 +31,7 @@ int		ft_printf_string(t_options *option, va_list *args)
 
 	if (!(tmp = ft_strdup(va_arg(*args, char*))))
 		tmp = ft_strdup("(null)");
-	len = (option->pad_max < ft_strlen(tmp)) && option->point ? option->pad_max : ft_strlen(tmp);
+	len = (option->pad_deux < ft_strlen(tmp)) && option->point ? option->pad_deux : ft_strlen(tmp);
 	ret = helper_print_str_padding(option, len, 0);
 	ret += ft_print_nstr_ret(tmp, len);
 	ret += helper_print_str_padding(option, len, 1);

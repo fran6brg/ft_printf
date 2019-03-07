@@ -85,7 +85,7 @@ void print_t_options_list(t_options **options)
 		printf("7. o->space        = %i\n", option->space);
 		printf("8. o->hashtag      = %i\n", option->hashtag);
 		printf("9. o->left_zeros   = %i\n", option->left_zeros);
-		printf("10 o->pad_max       = %i\n", option->pad_max);
+		printf("10 o->pad_deux       = %i\n", option->pad_deux);
 		printf("11 o->h            = %i\n", option->h);
 		printf("12 o->hh           = %i\n", option->hh);
 		printf("13 o->l            = %i\n", option->l);
@@ -113,8 +113,8 @@ void print_t_option(t_options **option)
 	printf("9. left_zeros    = %s\n", o->left_zeros ? "1" : ".");
 	printf("10 point         = %s\n", o->point ? "1" : ".");
 	printf("11 neg           = %s\n", o->neg ? "1" : ".");
-	printf("12 pad_min       = %i\n", o->pad_min);
-	printf("13 pad_max       = %i\n", o->pad_max);
+	printf("12 pad_un        = %i\n", o->pad_un);
+	printf("13 pad_deux      = %i\n", o->pad_deux);
 	printf("14 h             = %s\n", o->h ? "1" : ".");
 	printf("15 hh            = %s\n", o->hh ? "1" : ".");
 	printf("16 l             = %s\n", o->l ? "1" : ".");
@@ -173,21 +173,21 @@ int		ft_printf(const char *format, ...)
 //	printf("------- START FT_PRINTF -------\n\n");
 	while (option != NULL)
 	{
-	 // print_t_option(&option);
-	 // if (option->type == 'd' || option->type == 'i' || option->type == 'x' || option->type == 'X')
-	 // {
-	 // 	printf("nb pad before      1.%d.%d.%d.%d\n", option->left_justify ? 1 : 2, option->pad_min ? 1 : 2, option->pad_max ? 1 : 2, option->left_zeros ? 1 : 2);
-	 // 	printf("nb pad after       2.%d.%d.%d.%d\n", option->left_justify ? 1 : 2, option->left_zeros ? 1 : 2, option->pad_min ? 1 : 2, option->pad_max ? 1 : 2);
-	 // 	printf("print ' ' pad bef  3.a faire\n");
-	 // 	printf("print ' ' pad aft  4.a faire\n");
-	 // 	printf("print '0' pad bef  5.%d.%d.%d\n", option->pad_max ? 1 : 2, option->pad_min ? 1 : 2, option->left_zeros ? 1 : 2);
-	 // 	printf("print '0' pad aft  6.%d.%d.%d\n\n", option->pad_max ? 1 : 2, option->pad_min ? 1 : 2, option->left_zeros ? 1 : 2);
-	 // }
-	 // if (option->type == 's')
-	 // {
-		// printf("nb pad before    1.%d.%d.%d.%s.%d\n", option->left_justify ? 1 : 2, option->point ? 1 : 2, option->pad_max ? 1 : 2, "x", option->left_zeros ? 1 : 2);
-		// printf("nb pad after     2.%d.%d.%d.%s.%d\n\n", option->left_justify ? 1 : 2, option->point ? 1 : 2, option->pad_max ? 1 : 2, "x", option->left_zeros ? 1 : 2);
-	 // }
+//     print_t_option(&option);
+	  // if (option->type == 'd' || option->type == 'i' || option->type == 'x' || option->type == 'X')
+	  // {
+	  // 	printf("nb pad before      1.%d.%d.%d.%d\n", option->left_justify ? 1 : 2, option->pad_un ? 1 : 2, option->pad_deux ? 1 : 2, option->left_zeros ? 1 : 2);
+	  // 	printf("nb pad after       2.%d.%d.%d.%d\n", option->left_justify ? 1 : 2, option->left_zeros ? 1 : 2, option->pad_un ? 1 : 2, option->pad_deux ? 1 : 2);
+	  // 	printf("print ' ' pad bef  3.a faire\n");
+	  // 	printf("print ' ' pad aft  4.a faire\n");
+	  // 	printf("print '0' pad bef  5.%d.%d.%d\n", option->pad_deux ? 1 : 2, option->pad_un ? 1 : 2, option->left_zeros ? 1 : 2);
+	  // 	printf("print '0' pad aft  6.%d.%d.%d\n\n", option->pad_deux ? 1 : 2, option->pad_un ? 1 : 2, option->left_zeros ? 1 : 2);
+	  // }
+	  // if (option->type == 's')
+	  // {
+		//  printf("nb pad before    1.%d.%d.%d.%s.%d\n", option->left_justify ? 1 : 2, option->point ? 1 : 2, option->pad_deux ? 1 : 2, "x", option->left_zeros ? 1 : 2);
+		//  printf("nb pad after     2.%d.%d.%d.%s.%d\n\n", option->left_justify ? 1 : 2, option->point ? 1 : 2, option->pad_deux ? 1 : 2, "x", option->left_zeros ? 1 : 2);
+	  // }
 		ret += no_opts_prntrs(option, format, formatlen);
 //	printf("////// RET IN MAIN_mid_while FUNCTION %d ////////\n\n", ret);
 		ret += root_options_printers(option, &args);

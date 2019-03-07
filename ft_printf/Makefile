@@ -1,6 +1,7 @@
 NAME	=	libftprintf.a
 
 SRC		=	libft/ft_atoi.c \
+				libft/ft_max.c\
 				libft/ft_nbrlen.c \
 				libft/ft_bzero.c \
 				libft/ft_isalnum.c \
@@ -60,6 +61,7 @@ SRC		=	libft/ft_atoi.c \
 				libft/ft_strtrim.c \
 				libft/ft_tolower.c \
 				libft/ft_toupper.c \
+				srcs/utils_helper.c\
 				srcs/ft_base.c \
 				srcs/ft_padding_nb.c \
 				srcs/ft_padding_str.c \
@@ -107,3 +109,7 @@ nuke: all
 
 test_unit: all
 		gcc main_tests/main_test.c $(NAME) -Iincludes && ./a.out
+
+pourri: all
+		gcc main_tests/main_pourri.c $(NAME) -Iincludes && ./a.out
+

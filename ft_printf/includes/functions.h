@@ -7,6 +7,11 @@
 
 t_options			*create_new_option(const char *format, int i);
 void				push_back_new_option(t_options **latest_opt, t_options *n);
+int	      	print_sign(t_options *option, long long nb);
+int	      	nb_have_a_sign(t_options *option, long long nb);
+int	      	nb_have_a_prefix(t_options *option, long long value, int bilel);
+int	      	print_prefix(t_options *option, long long value);
+int       	ft_print_loop_ret(char c, int nb);
 int					helper_print_nb_padding(t_options *o, int l, int a, long long n);
 int					helper_print_str_padding(t_options *opt, int ln, int aftr);
 int					helper_print_floats_padding(t_options *option, int len, int after, int nb);

@@ -51,37 +51,9 @@ int		print_prefix_before(t_options *option)
 	return (ret);
 }
 
-int		print_prefix_after(t_options *option, long long value)
-{
-	int		ret;
-
-	ret = 0;
-	if ((!option->left_zeros && !option->left_justify && (option->hashtag
-					|| option->type == 'p' || option->type == 'b')))
-	{
-		if (option->hashtag && option->type != 'b')
-		{
-			if (option->type == 'o' && value != 0)
-				ret += ft_putchar_ret('0');
-			else if (option->type == 'X')
-				ret += ft_print_nstr_ret("0X", 2);
-			else if (option->type == 'p' || option->type == 'x')
-				ret += ft_print_nstr_ret("0x", 2);
-		}
-		else
-		{
-			if (option->type == 'b')
-				ret += ft_print_nstr_ret("0b", 2);
-			else if (option->type == 'p')
-				ret += ft_print_nstr_ret("0x", 2);
-		}
-	}
-	return (ret);
-}
-
 int		ft_printf_base(t_options *option, va_list *args)
 {
-	long long int	value;
+	unsigned long long value;
 	int				base;
 	int				ret;
 	int				len;
@@ -89,15 +61,18 @@ int		ft_printf_base(t_options *option, va_list *args)
 	ret = 0;
 	base = get_base(option);
 	value = get_type(option, args);
+	// option->space = 0;
+	// option->sign = 0;
+	// printf("o space %d o sign %d", option->space, option->sign);
 	// printf("/********** Value %lld ***********\\\n", value);
 	// len = value < 0 ? ft_nbrlen(value, base) : ft_nbrlen(value, base);
 	len = ft_nbrlen(value, base); /* j ai modifie la fonction nbrlen pour ne pas qu elle renvoie +1 si signe negatif */
 	// printf("\n/********** nb/len MAIN %lld || %d***********\\\n", value, len);
 	if (option->space && option->sign == 0 && value >= 0)
 		ret += ft_putchar_ret(' ');
-	ret += print_prefix_before(option);
+	//ret += print_prefix_before(option);
 	ret += helper_print_nb_padding(option, len, 0, value);
-	ret += print_prefix_after(option, value);
+	//ret += print_prefix_after(option, value);
 	// if (option->type == 'p')
 		// ret += ft_print_nstr_ret("10", 2);
 	ret += ft_putnbr_base(value, base, option->type);

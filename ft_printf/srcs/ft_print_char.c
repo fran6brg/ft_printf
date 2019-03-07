@@ -25,7 +25,7 @@ int		ft_printf_modulo(t_options *option, va_list *args)
 	ret = helper_print_str_padding(option, 1, 0);
 	ft_putchar('%');
 	ret += helper_print_str_padding(option, 1, 1);
-	return (1);
+	return (ret + 1);
 }
 
 int		ft_printf_char(t_options *option, va_list *args)

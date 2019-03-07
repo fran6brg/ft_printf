@@ -30,10 +30,11 @@ static int		extract_number_in_flags(t_options *new, int first, int start)
 				i++;
 				break;
 		}
-		if (new->flags[i] == '0' && (i == 0
-				|| (new->pad_min && i > 0 && new->flags[i - 1] != '.') /*	10.0 n'est pas left_zeros */
-				|| (new->flags[i + 1]
-					&& !ft_isdigit(new->flags[i + 1]) && new->flags[i + 1] != '.'))) /* +010. n'est pas left_zeros */
+		if (new->flags[i] == '0'
+				&& (i == 0
+				|| (new->flags[i - 1] != '.' && !ft_isdigit(new->flags[i - 1]))))
+				// || (new->pad_un && i > 0 && new->flags[i - 1] != '.') /*	10.0 n'est pas left_zeros */
+				// || (new->flags[i + 1] && !ft_isdigit(new->flags[i + 1]) && new->flags[i + 1] != '.'))) /* +010. n'est pas left_zeros */
 			new->left_zeros = 1;
 		else if (ft_isdigit(new->flags[i]))
 		{
@@ -47,13 +48,13 @@ static int		extract_number_in_flags(t_options *new, int first, int start)
 	}
 	if (first == 0) // si 1 chiffre = min sinon [max.min]
 	{
-		new->pad_min = sum;
+		new->pad_un = sum;
 		//printf("\nsum0 = %i\n", sum);
 	}
 	else
 	{
 		//printf("\nsum1 = %i\n", sum);
-		new->pad_max = sum;
+		new->pad_deux = sum;
 	}
 	return (i);
 }
