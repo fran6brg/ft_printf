@@ -62,7 +62,9 @@ int main()
 //	printf("%-25i\n", -550);
 //	printf("%-.25i\n", -550);
 //	printf("%25i", -550);
-	value = ft_printf("%5.x%5.0x", 0, 0);
+	double kaka = 3.123123123123123123123123123;
+	value = ft_printf("%.27f", kaka);
+	// value = ft_printf("%5.x%5.0x", 0, 0);
 	printf("\nret = %i", value);
 //ft_putnbr_base(value, base);
 }

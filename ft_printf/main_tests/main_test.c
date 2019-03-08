@@ -242,6 +242,7 @@ ft_printf("\033[0;33mYOUR>\t[%ld]\n", -3456);
 // ft_printf("\033[0;33mYOUR>\t[%#40.4o]\033[0m\n", 0);
 //    printf("\033[0;31mREAL>\t[%#40.4o]\033[0m\n", 0);
 // 2
+
 // 3
 /*   printf("\033[0;33mTEST>\t[%%24.8hho %%42.10o %%14.36o %%2.44o]\", 2004675854, -140307224, 0, -0\n");
 ft_printf("\033[0;33mYOUR>\t[!%#24.8hho!]\033[0m\n", 2004675854);
@@ -332,22 +333,22 @@ ft_printf("\033[0;33mYOUR>\t[!%#40.4zo!]\033[0m\n", 0);
 	 // printf("%aaa%#.0o, 0\n");
    // ft_printf("YOUR[aaa%#.0o]\n", 0);
 	 //    printf("REAL[aaa%#.0o]\n", 0);
-	    printf("\n11 --------------\n");
-	    printf("TEST[%%#.0u], 0\n");
-   ft_printf("YOUR[%#.0u]\n", 0);
-	    printf("REAL[%#.0u]\n", 0);
-	 	  printf("\nend 11 --------------\n");
-		  printf("\n11 --------------\n");
-
-      printf("TEST[%%X], 0\n");
-   ft_printf("YOUR[%X]\n", 0);
-      printf("REAL[%X]\n", 0);
-      printf("\nend 11 --------------\n");
-
-      printf("TEST[%%.x], 0\n");
-   ft_printf("YOUR[%.x]\n", 0);
-      printf("REAL[%.x]\n", 0);
-      printf("\nend 11 --------------\n");
+	 //    printf("\n11 --------------\n");
+	 //    printf("TEST[%%#.0u], 0\n");
+   // ft_printf("YOUR[%#.0u]\n", 0);
+	 //    printf("REAL[%#.0u]\n", 0);
+	 // 	  printf("\nend 11 --------------\n");
+		//   printf("\n11 --------------\n");
+	 //
+   //    printf("TEST[%%X], 0\n");
+   // ft_printf("YOUR[%X]\n", 0);
+   //    printf("REAL[%X]\n", 0);
+   //    printf("\nend 11 --------------\n");
+	 //
+   //    printf("TEST[%%.o], 0\n");
+   // ft_printf("YOUR[%.o]\n", 0);
+   //    printf("REAL[%.o]\n", 0);
+   //    printf("\nend 11 --------------\n");
 	 // printf("\n12 --------------\n");
 	 // printf("%%#.4X, 0\n");
    // ft_printf("YOUR[%#.4X]\n", 0);
@@ -443,10 +444,36 @@ ft_printf("\033[0;33mYOUR>\t[!%#40.4zo!]\033[0m\n", 0);
 	 // printf("%%0.10p, 0\n");
    // ft_printf("YOUR[%0.10p]\n", 0);
 	 //    printf("REAL[%0.10p]\n", 0);
-	 printf("\n35 --------------\n");
-	 printf("TEST : %%p, NULL - 1\n");
-   ft_printf("YOUR[TEST : %p]\n", NULL - 1);
-	    printf("REAL[TEST : %p]\n", NULL - 1);
+
+	 #include <limits.h>
+	 // printf("The minimum value of LONG               = %ld\n", LONG_MIN);
+   // printf("The maximum value of LONG               = %ld\n", LONG_MAX);
+	 // printf("The minimum value of LONG_LONG          = %lld\n", LONG_LONG_MIN);
+   // printf("The maximum value of LONG_LONG          = %lld\n", LONG_LONG_MAX);
+   // printf("The maximum value of unsigned long      = %lu\n", ULONG_MAX);
+	 // printf("The minimum value of long long          = %lld\n", LLONG_MIN);
+   // printf("The maximum value of long long          = %lld\n", LLONG_MAX);
+   // printf("The maximum value of unsigned long long = %llu\n", ULLONG_MAX);
+
+	 // #define issigned(t) (((t)(-1)) < ((t) 0))
+	 // #define umaxof(t) (((0x1ULL << ((sizeof(t) * 8ULL) - 1ULL)) - 1ULL) | (0xFULL << ((sizeof(t) * 8ULL) - 4ULL)))
+	 // #define smaxof(t) (((0x1ULL << ((sizeof(t) * 8ULL) - 1ULL)) - 1ULL) | (0x7ULL << ((sizeof(t) * 8ULL) - 4ULL)))
+	 // #define maxof(t) ((unsigned long long) (issigned(t) ? smaxof(t) : umaxof(t)))
+
+	 // printf("schar: %llx uchar: %llx\n", maxof(char), maxof(unsigned char));
+	 // printf("sshort: %llx ushort: %llx\n", maxof(short), maxof(unsigned short));
+	 // printf("sint: %llx uint: %llx\n", maxof(int), maxof(unsigned int));
+	 // printf("slong: %llx ulong: %llx\n", maxof(long), maxof(unsigned long));
+	 // printf("slong long: %llx ulong long: %llx\n", maxof(long long), maxof(unsigned long long));
+
+	 // printf("\n35 --------------\n");
+	 // printf("TEST : %%p, NULL - 1\n");
+   // ft_printf("YOUR[TEST : %p]\n", NULL - 2);
+	 // printf("REAL[TEST : %p]\n", NULL - 2);
+	 // printf("\n ----------------\n");
+	 // printf("TEST : %%b, NULL - 1\n");
+	 // ft_printf("YOUR[TEST : %b]\n", NULL - 1);
+	 // 	  printf("REAL[TEST : %b]\n", NULL - 1);
 
 	 // printf("\n36 --------------\n");
 	 // printf("\n%%.u, %%.0u, 0, 0\n");
@@ -460,15 +487,15 @@ ft_printf("\033[0;33mYOUR>\t[!%#40.4zo!]\033[0m\n", 0);
 
 
 
-/*	printf("\033[0;33mTEST>\t[%%#20.2o %%#31o %%#28.28o %%#31o]\", -144491672, 0, 2147492, 40\n");
-	ret = ft_printf("\033[0;33mYOUR>\t[%#20.2o]\033[0m\n", -144491672);
-		 ret2 = printf("\033[0;31mREAL>\t[%#20.2o]\033[0m\n", -144491672);
-	ret = ft_printf("\033[0;33mYOUR>\t[%#31o]\033[0m\n", 0);
-		 ret2 = printf("\033[0;31mREAL>\t[%#31o]\033[0m\n", 0);
-	ret = ft_printf("\033[0;33mYOUR>\t[%#28.28o]\033[0m\n", 2147492);
-		 ret2 = printf("\033[0;31mREAL>\t[%#28.28o]\033[0m\n", 2147492);
-	ret = ft_printf("\033[0;33mYOUR>\t[%#31o]\033[0m\n", 40);
-		 ret2 = printf("\033[0;31mREAL>\t[%#31o]\033[0m\n", 40);*/
+	printf("\033[0;33mTEST>\t[%%#20.2o %%#31o %%#28.28o %%#31o]\", -144491672, 0, 2147492, 40\n");
+	ft_printf("\033[0;33mYOUR>\t[%#20.2o]\033[0m\n", 144491672);
+		 printf("\033[0;31mREAL>\t[%#20.2o]\033[0m\n", 144491672);
+	ft_printf("\033[0;33mYOUR>\t[%#31o]\033[0m\n", 0);
+		 printf("\033[0;31mREAL>\t[%#31o]\033[0m\n", 0);
+	ft_printf("\033[0;33mYOUR>\t[%#28.28o]\033[0m\n", 2147492);
+		 printf("\033[0;31mREAL>\t[%#28.28o]\033[0m\n", 2147492);
+	ft_printf("\033[0;33mYOUR>\t[%#31o]\033[0m\n", 0);
+		 printf("\033[0;31mREAL>\t[%#31o]\033[0m\n", 0);
 /*
   // 4. X x p o b
   printf("\n*************\n");
@@ -511,6 +538,73 @@ ft_printf("\033[0;33mYOUR>\t[!%#40.4zo!]\033[0m\n", 0);
   // printf("rslt p : f = -%+-04f-\n", f);
 
   */
+
+	// part 2
+	//
+	//    printf("\n0028 -------- (int)\n");
+  //    printf("TEST[%%jx], 4294967296\n");
+  // ft_printf("YOUR[%jx]\n", 4294967296);
+  //    printf("REAL[%jx]\n", 4294967296);
+
+/*     printf("\n0029 -------- (int)\n");
+     printf("TEST[%%jx], -4294967296\n");
+  ft_printf("YOUR[%jx]\n", -4294967296);
+	   printf("REAL[%jx]\n", -4294967296);
+
+     printf("\n0030 -------- (int)\n");
+     printf("TEST[%%jx], -4294967297\n");
+  ft_printf("YOUR[%jx]\n", -4294967297);
+	   printf("REAL[%jx]\n", -4294967297);
+
+     printf("\n0048 -------- (int)\n");
+     printf("TEST[%%5.x %%5.0x], 0, 0\n");
+  ft_printf("YOUR[%5.x %5.0x]\n", 0, 0);
+	   printf("REAL[%5.x %5.0x]\n", 0, 0);
+
+     printf("\n0093 -------- (int)\n");
+     printf("TEST[%%.o %%.0o], 0, 0\n");
+  ft_printf("YOUR[%.o %.0o]\n", 0, 0);
+	   printf("REAL[%.o %.0o]\n", 0, 0);
+
+     printf("\n0094 -------- (int)\n");
+     printf("TEST[%%5.o %%5.0o], 0, 0\n");
+  ft_printf("YOUR[%5.o %5.0o]\n", 0, 0);
+	   printf("REAL[%5.o %5.0o]\n", 0, 0);
+
+     printf("\n0186 -------- (unsigned int)\n");
+     printf("TEST[%% u], 4294967295\n");
+  ft_printf("YOUR[% u]\n", 4294967295);
+	   printf("REAL[% u]\n", 4294967295);
+
+     printf("\n0190 -------- (unsigned long)\n");
+     printf("TEST[%%lu], -42\n");
+  ft_printf("YOUR[%lu]\n", -42);
+	   printf("REAL[%lu]\n", -42);
+
+     printf("\n0192 -------- (intmax_t)\n");
+     printf("TEST[%%ju], 4999999999\n");
+  ft_printf("YOUR[%ju]\n", 4999999999);
+	   printf("REAL[%ju]\n", 4999999999);
+
+     printf("\n0193 -------- (size_t)\n");
+     printf("TEST[%%ju], 4294967296\n");
+  ft_printf("YOUR[%ju]\n", 4294967296);
+	   printf("REAL[%ju]\n", 4294967296);
+
+     printf("\n0194 -------- (unsigned long)\n");
+     printf("TEST[%%U], 4294967295\n");
+  ft_printf("YOUR[%U]\n", 4294967295);
+	   printf("REAL[%U]\n", 4294967295);
+
+     printf("\n0195 -------- (unsigned long)\n");
+     printf("TEST[%%hU], 4294967296\n");
+  ft_printf("YOUR[%hU]\n", 4294967296);
+	   printf("REAL[%hU]\n", 4294967296);
+
+     printf("\n0196 -------- (unsigned long)\n");
+     printf("TEST[%%U], 4294967296\n");
+  ft_printf("YOUR[%U]\n", 4294967296);
+	   printf("REAL[%U]\n", 4294967296);*/
 
   printf("\n\n");
   return (1);

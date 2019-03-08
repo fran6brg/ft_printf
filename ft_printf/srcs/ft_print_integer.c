@@ -33,7 +33,7 @@ int		ft_printf_integer(t_options *option, va_list *args)
 		len = 0;
 	ret += helper_print_nb_padding(option, len, 0, n);
 	if (!(n == 0 && option->point))
-		ret += ft_putnbr_base(n, 10, option->type);
+		ret += ft_putnbr(n);
 	// after
 	ret += helper_print_nb_padding(option, len, 1, n);
 //	print_t_option(&option);

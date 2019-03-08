@@ -60,9 +60,11 @@ int		nb_have_a_prefix(t_options *option, long long value, int bilel)
 	int ret;
 
 	ret = 0;
-	if (bilel != 0)
+	if (bilel != -125)
 		if (option->type == 'o' && option->pad_deux > bilel)
 	 		return (0);
+	if (bilel != -125 && option->type == 'o' && option->hashtag && value == 0 && !option->pad_un)
+		return (0);
 	if (option->hashtag || option->type == 'p')
 	{
 		if (value == 0 && option->type != 'p' && option->type != 'o')
@@ -81,7 +83,7 @@ int		print_prefix(t_options *option, long long value)
 	int 	prefix_size;
 
 	prefix_size = 0;
-	if ((prefix_size = nb_have_a_prefix(option, value, 0)) > 0)
+	if ((prefix_size = nb_have_a_prefix(option, value, -125)) > 0)
 	{
 		if (prefix_size == 1)
 			write(1, "0", 1);

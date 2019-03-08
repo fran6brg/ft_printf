@@ -33,7 +33,7 @@ t_functions_pointers	fp[NB_ACCEPTED_OPTIONS] =
 	{'i', &ft_printf_integer},
 	{'o', &ft_printf_base},
 	//{'O', &print_base},
-	{'u', &ft_printf_integer},
+	{'u', &ft_printf_base},
 	//{'U', &print_integer},
 	{'x', &ft_printf_base},
 	{'X', &ft_printf_base},
@@ -173,7 +173,7 @@ int		ft_printf(const char *format, ...)
 //	printf("------- START FT_PRINTF -------\n\n");
 	while (option != NULL)
 	{
-     print_t_option(&option);
+    print_t_option(&option);
 	  // if (option->type == 'd' || option->type == 'i' || option->type == 'x' || option->type == 'X')
 	  // {
 	  // 	printf("nb pad before      1.%d.%d.%d.%d\n", option->left_justify ? 1 : 2, option->pad_un ? 1 : 2, option->pad_deux ? 1 : 2, option->left_zeros ? 1 : 2);

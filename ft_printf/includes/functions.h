@@ -26,6 +26,7 @@ int					ft_printf_floats(t_options *option, va_list *args);
 int					ft_printf_integer(t_options *option, va_list *args);
 int					ft_printf_modulo(t_options *option, va_list *args);
 int					ft_print_nstr_ret(char *str, int limit);
+unsigned long long	get_utype(t_options *option, va_list *args);
 int					ft_putchar_ret(char c);
 
 int					extract_options(const char *format, t_options **options);
