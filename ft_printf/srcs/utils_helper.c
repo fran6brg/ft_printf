@@ -65,7 +65,7 @@ int		nb_have_a_prefix(t_options *option, long long value, int bilel)
 	 		return (0);
 	if (option->hashtag || option->type == 'p')
 	{
-		if (value == 0 && option->type != 'p')
+		if (value == 0 && option->type != 'p' && option->type != 'o')
 			return (0);
 		if (option->type == 'o')
 			ret += 1;

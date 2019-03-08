@@ -29,8 +29,10 @@ int		ft_printf_integer(t_options *option, va_list *args)
 		option->neg = 1;
 	}
 	// before
+	if (n == 0 && option->point)
+		len = 0;
 	ret += helper_print_nb_padding(option, len, 0, n);
-	if ((n == 0 && !option->point) || n != 0)
+	if (!(n == 0 && option->point))
 		ret += ft_putnbr_base(n, 10, option->type);
 	// after
 	ret += helper_print_nb_padding(option, len, 1, n);

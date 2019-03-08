@@ -62,7 +62,8 @@ int main()
 //	printf("%-25i\n", -550);
 //	printf("%-.25i\n", -550);
 //	printf("%25i", -550);
-	ft_printf("%#08x", 42);
+	value = ft_printf("%5.x%5.0x", 0, 0);
+	printf("\nret = %i", value);
 //ft_putnbr_base(value, base);
 }
 /*pad1 - pad2 - sign --> print space
