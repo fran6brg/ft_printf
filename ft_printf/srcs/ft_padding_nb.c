@@ -53,18 +53,18 @@ int		helper_print_nb_padding(t_options *option, int len, int after, long long nb
 	- nb_have_a_sign(option, nb) - nb_have_a_prefix(option, nb, len);
 	zeros = option->pad_deux - len;
 //	printf("prefix =%d", nb_have_a_prefix(option, nb, len));
-	printf("\n******* option(\"%s\") *****\n", option->flags);
-	printf("1. zeros_to_print          = %i\n", zeros);
-	printf("2. spaces_to_print         = %i\n", spaces);
-	printf("3. left_justify            = %d\n", option->left_justify);
-	printf("4. after                   = %d\n", after);
-	printf("5. option->space           = %d\n", option->space);
-	printf("6. sign                    = %d\n", option->sign);
-	printf("7. pad_un                  = %d\n", option->pad_un);
-	printf("8. pad_deux                = %d\n", option->pad_deux);
-	printf("9. value                   = %lld\n", nb);
-	printf("10. len                    = %d\n", len);
-	printf("**********  end  **********\n\n");
+	// printf("\n******* option(\"%s\") *****\n", option->flags);
+	// printf("1. zeros_to_print          = %i\n", zeros);
+	// printf("2. spaces_to_print         = %i\n", spaces);
+	// printf("3. left_justify            = %d\n", option->left_justify);
+	// printf("4. after                   = %d\n", after);
+	// printf("5. option->space           = %d\n", option->space);
+	// printf("6. sign                    = %d\n", option->sign);
+	// printf("7. pad_un                  = %d\n", option->pad_un);
+	// printf("8. pad_deux                = %d\n", option->pad_deux);
+	// printf("9. value                   = %lld\n", nb);
+	// printf("10. len                    = %d\n", len);
+	// printf("**********  end  **********\n\n");
 	if (option->left_zeros && !option->point && !option->left_justify)
 	{
 		if (!after)
@@ -74,8 +74,12 @@ int		helper_print_nb_padding(t_options *option, int len, int after, long long nb
 		}
 	}
 	if (!after && !option->left_justify)
-		ret += ft_print_loop_ret(' ', spaces);
-	if (!after && option->space && !nb_have_a_sign(option, nb) && option->pad_un <= option->pad_deux)
+		{
+			printf("TEMRER");
+			ret += ft_print_loop_ret(' ', spaces);
+	}
+	if (!after && option->space && !nb_have_a_sign(option, nb)
+	&& option->pad_un <= option->pad_deux)
 		ret += ft_putchar_ret(' ');
 	if (!after)
 	{

@@ -130,7 +130,7 @@ int main(int argc, char **argv)
      printf("\nREAL[%03.2d]", -1);
 
 
-/*
+
   // # 0186 (unsigned int)
   printf("\n\nTEST[%% u] 4294967295\n");
   ft_printf("YOUR[% u]", 4294967295);

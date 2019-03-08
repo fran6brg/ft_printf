@@ -55,15 +55,16 @@ int		nb_have_a_sign(t_options *option, long long nb)
 	return (ret);
 }
 
-int		nb_have_a_prefix(t_options *option, long long value, int bilel)
+int		nb_have_a_prefix(t_options *option, long long value, int len)
 {
 	int ret;
 
 	ret = 0;
-	if (bilel != -125)
-		if (option->type == 'o' && option->pad_deux > bilel)
+	if (len != -125)
+		if (option->type == 'o' && option->pad_deux > len)
 	 		return (0);
-	if (bilel != -125 && option->type == 'o' && option->hashtag && value == 0 && !option->pad_un)
+	if (len != -125 && option->type == 'o'
+			&& option->hashtag && value == 0 && !option->pad_un)
 		return (0);
 	if (option->hashtag || option->type == 'p')
 	{
