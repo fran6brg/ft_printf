@@ -20,6 +20,8 @@ int		get_base(t_options *option)
 		return (16);
 	if (option->type == 'b')
 		return (2);
+	if (option->type == 'u')
+		return (10);
 	return (0);
 }
 
@@ -60,11 +62,11 @@ int		ft_printf_base(t_options *option, va_list *args)
 
 	ret = 0;
 	base = get_base(option);
-	value = get_type(option, args);
+	value = get_utype(option, args);
 	// option->space = 0;
 	// option->sign = 0;
 	// printf("o space %d o sign %d", option->space, option->sign);
-	// printf("/********** Value %lld ***********\\\n", value);
+	printf("/********** Value %llu ***********\\\n", value);
 	// len = value < 0 ? ft_nbrlen(value, base) : ft_nbrlen(value, base);
 	len = ft_nbrlen(value, base); /* j ai modifie la fonction nbrlen pour ne pas qu elle renvoie +1 si signe negatif */
 	// printf("\n/********** nb/len MAIN %lld || %d***********\\\n", value, len);
@@ -75,7 +77,7 @@ int		ft_printf_base(t_options *option, va_list *args)
 	//ret += print_prefix_after(option, value);
 	// if (option->type == 'p')
 		// ret += ft_print_nstr_ret("10", 2);
-	if (value == 0 && !option->pad_deux && option->point && (option->type == 'x' || option->type == 'X'))
+	if (value == 0 && !option->pad_deux && option->point && (option->type == 'x' || option->type == 'X' || option->type == 'o'))
 		;
 	else
 		ret += ft_putnbr_base(value, base, option->type);

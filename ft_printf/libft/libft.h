@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <string.h>
 # include <stdio.h>
+# include <limits.h>
 
 typedef struct		s_list
 {
@@ -28,9 +29,10 @@ typedef struct		s_list
 void				ft_putchar(char c);
 void				ft_putstr(char const *s);
 void				ft_putendl(char const *s);
-void				ft_putnbr(long long n);
+int				ft_putnbr(long long n);
 // void				ft_putnbr_base_bis(unsigned long value, char b, int **ret)
-int					ft_putnbr_base(long long int value, int b, int x);
+int					ft_putnbr_base(unsigned long long int value, int b, int x);
+// int					ft_putnbr_base(long long int value, int b, int x);
 void				ft_putchar_fd(char c, int fd);
 void				ft_putstr_fd(char const *s, int fd);
 void				ft_putendl_fd(char const *s, int fd);
