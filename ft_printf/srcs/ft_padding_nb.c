@@ -75,7 +75,7 @@ int		helper_print_nb_padding(t_options *option, int len, int after, long long nb
 	}
 	if (!after && !option->left_justify)
 		{
-			printf("TEMRER");
+			// printf("TEMRER");
 			ret += ft_print_loop_ret(' ', spaces);
 	}
 	if (!after && option->space && !nb_have_a_sign(option, nb)

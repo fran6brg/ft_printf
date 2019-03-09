@@ -70,13 +70,13 @@ int		ft_printf_base(t_options *option, va_list *args)
 	// len = value < 0 ? ft_nbrlen(value, base) : ft_nbrlen(value, base);
 	len = ft_nbrlen(value, base); /* j ai modifie la fonction nbrlen pour ne pas qu elle renvoie +1 si signe negatif */
 	// printf("\n/********** nb/len MAIN %lld || %d***********\\\n", value, len);
-	if (option->space && option->sign == 0 && value >= 0)
+	if (option->space && option->sign == 0 /* && value >= 0*/)
 		ret += ft_putchar_ret(' ');
 	//ret += print_prefix_before(option);
 	if (value == 0 && !option->pad_deux && option->point && option->type != 'p')
-	len = 0;
+		len = 0;
 	if (value == 0 && option->type == 'o' && option->hashtag)
-	len = 0;
+		len = 0;
 	ret += helper_print_nb_padding(option, len, 0, value);
 	//ret += print_prefix_after(option, value);
 	// if (option->type == 'p')
