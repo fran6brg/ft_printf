@@ -17,5 +17,5 @@ lister la hierarchie des flags pour bien coder :
 - si le chiffre est positif ou negatif : faire 2 fonctions
 - sign : faire 2 fonctions
 - space
-- [pad_max.pad_min]
+- [pad_deux.pad_un]
 - hashtag
