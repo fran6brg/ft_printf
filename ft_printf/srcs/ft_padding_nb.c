@@ -80,7 +80,8 @@ int		helper_print_nb_padding(t_options *option, int len, int after, long long nb
 	}
 	if (!after && option->space && !nb_have_a_sign(option, nb)
 	&& option->pad_un <= option->pad_deux)
-		ret += ft_putchar_ret(' ');
+		if (option->type != 'u' && option->type != 'U')
+			ret += ft_putchar_ret(' ');
 	if (!after)
 	{
 		if (!(option->type == 'o' && option->pad_deux > len))

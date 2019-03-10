@@ -16,7 +16,7 @@
 # include <stdarg.h>
 # include "t_options.h"
 
-# define NB_ACCEPTED_OPTIONS (12)
+# define NB_ACCEPTED_OPTIONS (13)
 
 typedef struct			s_func
 {

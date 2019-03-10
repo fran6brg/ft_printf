@@ -16,7 +16,7 @@ static int		is_accepted_options(char c)
 {
 	return (c == 'c' || c == 's' || c == 'p' || c == 'd' || c == 'i' || c == 'o'
 			|| c == 'u' || c == 'x' || c == 'X' || c == 'f' || c == '%'
-			|| c == 'b');
+			|| c == 'b' || c == 'u' || c == 'U');
 }
 
 static int		is_accepted_flags(char c)

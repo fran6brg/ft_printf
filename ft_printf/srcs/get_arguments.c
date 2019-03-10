@@ -16,7 +16,22 @@ long long	get_type(t_options *option, va_list *args)
 {
 	long long n;
 
-	if (option->ll || option->l)
+	if (option->type == 'u' || option->type == 'U')
+	{
+		if (option->l)
+			n = va_arg(*args, unsigned long);
+		else if (option->ll)
+			n = va_arg(*args, unsigned long long);
+		else if (option->j)
+			n = va_arg(*args, intmax_t);
+		else if (option->type == 'U')
+			n = va_arg(*args, unsigned long);
+		else
+			n = va_arg(*args, unsigned int);
+		// printf(">>>>>>>>>>>>>>>>>>>>> n = %llU\n", n);
+
+	}
+	else if (option->ll || option->l)
 	{
 		if (option->ll)
 		{
@@ -53,7 +68,22 @@ unsigned long long	get_utype(t_options *option, va_list *args)
 {
 	unsigned long long n;
 
-	if (option->j)
+	if (option->type == 'u' || option->type == 'U')
+	{
+		if (option->l)
+			n = va_arg(*args, unsigned long);
+		else if (option->ll)
+			n = va_arg(*args, unsigned long long);
+		else if (option->j)
+			n = va_arg(*args, intmax_t);
+		else if (option->type == 'U')
+			n = va_arg(*args, unsigned long);
+		else
+			n = va_arg(*args, unsigned int);
+		// printf(">>>>>>>>>>>>>>>>>>>>> n = %llU\n", n);
+
+	}
+	else if (option->j)
 		n = va_arg(*args, intmax_t);
 	else if (option->ll || option->l || option->type == 'p')
 	{

@@ -34,7 +34,7 @@ t_functions_pointers	fp[NB_ACCEPTED_OPTIONS] =
 	{'o', &ft_printf_base},
 	//{'O', &print_base},
 	{'u', &ft_printf_base},
-	//{'U', &print_integer},
+	{'U', &ft_printf_base},
 	{'x', &ft_printf_base},
 	{'X', &ft_printf_base},
 	{'b', &ft_printf_base},
