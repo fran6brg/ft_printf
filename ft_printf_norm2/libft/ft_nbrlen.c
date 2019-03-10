@@ -31,6 +31,5 @@ int		ft_nbrlen(long long value, int base)
 		len++;
 		value /= base;
 	}
-	// printf("neg = %i\n", neg);
 	return (len);
 }

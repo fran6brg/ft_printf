@@ -99,7 +99,7 @@ re: fclean all
 	@gcc $(FLAGS) -o $@ -c $<
 
 sh: all
-		gcc main_tests/main_sh.c $(NAME) -Iincludes && ./a.out
+		gcc -g -fsanitize=address main_tests/main_sh.c $(NAME) -Iincludes && ./a.out
 
 kalash: all
 		gcc main_tests/mainprintf.c $(NAME) -Iincludes && ./a.out
@@ -112,4 +112,3 @@ test_unit: all
 
 pourri: all
 		gcc main_tests/main_pourri.c $(NAME) -Iincludes && ./a.out
-

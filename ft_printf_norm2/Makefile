@@ -100,7 +100,7 @@ re: fclean all
 	@gcc $(FLAGS) -o $@ -c $<
 
 sh: all
-		gcc ../ft_printf/main_tests/main_sh.c $(NAME) -Iincludes && ./a.out
+		gcc -g -fsanitize=address ../ft_printf_norm/main_tests/main_sh.c $(NAME) -Iincludes && ./a.out
 
 kalash: all
 		gcc ../ft_printf/main_tests/mainprintf.c $(NAME) -Iincludes && ./a.out

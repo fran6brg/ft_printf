@@ -12,24 +12,11 @@
 
 #include "../includes/functions.h"
 
-long long				get_type(t_options *option, va_list *args)
+long long				get_type_bis(t_options *option, va_list *args)
 {
 	long long	n;
 
-	if (option->type == 'u' || option->type == 'U')
-	{
-		if (option->l)
-			n = va_arg(*args, unsigned long);
-		else if (option->ll)
-			n = va_arg(*args, unsigned long long);
-		else if (option->j)
-			n = va_arg(*args, intmax_t);
-		else if (option->type == 'U')
-			n = va_arg(*args, unsigned long);
-		else
-			n = va_arg(*args, unsigned int);
-	}
-	else if (option->ll || option->l)
+	if (option->ll || option->l)
 	{
 		if (option->ll)
 			n = va_arg(*args, long long);
@@ -52,9 +39,9 @@ long long				get_type(t_options *option, va_list *args)
 	return (n);
 }
 
-unsigned long long		get_utype(t_options *option, va_list *args)
+long long				get_type(t_options *option, va_list *args)
 {
-	unsigned long long	n;
+	long long	n;
 
 	if (option->type == 'u' || option->type == 'U')
 	{
@@ -69,7 +56,16 @@ unsigned long long		get_utype(t_options *option, va_list *args)
 		else
 			n = va_arg(*args, unsigned int);
 	}
-	else if (option->j)
+	else
+		n = get_type_bis(option, args);
+	return (n);
+}
+
+unsigned long long		get_utype(t_options *option, va_list *args)
+{
+	unsigned long long	n;
+
+	if (option->j)
 		n = va_arg(*args, intmax_t);
 	else if (option->ll || option->l || option->type == 'p')
 	{
