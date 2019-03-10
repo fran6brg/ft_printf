@@ -20,22 +20,14 @@ int		ft_printf_integer(t_options *option, va_list *args)
 
 	ret = 0;
 	n = get_type(option, args);
-	// printf("n is %ld\n", n);
-	len = ft_nbrlen(n, 10) - (n == 0); // ok
-	// printf("(1) len =%d ", len);
+	len = ft_nbrlen(n, 10) - (n == 0);
 	if (n < 0)
-	{
-		// printf("neggg\n");
 		option->neg = 1;
-	}
-	// before
 	if (n == 0 && option->point)
 		len = 0;
-	ret += helper_nb_padding(option, len, 0, n);
+	ret += helper_nb_pad(option, len, 0, n);
 	if (!(n == 0 && option->point))
 		ret += ft_putnbr(n);
-	// after
-	ret += helper_nb_padding(option, len, 1, n);
-//	print_t_option(&option);
+	ret += helper_nb_pad(option, len, 1, n);
 	return (ret);
 }

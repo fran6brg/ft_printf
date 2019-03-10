@@ -6,13 +6,13 @@
 /*   By: bihattay <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/03 10:42:35 by bihattay          #+#    #+#             */
-/*   Updated: 2019/03/06 05:26:52 by bihattay         ###   ########.fr       */
+/*   Updated: 2019/03/10 06:38:03 by fberger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/functions.h"
 
-static int		extract_number_in_flags(t_options *new, int call, int start, int flen)
+int			get_flags_numbers(t_options *new, int call, int start, int flen)
 {
 	int		i;
 	int		j;
@@ -27,12 +27,12 @@ static int		extract_number_in_flags(t_options *new, int call, int start, int fle
 	{
 		if (new->flags[i] == '.')
 		{
-				new->point = 1;
-				i++;
-				break;
+			new->point = 1;
+			i++;
+			break ;
 		}
 		if (new->flags[i] == '0' && (i == 0
-				|| (new->flags[i - 1] != '.' && !ft_isdigit(new->flags[i - 1]))))
+			|| (new->flags[i - 1] != '.' && !ft_isdigit(new->flags[i - 1]))))
 			new->left_zeros = 1;
 		else if (ft_isdigit(new->flags[i]))
 		{
@@ -48,8 +48,17 @@ static int		extract_number_in_flags(t_options *new, int call, int start, int fle
 	return (i);
 }
 
-void		create_new_option_ter(t_options *new)
+void		create_new_option_bis(const char *format, t_options *new)
 {
+	if (new->flen > 1)
+		new->flags = ft_strsub(format, new->fpos + 1, (size_t)(new->flen - 1));
+	new->left_justify = ft_strchr_modified(new->flags, '-', new->flen);
+	new->sign = ft_strchr_modified(new->flags, '+', new->flen);
+	if (new->flags)
+		new->point = ft_strchr_modified(new->flags, '.', new->flen);
+	if (!new->sign)
+		new->space = ft_strchr_modified(new->flags, ' ', new->flen);
+	new->hashtag = ft_strchr_modified(new->flags, '#', new->flen);
 	if (ft_strstr_modified(new->flags, "hh", new->flen))
 		new->hh = 1;
 	else if (ft_strstr_modified(new->flags, "h", new->flen))
@@ -66,23 +75,10 @@ void		create_new_option_ter(t_options *new)
 	new->sign_is_print = 0;
 }
 
-void		create_new_option_bis(const char *format, t_options *new)
-{
-	if (new->flen > 1)
-		new->flags = ft_strsub(format, new->fpos + 1, (size_t)(new->flen - 1));
-	new->left_justify = ft_strchr_modified(new->flags, '-', new->flen);
-	new->sign = ft_strchr_modified(new->flags, '+', new->flen);
-	if (new->flags)
-		new->point = ft_strchr_modified(new->flags, '.', new->flen);
-	if (!new->sign)
-		new->space = ft_strchr_modified(new->flags, ' ', new->flen);
-	new->hashtag = ft_strchr_modified(new->flags, '#', new->flen);
-}
-
-t_options		*create_new_option(const char *format, int i)
+t_options	*create_new_option(const char *format, int i)
 {
 	t_options	*new;
-	int 			ret;
+	int			ret;
 
 	if ((new = (t_options*)ft_memalloc(sizeof(t_options))) == NULL)
 		return (NULL);
@@ -92,13 +88,12 @@ t_options		*create_new_option(const char *format, int i)
 	new->type = (new->flen > 0 ? (format[i + new->flen]) : (char)NULL);
 	new->fpos = i;
 	create_new_option_bis(format, new);
-	ret = extract_number_in_flags(new, 0, 0, new->flen);
-	extract_number_in_flags(new, 1, ret, new->flen);
-	create_new_option_ter(new);
+	ret = get_flags_numbers(new, 0, 0, new->flen);
+	get_flags_numbers(new, 1, ret, new->flen);
 	return (new);
 }
 
-void			push_back_new_option(t_options **latest_option, t_options *new)
+void		push_back_new_option(t_options **latest_option, t_options *new)
 {
 	t_options	*latest;
 
@@ -115,7 +110,7 @@ void			push_back_new_option(t_options **latest_option, t_options *new)
 	}
 }
 
-int				extract_options(const char *format, t_options **options)
+int			extract_options(const char *format, t_options **options)
 {
 	int			i;
 	int			format_len;

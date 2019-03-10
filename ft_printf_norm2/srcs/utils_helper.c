@@ -6,7 +6,7 @@
 /*   By: bihattay <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/02 20:26:32 by bihattay          #+#    #+#             */
-/*   Updated: 2019/02/17 18:22:04 by bihattay         ###   ########.fr       */
+/*   Updated: 2019/03/10 06:47:21 by fberger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,24 +44,24 @@ int		nb_have_a_sign(t_options *option, long long nb)
 	return (ret);
 }
 
-int		nb_have_a_prefix(t_options *option, long long value, int len)
+int		nb_have_a_prefix(t_options *opt, long long value, int len)
 {
 	int ret;
 
 	ret = 0;
 	if (len != -125)
-		if (option->type == 'o' && option->pad_deux > len)
-	 		return (0);
-	if (len != -125 && option->type == 'o'
-			&& option->hashtag && value == 0 && !option->pad_un)
-		return (0);
-	if (option->hashtag || option->type == 'p')
-	{
-		if (value == 0 && option->type != 'p' && option->type != 'o')
+		if (opt->type == 'o' && opt->pad_deux > len)
 			return (0);
-		if (option->type == 'o')
+	if (len != -125 && opt->type == 'o'
+			&& opt->hashtag && value == 0 && !opt->pad_un)
+		return (0);
+	if (opt->hashtag || opt->type == 'p')
+	{
+		if (value == 0 && opt->type != 'p' && opt->type != 'o')
+			return (0);
+		if (opt->type == 'o')
 			ret += 1;
-		else if (option->type == 'x' || option->type == 'X' || option->type == 'p')
+		else if (opt->type == 'x' || opt->type == 'X' || opt->type == 'p')
 			ret += 2;
 	}
 	return (ret);
@@ -69,7 +69,7 @@ int		nb_have_a_prefix(t_options *option, long long value, int len)
 
 int		print_prefix(t_options *option, long long value)
 {
-	int 	prefix_size;
+	int	prefix_size;
 
 	prefix_size = 0;
 	if ((prefix_size = nb_have_a_prefix(option, value, -125)) > 0)
@@ -87,7 +87,7 @@ int		print_prefix(t_options *option, long long value)
 	return (prefix_size);
 }
 
-int 	ft_print_loop_ret(char c, int nb)
+int		ft_print_loop_ret(char c, int nb)
 {
 	int ret;
 	int i;

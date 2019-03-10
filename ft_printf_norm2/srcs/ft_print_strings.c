@@ -24,17 +24,18 @@ int		ft_print_nstr_ret(char *str, int limit)
 
 int		ft_printf_string(t_options *option, va_list *args)
 {
-	option->l = 0;
 	char	*tmp;
 	int		ret;
 	int		len;
 
+	option->l = 0;
 	if (!(tmp = ft_strdup(va_arg(*args, char*))))
 		tmp = ft_strdup("(null)");
-	len = (option->pad_deux < ft_strlen(tmp)) && option->point ? option->pad_deux : ft_strlen(tmp);
-	ret = helper_str_padding(option, len, 0);
+	len = (option->pad_deux < ft_strlen(tmp))
+		&& option->point ? option->pad_deux : ft_strlen(tmp);
+	ret = helper_str_pad(option, len, 0);
 	ret += ft_print_nstr_ret(tmp, len);
-	ret += helper_str_padding(option, len, 1);
+	ret += helper_str_pad(option, len, 1);
 	ft_strdel(&tmp);
 	return (ret);
 }

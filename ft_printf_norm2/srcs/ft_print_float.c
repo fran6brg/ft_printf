@@ -37,7 +37,7 @@ int		helper_floats(t_options *option, int len, int after, int neg)
 	return (ret);
 }
 
-int 	helper_precision(long double nbr, int precision, int ret)
+int		helper_precision(long double nbr, int precision, int ret)
 {
 	int i;
 

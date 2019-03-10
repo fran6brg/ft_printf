@@ -6,7 +6,7 @@
 /*   By: bihattay <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/02 20:31:13 by bihattay          #+#    #+#             */
-/*   Updated: 2019/03/06 02:54:31 by bihattay         ###   ########.fr       */
+/*   Updated: 2019/03/10 06:17:52 by fberger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,27 +53,29 @@ int		print_prefix_before(t_options *option)
 	return (ret);
 }
 
-int		ft_printf_base(t_options *option, va_list *args)
+int		ft_printf_base(t_options *opt, va_list *args)
 {
-	unsigned long value;
+	unsigned long	value;
 	int				base;
 	int				ret;
 	int				len;
 
 	ret = 0;
-	base = get_base(option);
-	value = (option->type == 'u' || option->type == 'U') ? get_type(option, args) : get_utype(option, args);
+	base = get_base(opt);
+	if (opt->type == 'u' || opt->type == 'U')
+		value = get_type(opt, args);
+	else
+		value = get_utype(opt, args);
 	len = ft_nbrlen(value, base);
-	if (option->space && option->sign == 0)
-		if (option->type != 'u' && option->type != 'U')
-			ret += ft_putchar_ret(' ');
-	if ((value == 0 && !option->pad_deux && option->point && option->type != 'p')
-		|| (value == 0 && option->type == 'o' && option->hashtag))
+	if (opt->space && opt->sign == 0 && opt->type != 'u' && opt->type != 'U')
+		ret += ft_putchar_ret(' ');
+	if ((value == 0 && !opt->pad_deux && opt->point && opt->type != 'p')
+		|| (value == 0 && opt->type == 'o' && opt->hashtag))
 		len = 0;
-	ret += helper_nb_padding(option, len, 0, value);
-	if (!(value == 0 && !option->pad_deux && option->point && (option->type != 'p')))
-		if (!(value == 0 && option->type == 'o' && option->hashtag))
-			ret += ft_putnbr_base(value, base, option->type);
-	ret += helper_nb_padding(option, len, 1, value);
+	ret += helper_nb_pad(opt, len, 0, value);
+	if (!(value == 0 && !opt->pad_deux && opt->point && (opt->type != 'p')))
+		if (!(value == 0 && opt->type == 'o' && opt->hashtag))
+			ret += ft_putnbr_base(value, base, opt->type);
+	ret += helper_nb_pad(opt, len, 1, value);
 	return (ret);
 }

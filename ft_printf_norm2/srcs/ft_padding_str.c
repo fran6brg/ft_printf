@@ -6,16 +6,16 @@
 /*   By: bihattay <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/02 20:26:32 by bihattay          #+#    #+#             */
-/*   Updated: 2019/02/07 07:13:37 by bihattay         ###   ########.fr       */
+/*   Updated: 2019/03/10 06:20:29 by fberger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
- #include "../includes/functions.h"
+#include "../includes/functions.h"
 
-int		helper_str_padding(t_options *option, int len, int after)
+int		helper_str_pad(t_options *option, int len, int after)
 {
-	int 	ret;
-	int 	padding;
+	int		ret;
+	int		padding;
 	char	c;
 
 	ret = 0;

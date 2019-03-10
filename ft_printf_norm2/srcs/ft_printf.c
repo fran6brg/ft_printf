@@ -10,8 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdarg.h>
 #include "../includes/t_options.h"
 #include "../includes/t_functions_pointers.h"
 #include "../includes/functions.h"
@@ -51,36 +49,6 @@ int		root_options_printers(t_options *option, va_list *args)
 		i++;
 	}
 	return (0);
-}
-
-void print_t_option(t_options **option)
-{
-	t_options	*o;
-
-	o = *option;
-	printf("\n******* option(f[%i]) *****\n", o->fpos);
-	printf("1. type          = %c\n", o->type);
-	printf("2. flags         = %s\n", o->flags);
-	printf("3. flen          = %i\n", o->flen);
-	printf("4. fpos          = %i\n", o->fpos);
-	printf("5. left_justify  = %s\n", o->left_justify ? "1" : ".");
-	printf("6. sign          = %s\n", o->sign ? "1" : ".");
-	printf("7. space         = %s\n", o->space ? "1" : ".");
-	printf("8. hashtag       = %s\n", o->hashtag ? "1" : ".");
-	printf("9. left_zeros    = %s\n", o->left_zeros ? "1" : ".");
-	printf("10 point         = %s\n", o->point ? "1" : ".");
-	printf("11 neg           = %s\n", o->neg ? "1" : ".");
-	printf("12 pad_un        = %i\n", o->pad_un);
-	printf("13 pad_deux      = %i\n", o->pad_deux);
-	printf("14 h             = %s\n", o->h ? "1" : ".");
-	printf("15 hh            = %s\n", o->hh ? "1" : ".");
-	printf("16 l             = %s\n", o->l ? "1" : ".");
-	printf("17 ll            = %s\n", o->ll ? "1" : ".");
-	printf("18 L             = %s\n", o->L ? "1" : ".");
-	printf("19 j             = %s\n", o->j ? "1" : ".");
-	printf("20 z             = %s\n", o->z ? "1" : ".");
-	printf("21 sign_is_print = %s\n", o->sign_is_print ? "1" : ".");
-	printf("**********  end  **********\n\n");
 }
 
 int		no_opts_prntrs(t_options *options, const char *format, const int len)

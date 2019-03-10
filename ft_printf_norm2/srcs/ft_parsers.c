@@ -23,7 +23,7 @@ static int		is_accepted_flags(char c)
 {
 	return (c == ' ' || c == '.' || c == '#' || c == '0' || c == '+' || c == '-'
 		|| ft_isdigit(c) || c == 'h' || c == 'l' || c == 'L'
-		|| c == 'z'  || c == 'j');
+		|| c == 'z' || c == 'j');
 }
 
 int				compute_new_option_len_in_format(const char *format, int i)

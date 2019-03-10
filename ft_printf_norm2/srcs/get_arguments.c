@@ -48,7 +48,7 @@ long long	get_type(t_options *option, va_list *args)
 	else if (option->z)
 		n = va_arg(*args, size_t);
 	else
-			n = va_arg(*args, int);
+		n = va_arg(*args, int);
 	return (n);
 }
 
@@ -74,7 +74,7 @@ unsigned long long	get_utype(t_options *option, va_list *args)
 	else if (option->ll || option->l || option->type == 'p')
 	{
 		if (option->type == 'x' || option->type == 'X' || option->type == 'o')
-				 n = va_arg(*args, long long);
+			n = va_arg(*args, long long);
 		else if (option->type == 'p' || option->ll)
 			n = va_arg(*args, unsigned long long);
 		else
@@ -88,6 +88,6 @@ unsigned long long	get_utype(t_options *option, va_list *args)
 			n = (unsigned short)va_arg(*args, int);
 	}
 	else
-			n = va_arg(*args, unsigned int);
+		n = va_arg(*args, unsigned int);
 	return (n);
 }
