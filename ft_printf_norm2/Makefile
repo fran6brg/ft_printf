@@ -72,7 +72,8 @@ SRC		=	libft/ft_atoi.c \
 				srcs/ft_print_integer.c \
 				srcs/get_arguments.c \
 				srcs/ft_parsers.c \
-				srcs/ft_options.c
+				srcs/ft_options.c \
+				srcs/ft_free.c
 
 OBJ 	= 	$(SRC:.c=.o)
 

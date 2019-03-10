@@ -14,7 +14,7 @@
 #include "../includes/t_functions_pointers.h"
 #include "../includes/functions.h"
 
-t_functions_pointers	fp[NB_ACCEPTED_OPTIONS] =
+t_functions_pointers	g_fp[NB_ACCEPTED_OPTIONS] =
 {
 	{'c', &ft_printf_char},
 	{'s', &ft_printf_string},
@@ -40,9 +40,9 @@ int		root_options_printers(t_options *option, va_list *args)
 	ret = 0;
 	while (i < NB_ACCEPTED_OPTIONS)
 	{
-		if (fp[i].option == option->type)
+		if (g_fp[i].option == option->type)
 		{
-			if ((ret = fp[i].function(option, args)) == -1)
+			if ((ret = g_fp[i].function(option, args)) == -1)
 				return (-1);
 			return (ret);
 		}
@@ -75,14 +75,11 @@ int		ft_printf(const char *format, ...)
 	const int	formatlen = ft_strlen(format);
 	int			ret;
 
-	if (format == NULL)
-	{
-		ret = ft_printf_string(NULL, NULL);
+	if (format == NULL && (ret = ft_printf_string(NULL, NULL)))
 		return (ret);
-	}
 	options = NULL;
 	if (extract_options(format, &options) == -1)
-		return (-1);
+		return (free_options(&options));
 	va_start(args, format);
 	option = options;
 	ret = 0;
@@ -93,6 +90,7 @@ int		ft_printf(const char *format, ...)
 		option = option->next;
 	}
 	ret += no_opts_prntrs(NULL, format, formatlen);
+	free_options(&options);
 	va_end(args);
 	return (ret);
 }

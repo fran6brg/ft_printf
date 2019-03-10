@@ -6,7 +6,7 @@
 /*   By: fberger <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 05:40:42 by fberger           #+#    #+#             */
-/*   Updated: 2019/03/10 06:00:54 by fberger          ###   ########.fr       */
+/*   Updated: 2019/03/10 07:01:06 by fberger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,6 @@ void				print_t_options_list(t_options **opts);
 void				print_t_option(t_options **opt);
 long long			get_type(t_options *opt, va_list *args);
 int					ft_printf(const char *format, ...);
+int					free_options(t_options **options);
 
 #endif

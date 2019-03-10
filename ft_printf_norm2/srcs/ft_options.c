@@ -12,25 +12,19 @@
 
 #include "../includes/functions.h"
 
-int			get_flags_numbers(t_options *new, int call, int start, int flen)
+int			get_flags_numbers(t_options *new, int call, int i, int flen)
 {
-	int		i;
 	int		j;
 	int		sum;
 
 	if (flen <= 1)
 		return (0);
-	i = start - 1;
 	j = 0;
 	sum = 0;
 	while (new->flags[++i])
 	{
-		if (new->flags[i] == '.')
-		{
-			new->point = 1;
-			i++;
+		if (new->flags[i] == '.' && i++ > -1 && (new->point = 1))
 			break ;
-		}
 		if (new->flags[i] == '0' && (i == 0
 			|| (new->flags[i - 1] != '.' && !ft_isdigit(new->flags[i - 1]))))
 			new->left_zeros = 1;
@@ -41,10 +35,8 @@ int			get_flags_numbers(t_options *new, int call, int start, int flen)
 			i += (j - 1);
 		}
 	}
-	if (call == 0)
-		new->pad_un = sum;
-	else
-		new->pad_deux = sum;
+	new->pad_un = call == 0 ? sum : new->pad_un;
+	new->pad_deux = call == 1 ? sum : new->pad_deux;
 	return (i);
 }
 
@@ -88,8 +80,8 @@ t_options	*create_new_option(const char *format, int i)
 	new->type = (new->flen > 0 ? (format[i + new->flen]) : (char)NULL);
 	new->fpos = i;
 	create_new_option_bis(format, new);
-	ret = get_flags_numbers(new, 0, 0, new->flen);
-	get_flags_numbers(new, 1, ret, new->flen);
+	ret = get_flags_numbers(new, 0, -1, new->flen);
+	get_flags_numbers(new, 1, ret - 1, new->flen);
 	return (new);
 }
 

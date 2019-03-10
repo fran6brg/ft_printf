@@ -6,15 +6,15 @@
 /*   By: bihattay <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/02 21:04:46 by bihattay          #+#    #+#             */
-/*   Updated: 2019/03/06 05:24:58 by bihattay         ###   ########.fr       */
+/*   Updated: 2019/03/10 07:24:50 by fberger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/functions.h"
 
-long long	get_type(t_options *option, va_list *args)
+long long				get_type(t_options *option, va_list *args)
 {
-	long long n;
+	long long	n;
 
 	if (option->type == 'u' || option->type == 'U')
 	{
@@ -52,9 +52,9 @@ long long	get_type(t_options *option, va_list *args)
 	return (n);
 }
 
-unsigned long long	get_utype(t_options *option, va_list *args)
+unsigned long long		get_utype(t_options *option, va_list *args)
 {
-	unsigned long long n;
+	unsigned long long	n;
 
 	if (option->type == 'u' || option->type == 'U')
 	{
